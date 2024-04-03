@@ -48,7 +48,7 @@
         	var smail = document.frm.mail.value;
         	var stel = document.frm.tel.value;
         	var sgen = document.querySelectorAll('[name="gen"]:checked')[0].value;
-        	var sano = document.querySelectorAll('[name="avt"]:checked')[0].value;
+        	var sano = document.querySelectorAll('[name="ano"]:checked')[0].value;
         	
         	if(!sid || !spw || !smail || !stel || !sgen || !sano){
         		return;
@@ -74,15 +74,15 @@
 	        $.ajax({
 	            url: 'http://localhost/member/idCheck.son',
 	            type: 'POST',
-	            dataType: 'text',
+	            dataType: 'json',
 	            data: {
 	                id: sid
 	            },
-	            success: function(data){
+	            success: function(obj){
 	                // 할일
 	                // 태그 처리하고
 	                // 꺼낸결과로 조건처리
-	                if(data == 'YES'){
+	                if(obj.result == 'YES'){
 	                    // 메세지 채워넣고
 	                    $('#idmsg').html('* 사용가능한 아이디입니다.');
 	                    // 글자색을 파란색으로 변경하고

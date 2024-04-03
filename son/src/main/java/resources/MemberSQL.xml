@@ -13,4 +13,21 @@
 			id = #{id}
 			AND pw = #{pw}
 	</select>
+	
+	<select id="idCheck" resultType="int" parameterType="string">
+		SELECT
+			COUNT(*)
+		FROM
+			member
+		WHERE
+			id = #{id}
+	</select>
+	
+	<insert id="addMember" parameterType="mVO">
+		INSERT INTO
+			member(mno, name, id, pw, mail, tel, gen, avatar)
+		VALUES(
+			mnoSeq.NEXTVAL, #{name}, #{id}, #{pw}, #{mail}, #{tel}, #{gen}, #{ano}
+		)
+	</insert>
 </mapper>

@@ -1,5 +1,6 @@
 package com.human.son.controller;
 
+import java.util.*;
 import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.*;
@@ -72,6 +73,70 @@ public class Member {
 		}
 		rv.setUrl(view);
 		mv.setView(rv);
+		return mv;
+	}
+	
+	/**
+	 * 회원가입 폼보기 요청 전담 처리 함수
+	 */
+	@RequestMapping("/join.son")
+	public ModelAndView join(HttpSession session, ModelAndView mv, RedirectView rv) {
+		// 세션검사
+		if(session.getAttribute("SID") != null) {
+			// 이미 로그인 되어있는 경우
+			rv.setUrl("/main.son");
+			mv.setView(rv); // 리다이렉트
+		} else {
+			// 로그인 안되어있는 경우
+			mv.setViewName("member/join"); // 포워드
+		}
+		return mv;
+	}
+	
+	/**
+	 * 아이디 체크 요청 전담 처리함수
+	 */
+	@RequestMapping("/idCheck.son")
+	@ResponseBody
+	public HashMap idCheck(String id) {
+		HashMap map = new HashMap();
+		// 데이터베이스 조회
+		int cnt = mDao.idCheck(id);
+		String result = "NO";
+		if(cnt == 0) {
+			result ="YES";
+		}
+		map.put("result", result);
+		return map;
+	}
+	
+	/**
+	 * 회원가입 처리 요청 전담 처리함수
+	 */
+	@RequestMapping("/joinProc.son")
+	public ModelAndView joinProc(HttpSession session, ModelAndView mv, 
+											RedirectView rv, MemberVO mVO) {
+		if(session.getAttribute("SID") != null) {
+			rv.setUrl("/main.son");
+			mv.setView(rv);
+		} else {
+			// 데이터베이스 작업
+			int cnt = mDao.addMemb(mVO);
+			
+			// 뷰 셋팅하고
+			if(cnt == 1) {
+				// 회원가입에 성공한 경우
+				// 세션에 아이디 기억시키고
+				session.setAttribute("SID", mVO.getId());
+				// 뷰 셋팅하고
+				rv.setUrl("/main.son");
+			} else {
+				// 회원가입에 실패한 경우
+				rv.setUrl("/member/join.son");
+			}
+			mv.setView(rv);
+		}
+		
 		return mv;
 	}
 }
