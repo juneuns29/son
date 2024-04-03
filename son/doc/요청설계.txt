@@ -1,0 +1,72 @@
+# son project 요청설계
+
+# main page 요청설계
+요청내용 	:	/main.son , /
+파라미터	:	없음
+컨트롤러	:	com.human.son.controller.MainController	- /main.son
+				com.human.home.SonMain					- /
+처리함수	:	goMain(), getMain()
+응답문서	:	/WEB-INF/views/main.jsp
+-----------------------------------------------------------------------------
+# 회원관련 요청 설계
+
+# 로그임 폼보기 요청
+요청내용 	:	/member/login.son
+파라미터	:	none
+컨트롤러	:	com.human.son.controller.Member
+처리함수	:	login()
+응답문서	:	/WEB-INF/views/member/login.jsp
+
+# 로그인 처리 요청
+요청내용 	:	/member/loginProc.son
+파라미터	:	id, pw
+컨트롤러	:	com.human.son.controller.Member
+처리함수	:	loginProc()
+응답문서	:	
+				redirect ]
+					성공 :	/main.son
+					실패 :	/member/login.son
+					
+# 로그아웃 처리 요청
+요청내용 	:	/member/logout.son
+파라미터	:	none
+컨트롤러	:	com.human.son.controller.Member
+처리함수	:	logout()
+응답문서	:	
+				redirect ]
+					성공/실패 :	/main.son
+
+# 회원가입 폼보기 요청
+요청내용 	:	/member/join.son
+파라미터	:	none
+컨트롤러	:	com.human.son.controller.Member
+처리함수	:	join()
+응답문서	:	/WEB-INF/views/member/join.jsp
+
+# 회원가입 처리 요청
+요청내용 	:	/member/joinProc.son
+파라미터	:	name, id, pw, mail,tel, gen, ano
+컨트롤러	:	com.human.son.controller.Member
+처리함수	:	joinProc()
+응답문서	:	
+				redirect ]
+					성공 :	/main.son
+					실패 :	/member/join.son
+					
+# 아이디 체크 처리 요청
+요청내용 	:	/member/idCheck.son
+파라미터	:	id
+컨트롤러	:	com.human.son.controller.Member
+처리함수	:	idCheck()
+응답문서	: 	JSON : {"result": "YES | NO"}
+
+
+
+
+
+-----------------------------------------------------------------------------
+요청내용 	:
+파라미터	:
+컨트롤러	:
+처리함수	:
+응답문서	:

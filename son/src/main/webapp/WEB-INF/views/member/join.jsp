@@ -5,9 +5,9 @@
 <head>
 <title>Join</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/resources/css/w3.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/user.css">
-<script type="text/javascript" src="/resources/js/jquery-3.7.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/w3.css">
+<link rel="stylesheet" type="text/css" href="/css/user.css">
+<script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
 <style type="text/css">
     #chkBtn {
         width: 85px;
@@ -72,7 +72,7 @@
 			$('#idmsg:not(".w3-hide")').addClass('w3-hide');
 
 	        $.ajax({
-	            url: 'http://localhost/member/idCheck.bnd',
+	            url: 'http://localhost/member/idCheck.son',
 	            type: 'POST',
 	            dataType: 'text',
 	            data: {
@@ -107,7 +107,7 @@
         });
         
         $('#home').click(function(){
-        	$(location).attr('href', '/main.bnd');
+        	$(location).attr('href', '/main.son');
         })
     });
 </script>
@@ -115,7 +115,7 @@
 <body>
     <div class="w3-content mxw650">
         <h1 class="w3-blue w3-center w3-padding w3-card-4">회원가입</h1>
-        <form method="GET" action="/member/joinProc.bnd" name="frm" id="frm" 
+        <form method="GET" action="/member/joinProc.son" name="frm" id="frm" 
                 class="w3-col w3-light-grey mgt20 w3-card-4 w3-padding pdh30">
             <div class="w3-col w3-padding">
                 <label for="name" class="w3-col m3 lbl w3-text-gray w3-right-align">이 름 : </label>
@@ -183,41 +183,41 @@
                     <div class="w3-col w3-center w3-hide" id="mAvt">
                         <div class="inblock avtBox w3-center">
                             <label for="11" class="inblock imgBox">
-                                <img src="/resources/image/avatar/img_avatar11.png" class="avtimg">
+                                <img src="/image/avatar/img_avatar11.png" class="avtimg">
                             </label>
-                            <input type="radio" name="avt" id="11" class="w3-radio avtrdo" value="11" checked>
+                            <input type="radio" name="ano" id="11" class="w3-radio avtrdo" value="11" checked>
                         </div>
                         <div class="inblock avtBox w3-center">
                             <label for="12" class="inblock imgBox">
-                                <img src="/resources/image/avatar/img_avatar12.png" class="avtimg">
+                                <img src="/image/avatar/img_avatar12.png" class="avtimg">
                             </label>
-                            <input type="radio" name="avt" id="12" class="w3-radio avtrdo" value="12">
+                            <input type="radio" name="ano" id="12" class="w3-radio avtrdo" value="12">
                         </div>
                         <div class="inblock avtBox w3-center">
                             <label for="13" class="inblock imgBox">
-                                <img src="/resources/image/avatar/img_avatar13.png" class="avtimg">
+                                <img src="/image/avatar/img_avatar13.png" class="avtimg">
                             </label>
-                            <input type="radio" name="avt" id="13" class="w3-radio avtrdo" value="13">
+                            <input type="radio" name="ano" id="13" class="w3-radio avtrdo" value="13">
                         </div>
                     </div>
                     <div class="w3-col w3-center w3-hide" id="fAvt">
                         <div class="inblock avtBox w3-center">
                             <label for="21" class="inblock imgBox">
-                                <img src="/resources/image/avatar/img_avatar21.png" class="avtimg">
+                                <img src="/image/avatar/img_avatar21.png" class="avtimg">
                             </label>
-                            <input type="radio" name="avt" id="21" class="w3-radio avtrdo" value="21">
+                            <input type="radio" name="ano" id="21" class="w3-radio avtrdo" value="21">
                         </div>
                         <div class="inblock avtBox w3-center">
                             <label for="22" class="inblock imgBox">
-                                <img src="/resources/image/avatar/img_avatar22.png" class="avtimg">
+                                <img src="/image/avatar/img_avatar22.png" class="avtimg">
                             </label>
-                            <input type="radio" name="avt" id="22" class="w3-radio avtrdo" value="22">
+                            <input type="radio" name="ano" id="22" class="w3-radio avtrdo" value="22">
                         </div>
                         <div class="inblock avtBox w3-center">
                             <label for="23" class="inblock imgBox">
-                                <img src="/resources/image/avatar/img_avatar23.png" class="avtimg">
+                                <img src="/image/avatar/img_avatar23.png" class="avtimg">
                             </label>
-                            <input type="radio" name="avt" id="23" class="w3-radio avtrdo" value="23">
+                            <input type="radio" name="ano" id="23" class="w3-radio avtrdo" value="23">
                         </div>
                     </div>
                 </div>
