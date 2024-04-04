@@ -1,9 +1,11 @@
 package com.human.son.dao;
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.*;
 
-import com.human.son.vo.MemberVO;
+import org.mybatis.spring.*;
+import org.springframework.beans.factory.annotation.*;
+
+import com.human.son.vo.*;
 
 public class MemberDao {
 	@Autowired
@@ -25,5 +27,12 @@ public class MemberDao {
 	 */
 	public int addMemb(MemberVO mVO) {
 		return session.insert("mSQL.addMember", mVO);
+	}
+	
+	/**
+	 * 회원 아이디 조회 전담 처리함수
+	 */
+	public List getIdList() {
+		return session.selectList("mSQL.idList");
 	}
 }

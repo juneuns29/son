@@ -159,9 +159,14 @@ public class Member {
 		if(session.getAttribute("SID") == null) {
 			// 로그인 안한경우
 			rv.setUrl("/member/login.son");
-			mv.setView(rv);
+			mv.setView(rv); // redirect(이동할 요청 url)
 		} else {
 			// 데이터베이스 조회
+			List list = mDao.getIdList();
+			// 데이터 기억시키고
+			mv.addObject("LIST", list);
+			// 뷰 기억시키고
+			mv.setViewName(view); // forward(jsp문서)
 		}
 		
 		return mv;

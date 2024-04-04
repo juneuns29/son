@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>IU Main</title>
+<title>Son Main</title>
 <link rel="stylesheet" type="text/css" href="/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/css/user.css">
 <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
@@ -62,6 +62,7 @@
 			<div class="w3-btn w3-small w3-pink w3-left" id="gboard">방명록</div>
 <c:if test="${not empty SID}">
 			<div class="w3-btn w3-small w3-orange w3-right" id="logout">로그아웃</div>
+			<div class="w3-btn w3-small w3-light-green w3-left" id="idList"> 회원들 </div>
 </c:if>
 <c:if test="${empty SID}">
 			<div class="w3-btn w3-small w3-blue w3-right" id="join">회원가입</div>
