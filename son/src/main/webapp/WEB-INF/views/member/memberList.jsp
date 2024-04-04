@@ -68,12 +68,26 @@
 				}
 			});
 		});
+		
+		$('#cbtn, #close').click(function(){
+			// 모달 창 안보이게 처리
+			$('#wmodal').css('display', 'none');
+			// 입력된 정보 지우고
+			// membdata 클래스로 선택하기로 하자.
+			$('.membdata').html('');
+			$('#avtBox').attr('src', '');
+		});
 	});
 </script>
 </head>
 <body>
 	<div class="w3-content mxw650 w3-center">
 		<h1 class="w3-padding w3-red w3-card-4">회원리스트</h1>
+		<div class="w3-col">
+			<div class="w3-btn w3-small w3-green w3-card-4 w3-left" id="home">home</div>
+			<div class="w3-btn w3-small w3-pink w3-card-4 w3-right" id="logout">logout</div>
+		</div>
+		<hr class="w3-col w3-margin">
 		<div class="w3-col">
 <c:forEach var="DATA" items="${LIST}" varStatus="st">
 			<div class="inblock idbtn w3-btn mgb10 ${COLOR[st.index]}">${DATA}</div>
@@ -85,7 +99,7 @@
 		<div class="w3-modal-content mxw550" >
 			<header class="w3-container w3-blue"> 
 				<span class="w3-btn w3-display-topright" id="close">&times;</span>
-				<h2><span id="tid"></span> 회원 Information</h2>
+				<h2><span id="tid membdata"></span> 회원 Information</h2>
 			</header>
 			<div class="w3-container w3-padding">
 				<div class="w3-col w3-center">
@@ -93,28 +107,28 @@
 				</div>
 				<hr class="w3-col w3-margin-top w3-margin-bottom">
 				<div class="w3-col">
-					<h3 class="w3-col m3 w3-text-light-gray pdr10">이 름 : </h3>
-					<h3 class="w3-col m8 w3-text-light-gray pdr10" id="name"></h3>
+					<h3 class="w3-col m3 w3-right-align w3-text-gray pdr10">이 름 : </h3>
+					<h3 class="w3-col m8 w3-center w3-text-gray pdr10 membdata" id="name"></h3>
 				</div>
 				<div class="w3-col">
-					<h3 class="w3-col m3 w3-text-light-gray pdr10">아이디 : </h3>
-					<h3 class="w3-col m8 w3-text-light-gray pdr10" id="id"></h3>
+					<h3 class="w3-col m3 w3-right-align w3-text-gray pdr10">아이디 : </h3>
+					<h3 class="w3-col m8 w3-center w3-text-gray pdr10 membdata" id="id"></h3>
 				</div>
 				<div class="w3-col">
-					<h3 class="w3-col m3 w3-text-light-gray pdr10">메 일 : </h3>
-					<h3 class="w3-col m8 w3-text-light-gray pdr10" id="mail"></h3>
+					<h3 class="w3-col m3 w3-right-align w3-text-gray pdr10">메 일 : </h3>
+					<h3 class="w3-col m8 w3-center w3-text-gray pdr10 membdata" id="mail"></h3>
 				</div>
 				<div class="w3-col">
-					<h3 class="w3-col m3 w3-text-light-gray pdr10">연락처 : </h3>
-					<h3 class="w3-col m8 w3-text-light-gray pdr10" id="tel"></h3>
+					<h3 class="w3-col m3 w3-right-align w3-text-gray pdr10">연락처 : </h3>
+					<h3 class="w3-col m8 w3-center w3-text-gray pdr10 membdata" id="tel"></h3>
 				</div>
 				<div class="w3-col">
-					<h3 class="w3-col m3 w3-text-light-gray pdr10">성 별 : </h3>
-					<h3 class="w3-col m8 w3-text-light-gray pdr10" id="gen"></h3>
+					<h3 class="w3-col m3 w3-right-align w3-text-gray pdr10">성 별 : </h3>
+					<h3 class="w3-col m8 w3-center w3-text-gray pdr10 membdata" id="gen"></h3>
 				</div>
 				<div class="w3-col">
-					<h3 class="w3-col m3 w3-text-light-gray pdr10">가입일 : </h3>
-					<h3 class="w3-col m8 w3-text-light-gray pdr10" id="jdate"></h3>
+					<h3 class="w3-col m3 w3-right-align w3-text-gray pdr10">가입일 : </h3>
+					<h3 class="w3-col m8 w3-center w3-text-gray pdr10 membdata" id="jdate"></h3>
 				</div>
 			</div>
 			<footer class="w3-col">

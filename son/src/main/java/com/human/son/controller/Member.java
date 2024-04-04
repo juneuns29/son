@@ -176,4 +176,14 @@ public class Member {
 		
 		return mv;
 	}
+	
+	/**
+	 * 회원 정보 조회 전담 처리함수
+	 */
+	@RequestMapping("/memberInfo.son")
+	@ResponseBody
+	public MemberVO memberInfo(String id) {
+		MemberVO mVO = mDao.getMemberInfo(id);
+		return mVO;
+	}
 }

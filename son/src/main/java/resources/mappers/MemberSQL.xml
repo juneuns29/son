@@ -49,6 +49,17 @@
 			member
 	</select>
 	
+	<!-- 회원의 아이디로 해당회원의 정보를 조회하는 질의명령 -->
+	<select id="memberInfo" resultType="mVO" parameterType="string">
+		SELECT
+			name, id, mail, tel, m.gen, joindate jdate, filename savename
+		FROM
+			member m, avatar a
+		WHERE
+			avatar = ano
+			AND id = #{id}
+	</select>
+	
 	<insert id="addMember" parameterType="mVO">
 		INSERT INTO
 			member(mno, name, id, pw, mail, tel, gen, avatar)

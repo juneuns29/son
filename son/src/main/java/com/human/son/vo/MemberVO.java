@@ -1,9 +1,10 @@
 package com.human.son.vo;
 
+import java.text.*;
 import java.util.*;
 public class MemberVO {
 	private int mno, ano, cnt;
-	private String name, id, pw, mail, tel, gen, savename;
+	private String name, id, pw, mail, tel, gen, savename, sdate;
 	private Date jdate;
 	public int getMno() {
 		return mno;
@@ -65,15 +66,24 @@ public class MemberVO {
 	public void setSavename(String savename) {
 		this.savename = savename;
 	}
+	public String getSdate() {
+		return sdate;
+	}
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
+	}
 	public Date getJdate() {
 		return jdate;
 	}
 	public void setJdate(Date jdate) {
 		this.jdate = jdate;
+		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		sdate = form.format(jdate);
 	}
 	@Override
 	public String toString() {
 		return "MemberVO [mno=" + mno + ", ano=" + ano + ", cnt=" + cnt + ", name=" + name + ", id=" + id + ", pw=" + pw
-				+ ", mail=" + mail + ", tel=" + tel + ", gen=" + gen + ", jdate=" + jdate + "]";
+				+ ", mail=" + mail + ", tel=" + tel + ", gen=" + gen + ", savename=" + savename + ", sdate=" + sdate
+				+ ", jdate=" + jdate + "]";
 	}
 }
