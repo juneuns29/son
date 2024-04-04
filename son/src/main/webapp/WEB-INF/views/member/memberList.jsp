@@ -21,8 +21,8 @@
 	<div class="w3-content mxw650 w3-center">
 		<h1 class="w3-padding w3-red w3-card-4">회원리스트</h1>
 		<div class="w3-col">
-<c:forEach var="DATA" items="${LIST}">
-			<div class="inblock w3-btn w3-pink">${DATA}</div>
+<c:forEach var="DATA" items="${LIST}" varStatus="st">
+			<div class="inblock w3-btn mgb10 ${COLOR[st.index]}">${DATA}</div>
 </c:forEach>
 		</div>
 	</div>

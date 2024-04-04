@@ -11,12 +11,16 @@ import org.springframework.web.servlet.view.*;
 
 import com.human.son.dao.*;
 import com.human.son.vo.*;
+import com.human.son.util.*;
 
 @Controller
 @RequestMapping("/member")
 public class Member {
 	@Autowired
 	MemberDao mDao;
+	
+	@Autowired
+	ColorList color;
 	
 	/**
 	 * 로그인 화면 보기 요청 전담 처리함수
@@ -165,6 +169,7 @@ public class Member {
 			List list = mDao.getIdList();
 			// 데이터 기억시키고
 			mv.addObject("LIST", list);
+			mv.addObject("COLOR", color.getColorList());
 			// 뷰 기억시키고
 			mv.setViewName(view); // forward(jsp문서)
 		}
