@@ -3,7 +3,7 @@ package com.human.son.vo;
 import java.util.*;
 public class MemberVO {
 	private int mno, ano, cnt;
-	private String name, id, pw, mail, tel, gen;
+	private String name, id, pw, mail, tel, gen, savename;
 	private Date jdate;
 	public int getMno() {
 		return mno;
@@ -58,6 +58,12 @@ public class MemberVO {
 	}
 	public void setGen(String gen) {
 		this.gen = gen;
+	}
+	public String getSavename() {
+		return savename;
+	}
+	public void setSavename(String savename) {
+		this.savename = savename;
 	}
 	public Date getJdate() {
 		return jdate;
