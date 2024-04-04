@@ -28,7 +28,10 @@
 		<typeAlias alias="mVO" type="com.human.son.vo.MemberVO"/>
 	</typeAliases>
 	
+	<!--  
 	<mappers>
-		<mapper resource="resources/MemberSQL.xml" />
+		<mapper resource="resources/mapper/**SQL.xml" />
 	</mappers>
+	-->
+	
 </configuration>

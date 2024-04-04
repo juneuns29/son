@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mSQL">
+<!-- 	<select id="login" resultType="int" parameterType="com.human.son.vo.MemberVO"> -->
+	<select id="login" resultType="int" parameterType="mVO">
+		SELECT
+			COUNT(*) cnt
+		FROM
+			member
+		WHERE
+			id = #{id}
+			AND pw = #{pw}
+	</select>
+	
+	<select id="idCheck" resultType="int" parameterType="string">
+		SELECT
+			COUNT(*)
+		FROM
+			member
+		WHERE
+			id = #{id}
+	</select>
+	
+	<!--  
+		resultType
+		==> 질의명령의 결과를 반환해줄 타입
+			주의할 점은 한 행의 결과를 기억시킬 수 있는 타입을 써야한다.
+			
+		parameterType
+		==> 질의명령을 실행할 때 
+			질의명령을 완성해야하는 경우
+			데이터를 전달받아서 채워서 완성해야 할 것이다.
+			이때 전달되는 데이터의 타입을 기술해야 한다.
+			
+		참고 ]
+			resultType, parameterType은 여러개를 동시에 사용할 수 없다.
+			오직 한가지로만 써야한다.
+			
+		참고 ]
+			resultType, parameterType은 필수 사항은 아니고
+			필요할 때만 사용하면 된다.
+	-->
+	<select id="idList" resultType="string">
+		SELECT
+			id
+		FROM
+			member
+	</select>
+	
+	<insert id="addMember" parameterType="mVO">
+		INSERT INTO
+			member(mno, name, id, pw, mail, tel, gen, avatar)
+		VALUES(
+			mnoSeq.NEXTVAL, #{name}, #{id}, #{pw}, #{mail}, #{tel}, #{gen}, #{ano}
+		)
+	</insert>
+</mapper>

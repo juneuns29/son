@@ -9,6 +9,6 @@
 						https://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<bean id="mDao" class="com.human.son.dao.MemberDao" />
-	<!-- <bean id="gDao" class="com.human.son.dao.GboardDao" /> -->
+	<bean id="gDao" class="com.human.son.dao.GboardDao" />
 	
 </beans>
