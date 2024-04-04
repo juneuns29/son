@@ -41,6 +41,10 @@
 		$('#gboard').click(function(){
 			$(location).attr('href', '/gboard/gboard.son');
 		});
+		
+		$('#idList').click(function(){
+			$(location).attr('href', '/member/memberList.son');
+		});
 	});
 </script>
 </head>
