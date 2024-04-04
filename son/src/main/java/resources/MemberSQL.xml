@@ -23,6 +23,7 @@
 			id = #{id}
 	</select>
 	
+	
 	<insert id="addMember" parameterType="mVO">
 		INSERT INTO
 			member(mno, name, id, pw, mail, tel, gen, avatar)

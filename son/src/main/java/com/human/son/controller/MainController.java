@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.*;
 public class MainController {
 	
 	@RequestMapping("/main.son")
-	public String goMain() {
-		return "main";
+	public void goMain() {
+//	public String goMain() {
+//		return "main";
+		return;
 	}
 }

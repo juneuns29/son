@@ -107,6 +107,12 @@ public class Member {
 			result ="YES";
 		}
 		map.put("result", result);
+		/*
+			==>
+			{
+				"result": "YES"
+			}
+		 */
 		return map;
 	}
 	
@@ -135,6 +141,27 @@ public class Member {
 				rv.setUrl("/member/join.son");
 			}
 			mv.setView(rv);
+		}
+		
+		return mv;
+	}
+	
+	/**
+	 * 회원리스트 폼보기 요청 전담 처리함수
+	 */
+	@RequestMapping("/memberList.son")
+	public ModelAndView memberList(HttpSession session, ModelAndView mv, RedirectView rv) {
+		// 할일
+		// 뷰 정하고
+		String view = "member/memberList";
+		
+		// 로그인 검사
+		if(session.getAttribute("SID") == null) {
+			// 로그인 안한경우
+			rv.setUrl("/member/login.son");
+			mv.setView(rv);
+		} else {
+			// 데이터베이스 조회
 		}
 		
 		return mv;

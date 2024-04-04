@@ -60,6 +60,12 @@
 처리함수	:	idCheck()
 응답문서	: 	JSON : {"result": "YES | NO"}
 
+# 회원리스트보기 요청
+요청내용 	:	/member/memberList.son
+파라미터	:	none
+컨트롤러	:	com.human.son.controller.Member
+처리함수	:	memberList()
+응답문서	:	/WEB-INF/views/member/memberList.jsp
 
 
 
