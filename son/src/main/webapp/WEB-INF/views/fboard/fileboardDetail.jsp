@@ -15,10 +15,26 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 
+		$('#home').click(function(){
+			$(location).attr('href', '/main.son');
+		});
+		
+		$('#edit').click(function(){
+			$('#frm').submit();
+		});
+		
+		$('#list').click(function(){
+			$(location).attr('href', '/fboard/fileboard.son');
+		});
+		
 	});
 </script>
 </head>
 <body>
+
+	<form method="POST" action="/fboard/fboardEdit.son" name="frm" id="frm">
+		<input type="hidden" name="bno" id="bno" value="${DATA.bno}">
+	</form>
 	<div class="w3-content mxw700">
 		<h1 class="w3-padding w3-center w3-blue">파일게시글 내용</h1>
 		

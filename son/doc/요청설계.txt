@@ -98,6 +98,13 @@
 처리함수	:	boardWrite()
 응답문서	:	/WEB-INF/views/fboard/fileboardWrite.jsp
 
+# 파일게시판 게시글 수정 폼보기 요청
+요청내용 	:	/fboard/fboardEdit.son
+파라미터	:	bno
+컨트롤러	:	com.human.son.controller.FileBoard
+처리함수	:	boardEdit()
+응답문서	:	/WEB-INF/views/fboard/fileboardEdit.jsp
+
 
 
 

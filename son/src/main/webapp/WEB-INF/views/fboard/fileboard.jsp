@@ -22,14 +22,34 @@
 			$('#frm').submit();
 		});
 		
-		$('#')
+		$('#home').click(function(){
+			$(location).attr('href', '/main.son');
+		});
+		
+		$('#write').click(function(){
+			$(location).attr('href', '/fboard/fboardWrite.son');
+		});
+		
+		$('#logout').click(function(){
+			$(location).attr('href', '/member/logout.son');
+		});
+		
+		$('#login').click(function(){
+			$(location).attr('href', '/member/login.son');
+		});
+		
+		$('#join').click(function(){
+			$(location).attr('href', '/member/join.son');
+		});
 	});
 </script>
 </head>
 <body>
+	<!-- 전송용 폼 태그 -->
 	<form method="POST" action="/fboard/fboardDetail.son" id="frm" name="frm">
 		<input type="hidden" name="bno" id="bno">
 	</form>
+	
 	<div class="w3-content mxw700">
 		<h1 class="w3-padding w3-center w3-green" style="margin-bottom: 0px!important;">파일 게시판</h1>
 		
