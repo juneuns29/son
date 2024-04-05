@@ -20,6 +20,14 @@ public class FileBoard {
 	@RequestMapping("/fboardDetail.son")
 	public ModelAndView boardDetail(HttpSession session, ModelAndView mv, RedirectView rv, int bno) {
 		mv.setViewName("fboard/fileboardDetail");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/fboardWrite.son")
+	public ModelAndView boardWrite(HttpSession session, ModelAndView mv, RedirectView rv) {
+		mv.setViewName("fboard/fileboardWrite");
+		
 		return mv;
 	}
 }

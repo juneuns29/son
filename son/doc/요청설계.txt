@@ -91,6 +91,13 @@
 처리함수	:	boardDetail()
 응답문서	:	/WEB-INF/views/fboard/fileboardDetail.jsp
 
+# 파일게시판 게시글 작성 폼보기 요청
+요청내용 	:	/fboard/fboardWrite.son
+파라미터	:	none
+컨트롤러	:	com.human.son.controller.FileBoard
+처리함수	:	boardWrite()
+응답문서	:	/WEB-INF/views/fboard/fileboardWrite.jsp
+
 
 
 
