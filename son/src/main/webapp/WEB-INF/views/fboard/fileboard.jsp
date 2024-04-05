@@ -21,6 +21,8 @@
 			$('#bno').val(sbno);
 			$('#frm').submit();
 		});
+		
+		$('#')
 	});
 </script>
 </head>
@@ -29,7 +31,20 @@
 		<input type="hidden" name="bno" id="bno">
 	</form>
 	<div class="w3-content mxw700">
-		<h1 class="w3-padding w3-center w3-green">파일 게시판</h1>
+		<h1 class="w3-padding w3-center w3-green" style="margin-bottom: 0px!important;">파일 게시판</h1>
+		
+		<div class="w3-col w3-margin-bottom">
+			<div class="w3-col m2 w3-btn w3-small w3-lime w3-ripple" id="home">Home</div>
+<c:if test="${not empty SID}">
+			<div class="w3-col m2 w3-btn w3-small w3-amber w3-ripple w3-right" id="write">글작성</div>
+			<div class="w3-col m2 w3-btn w3-small w3-blue w3-ripple w3-right" id="logout">로그아웃</div>
+</c:if>
+<c:if test="${empty SID}">
+			<div class="w3-btn w3-small w3-khaki w3-ripple w3-right" id="login">로그인</div>
+			<div class="w3-btn w3-small w3-orange w3-ripple w3-right" id="join">회원가입</div>
+</c:if>
+		</div>
+		
 		<div class="w3-col">
 			<div class="w3-col w3-center">
 				<div class="inblock w3-left pdr5" style="width: 100px;"><div class="w3-blue-gray">글번호</div></div>
@@ -83,7 +98,6 @@
 				<a href="#" class="w3-bar-item w3-button w3-green w3-hover-lime">&raquo;</a>
 			</div>
 		</div>
-		
 	</div>
 </body>
 </html>
