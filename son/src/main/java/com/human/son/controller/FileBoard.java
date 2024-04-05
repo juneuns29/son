@@ -16,4 +16,10 @@ public class FileBoard {
 		mv.setViewName("fboard/fileboard");
 		return mv;
 	}
+	
+	@RequestMapping("/fboardDetail.son")
+	public ModelAndView boardDetail(HttpSession session, ModelAndView mv, RedirectView rv, int bno) {
+		mv.setViewName("fboard/fileboardDetail");
+		return mv;
+	}
 }

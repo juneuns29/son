@@ -18,11 +18,16 @@
 		$('.fblist').click(function(){
 			var sbno = $(this).attr('id');
 			
+			$('#bno').val(sbno);
+			$('#frm').submit();
 		});
 	});
 </script>
 </head>
 <body>
+	<form method="POST" action="/fboard/fboardDetail.son" id="frm" name="frm">
+		<input type="hidden" name="bno" id="bno">
+	</form>
 	<div class="w3-content mxw700">
 		<h1 class="w3-padding w3-center w3-green">파일 게시판</h1>
 		<div class="w3-col">
@@ -35,6 +40,30 @@
 			</div>
 			
 			<div class="w3-col w3-border-bottom w3-margin-top fblist" id="1234">
+				<div class="inblock w3-left pdr5" style="width: 100px;"><div class="w3-center fbno">1234</div></div>
+				<div class="inblock w3-right" style="width: 50px;"><div class="w3-center file">0</div></div>
+				<div class="inblock w3-right pdr5" style="width: 170px;"><small class="w3-center wdate">2024-04-05 13:30:30</small></div>
+				<div class="inblock w3-right pdr5" style="width: 150px;"><div class="w3-center writer">jennie</div></div>
+				<div class="w3-rest pdr5"><div class="title">test</div></div>
+			</div>
+			
+			<div class="w3-col w3-border-bottom w3-margin-top fblist" id="1235">
+				<div class="inblock w3-left pdr5" style="width: 100px;"><div class="w3-center fbno">1234</div></div>
+				<div class="inblock w3-right" style="width: 50px;"><div class="w3-center file">0</div></div>
+				<div class="inblock w3-right pdr5" style="width: 170px;"><small class="w3-center wdate">2024-04-05 13:30:30</small></div>
+				<div class="inblock w3-right pdr5" style="width: 150px;"><div class="w3-center writer">jennie</div></div>
+				<div class="w3-rest pdr5"><div class="title">test</div></div>
+			</div>
+			
+			<div class="w3-col w3-border-bottom w3-margin-top fblist" id="1236">
+				<div class="inblock w3-left pdr5" style="width: 100px;"><div class="w3-center fbno">1234</div></div>
+				<div class="inblock w3-right" style="width: 50px;"><div class="w3-center file">0</div></div>
+				<div class="inblock w3-right pdr5" style="width: 170px;"><small class="w3-center wdate">2024-04-05 13:30:30</small></div>
+				<div class="inblock w3-right pdr5" style="width: 150px;"><div class="w3-center writer">jennie</div></div>
+				<div class="w3-rest pdr5"><div class="title">test</div></div>
+			</div>
+			
+			<div class="w3-col w3-border-bottom w3-margin-top fblist" id="1237">
 				<div class="inblock w3-left pdr5" style="width: 100px;"><div class="w3-center fbno">1234</div></div>
 				<div class="inblock w3-right" style="width: 50px;"><div class="w3-center file">0</div></div>
 				<div class="inblock w3-right pdr5" style="width: 170px;"><small class="w3-center wdate">2024-04-05 13:30:30</small></div>

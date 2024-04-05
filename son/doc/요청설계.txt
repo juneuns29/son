@@ -84,6 +84,12 @@
 처리함수	:	boardList()
 응답문서	:	/WEB-INF/views/fboard/fileboard.jsp
 
+# 파일게시판 게시글 상세보기 요청
+요청내용 	:	/fboard/fboardDetail.son
+파라미터	:	bno
+컨트롤러	:	com.human.son.controller.FileBoard
+처리함수	:	boardDetail()
+응답문서	:	/WEB-INF/views/fboard/fileboardDetail.jsp
 
 
 
