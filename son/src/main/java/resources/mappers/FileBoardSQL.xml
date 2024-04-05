@@ -3,24 +3,38 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="fSQL">
-	<select id="selList" resultType="bVO">
+	<select id="selList" resultType="bVO" parameterType="page">
 		<!-- resultType은 조회한 한행을 기억할 타입으로 지정한다. -->
 		SELECT
-			fbno bno, id, title, wdate, 
-			(
-				SELECT
-					COUNT(*)
-				FROM
-					fileinfo
-				WHERE
-					fbno = f.fbno
-					AND isshow = 'Y'
-			) cnt
+		    rno, bno, title, body, mno, id, wdate
 		FROM
-			fileboard f, member m
+		    (
+		        SELECT
+		            ROWNUM rno, bno, title, body, mno, id, wdate
+		        FROM
+		            (
+		                SELECT
+		                    fbno bno, title, body, mno, id, wdate
+		                FROM
+		                    fileboard f, member m
+		                WHERE
+		                    writer = mno
+		                    AND f.isshow = 'Y'
+		                ORDER BY
+		                    wdate DESC
+		            )
+		    )
 		WHERE
-			writer = mno
-			AND f.isshow = 'Y'
+		    rno BETWEEN #{startRno} AND #{endRno}
+	</select>
+	
+	<select id="selTotal" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			fileboard
+		WHERE
+			isshow = 'Y'
 	</select>
 	
 	<insert id="addBoard" parameterType="bVO">

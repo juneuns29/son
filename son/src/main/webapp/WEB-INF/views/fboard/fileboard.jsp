@@ -88,12 +88,11 @@
 	
 		<div class="w3-col w3-center w3-margin-top">
 			<div class="w3-bar w3-border w3-round">
-				<a href="#" class="w3-bar-item w3-button w3-green w3-hover-lime">&laquo;</a>
-				<a href="#" class="w3-bar-item w3-button w3-green w3-hover-lime">1</a>
-				<a href="#" class="w3-bar-item w3-button w3-green w3-hover-lime">2</a>
-				<a href="#" class="w3-bar-item w3-button w3-green w3-hover-lime">3</a>
-				<a href="#" class="w3-bar-item w3-button w3-green w3-hover-lime">4</a>
-				<a href="#" class="w3-bar-item w3-button w3-green w3-hover-lime">&raquo;</a>
+				<span class="w3-bar-item w3-button w3-green w3-hover-lime" id="${PAGE.startPage - 1}">&laquo;</span>
+<c:forEach var="pno" begin="${PAGE.startPage}" end="${PAGE.endPage}">
+				<span class="w3-bar-item w3-button w3-green w3-hover-lime">${pno}</span>
+</c:forEach>
+				<span class="w3-bar-item w3-button w3-green w3-hover-lime" id="${PAGE.endPage + 1}">&raquo;</span>
 			</div>
 		</div>
 </c:if>

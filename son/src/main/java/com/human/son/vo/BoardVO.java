@@ -5,7 +5,7 @@ import java.util.*;
 import org.springframework.web.multipart.*;
 
 public class BoardVO {
-	private int bno, mno, ano, cnt;
+	private int rno, bno, mno, ano, cnt;
 	private String name, id, title, body, sdate, sname;
 	private ArrayList<String> filenames;
 	private MultipartFile[] file;
@@ -28,6 +28,12 @@ public class BoardVO {
 		name 속성이 같은 태그가 여러개가 전송이 될 것이므로
 		이럴 때는 배열형태로 받아야 한다.
 	 */
+	public int getRno() {
+		return rno;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
 	public int getBno() {
 		return bno;
 	}
