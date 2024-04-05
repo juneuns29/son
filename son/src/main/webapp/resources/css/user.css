@@ -41,6 +41,10 @@
     padding-top: 14px;
 }
 
+.pdr5 {
+    padding-right: 5px;
+}
+
 .pdr10 {
     padding-right: 10px;
 }
@@ -64,6 +68,12 @@
     padding-bottom: 30px!important;
 }
 
+.mgr3 {
+    margin-right: 3px;
+}
+.mgr5 {
+    margin-right: 5px;
+}
 .mgt10 {
     margin-top: 10px;
 }
@@ -146,3 +156,9 @@
     border: 1px solid lightgrey;
 }
 
+.w100 {
+	width: 100px;
+}
+.w100 {
+	width: 100px;
+}

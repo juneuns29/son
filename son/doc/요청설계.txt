@@ -74,6 +74,17 @@
 처리함수	:	memberInfo()
 응답문서	:	JSON
 
+-----------------------------------------------------------------------------
+# 파일 게시판 관련 요청
+
+# 파일게시판 리스트 보기 요청
+요청내용 	:	/fboard/fileboard.son
+파라미터	:	none
+컨트롤러	:	com.human.son.controller.FileBoard
+처리함수	:	boardList()
+응답문서	:	/WEB-INF/views/fboard/fileboard.jsp
+
+
 
 
 
