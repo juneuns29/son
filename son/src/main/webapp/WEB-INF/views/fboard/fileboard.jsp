@@ -73,41 +73,19 @@
 				<div class="inblock w3-right pdr5" style="width: 150px;"><div class="w3-blue-gray">작성자</div></div>
 				<div class="w3-rest pdr5"><div class="w3-blue-gray">글제목</div></div>
 			</div>
-			
-			<div class="w3-col w3-border-bottom w3-margin-top fblist" id="1234">
-				<div class="inblock w3-left pdr5" style="width: 100px;"><div class="w3-center fbno">1234</div></div>
-				<div class="inblock w3-right" style="width: 50px;"><div class="w3-center file">0</div></div>
-				<div class="inblock w3-right pdr5" style="width: 170px;"><small class="w3-center wdate">2024-04-05 13:30:30</small></div>
-				<div class="inblock w3-right pdr5" style="width: 150px;"><div class="w3-center writer">jennie</div></div>
-				<div class="w3-rest pdr5"><div class="title">test</div></div>
+<c:if test="${not empty LIST}">
+	<c:forEach var="DATA" items="${LIST}">
+			<div class="w3-col w3-border-bottom w3-margin-top fblist" id="${DATA.bno}">
+				<div class="inblock w3-left pdr5" style="width: 100px;"><div class="w3-center fbno">${DATA.bno}</div></div>
+				<div class="inblock w3-right" style="width: 50px;"><div class="w3-center file">${DATA.cnt}</div></div>
+				<div class="inblock w3-right pdr5" style="width: 170px;"><small class="w3-center wdate">${DATA.sdate}</small></div>
+				<div class="inblock w3-right pdr5" style="width: 150px;"><div class="w3-center writer">${DATA.id}</div></div>
+				<div class="w3-rest pdr5">
+					<div class="title">${DATA.title}</div>
+				</div>
 			</div>
-			
-			<div class="w3-col w3-border-bottom w3-margin-top fblist" id="1235">
-				<div class="inblock w3-left pdr5" style="width: 100px;"><div class="w3-center fbno">1234</div></div>
-				<div class="inblock w3-right" style="width: 50px;"><div class="w3-center file">0</div></div>
-				<div class="inblock w3-right pdr5" style="width: 170px;"><small class="w3-center wdate">2024-04-05 13:30:30</small></div>
-				<div class="inblock w3-right pdr5" style="width: 150px;"><div class="w3-center writer">jennie</div></div>
-				<div class="w3-rest pdr5"><div class="title">test</div></div>
-			</div>
-			
-			<div class="w3-col w3-border-bottom w3-margin-top fblist" id="1236">
-				<div class="inblock w3-left pdr5" style="width: 100px;"><div class="w3-center fbno">1234</div></div>
-				<div class="inblock w3-right" style="width: 50px;"><div class="w3-center file">0</div></div>
-				<div class="inblock w3-right pdr5" style="width: 170px;"><small class="w3-center wdate">2024-04-05 13:30:30</small></div>
-				<div class="inblock w3-right pdr5" style="width: 150px;"><div class="w3-center writer">jennie</div></div>
-				<div class="w3-rest pdr5"><div class="title">test</div></div>
-			</div>
-			
-			<div class="w3-col w3-border-bottom w3-margin-top fblist" id="1237">
-				<div class="inblock w3-left pdr5" style="width: 100px;"><div class="w3-center fbno">1234</div></div>
-				<div class="inblock w3-right" style="width: 50px;"><div class="w3-center file">0</div></div>
-				<div class="inblock w3-right pdr5" style="width: 170px;"><small class="w3-center wdate">2024-04-05 13:30:30</small></div>
-				<div class="inblock w3-right pdr5" style="width: 150px;"><div class="w3-center writer">jennie</div></div>
-				<div class="w3-rest pdr5"><div class="title">test</div></div>
-			</div>
-			
-		</div>
-		
+	</c:forEach>
+	
 		<div class="w3-col w3-center w3-margin-top">
 			<div class="w3-bar w3-border w3-round">
 				<a href="#" class="w3-bar-item w3-button w3-green w3-hover-lime">&laquo;</a>
@@ -118,6 +96,14 @@
 				<a href="#" class="w3-bar-item w3-button w3-green w3-hover-lime">&raquo;</a>
 			</div>
 		</div>
+</c:if>
+<c:if test="${empty LIST}">
+			<div class="w3-col w3-border-bottom w3-margin-top">
+				<h3 class="w3-center w3-text-gray">* 아직 작성된 글이 없습니다. *</h3>
+			</div>
+</c:if>
+		</div>
+		
 	</div>
 </body>
 </html>

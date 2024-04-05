@@ -26,6 +26,7 @@
 	-->
 	<typeAliases>
 		<typeAlias alias="mVO" type="com.human.son.vo.MemberVO"/>
+		<typeAlias alias="bVO" type="com.human.son.vo.BoardVO"/>
 	</typeAliases>
 	
 	<!--  

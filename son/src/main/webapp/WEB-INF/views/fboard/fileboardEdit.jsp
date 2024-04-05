@@ -59,8 +59,7 @@
 				</div>
 			</div>
 		</form>
-			
-			
+		
 		<div class="w3-col">
 			<div class="w3-third w3-btn w3-section w3-green w3-ripple" id="home">Home</div>
 			<div class="w3-third w3-btn w3-section w3-blue w3-ripple" id="list">글목록</div>

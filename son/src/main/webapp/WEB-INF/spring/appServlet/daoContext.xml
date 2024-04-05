@@ -10,5 +10,6 @@
 	
 	<bean id="mDao" class="com.human.son.dao.MemberDao" />
 	<bean id="gDao" class="com.human.son.dao.GboardDao" />
+	<bean id="fDao" class="com.human.son.dao.FileBoardDao" />
 	
 </beans>
