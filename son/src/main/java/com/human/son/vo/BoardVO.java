@@ -1,5 +1,6 @@
 package com.human.son.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import org.springframework.web.multipart.*;
 
@@ -104,6 +105,8 @@ public class BoardVO {
 	}
 	public void setWdate(Date wdate) {
 		this.wdate = wdate;
+		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		sdate = form.format(wdate);
 	}
 	@Override
 	public String toString() {

@@ -22,4 +22,28 @@
 			writer = mno
 			AND f.isshow = 'Y'
 	</select>
+	
+	<insert id="addBoard" parameterType="bVO">
+		INSERT INTO
+			fileboard(fbno, title, body, writer)
+		VALUES(
+			fbrdseq.NEXTVAL, #{title}, #{body}, 
+			(
+				SELECT
+					mno
+				FROM
+					member
+				WHERE
+					id = #{id}
+			)
+		)
+	</insert>
+	
+	<insert id="addFile" parameterType="fVO">
+		INSERT INTO
+			fileinfo(fileno, fbno, upname, savename, len)
+		VALUES(
+			fileSEQ.NEXTVAL, #{bno}, #{upname}, #{savename}, #{len}
+		)
+	</insert>
 </mapper>

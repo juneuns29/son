@@ -24,6 +24,37 @@
 			$(location).attr('href', '/main.son');
 		});
 		
+		$('#write').click(function(){
+			// 데이터 유효성 검사
+			var sid = $('#id').val();
+			if(!sid){
+				$('#id').focus();
+				return;
+			}
+			var title = $('#title').val();
+			if(!title){
+				$('#title').focus();
+				return;
+			}
+			var body = $('#body').val();
+			if(!body){
+				$('#body').focus();
+				return;
+			}
+			var file = $(document.frm.file).val();
+			for(var i = 0 ; i < file.length ; i++ ){
+				if(!file){
+					$(document.frm.file).eq(i).prop('disabled', true);
+				}
+			}
+			
+			$('#frm').submit();
+		});
+		
+		$('#list').click(function(){
+			$(location).attr('href', '/fboard/fileboard.son');
+		});
+		
 		$(document.frm.file).change(function(){
 			var sfile = $(this).val();
 			if(sfile){
@@ -41,7 +72,7 @@
 	<div class="w3-content mxw700">
 		<h1 class="w3-padding w3-center w3-blue">Write</h1>
 		
-		<form method="POST" action="/fboard/writeProc.son" name="frm" id="frm"
+		<form method="POST" action="/fboard/writeProc.son" name="frm" id="frm" encType="multipart/form-data"
 			 		class="w3-col w3-padding w3-card-4 w3-light-grey w3-text-blue">
 			<div class="w3-row w3-section w3-padding">
 				<label class="w3-col w3-right-align lbl" style="width: 150px;">

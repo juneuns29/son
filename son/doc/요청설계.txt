@@ -98,6 +98,16 @@
 처리함수	:	boardWrite()
 응답문서	:	/WEB-INF/views/fboard/fileboardWrite.jsp
 
+# 파일게시판 게시글 등록 요청
+요청내용 	:	/fboard/writeProc.son
+파라미터	:	id, title, body, file[]
+컨트롤러	:	com.human.son.controller.FileBoard
+처리함수	:	writeProc()
+응답문서	:	
+				redirect ]
+					성공 : /fboard/fileboard.son
+					실패 : /fboard/fboardWrite.son
+
 # 파일게시판 게시글 수정 폼보기 요청
 요청내용 	:	/fboard/fboardEdit.son
 파라미터	:	bno

@@ -45,4 +45,16 @@ public class FileBoard {
 		
 		return mv;
 	}
+	
+	@RequestMapping("/writeProc.son")
+	public ModelAndView writeProc(HttpSession session, ModelAndView mv, RedirectView rv, BoardVO bVO) {
+		/*
+			할일
+				파라미터를 받아야 한다.
+				
+		 */
+		System.out.println("title : " + bVO.getTitle());
+		mv.setView(rv);
+		return mv;
+	}
 }
