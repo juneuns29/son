@@ -52,8 +52,13 @@
 			var nowPage = $(this).attr('id');
 			// 입력태그에 데이터 채우고
 			$('#nowPage').val(nowPage);
+			// 글번호 태그 사용불가처리
+			$('#bno').prop('disabled', true);
+			// 전송 주소 셋팅하고
+			$('#frm').attr('action', '/fboard/fileboard.son');
+			
 			// 폼태그 전송하고
-			$('#pageFrm').submit();
+			$('#frm').submit();
 		});
 	});
 </script>
@@ -66,9 +71,11 @@
 	</form>
 	
 	<!-- 페이지 요청 폼 -->
+	<!--  
 	<form method="POST" action="/fboard/fileboard.son" id="pageFrm" name="pageFrm">
-		<input type="hidden" name="nowPage" id="nowPage">
+		<input type="hidden" name="nowPage" id="nowPage1">
 	</form>
+	-->
 	
 	<div class="w3-content mxw700">
 		<h1 class="w3-padding w3-center w3-green" style="margin-bottom: 0px!important;">파일 게시판</h1>

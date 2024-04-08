@@ -42,6 +42,12 @@
 			$(location).attr('href', '/fboard/fileboard.son');
 		});
 		
+		/* 방명록 클릭이벤트 추가 */
+		$('#gboard').click(function(){
+			// 할일
+			$(location).attr('href', '/gboard/gboard.son');
+		});
+		
 		$('#idList').click(function(){
 			$(location).attr('href', '/member/memberList.son');
 		});
@@ -64,6 +70,7 @@
 		<div class="w3-col mgt10">
 <!-- 로그인에 성공하면 session에 SID라는 속성으로 아이디를 기억시켜 놓을 것이므로 -->
 			<div class="w3-btn w3-small w3-pink w3-left" id="fboard">게시판</div>
+			<div class="w3-btn w3-small w3-pink w3-left" id="gboard">방명록</div>
 <c:if test="${not empty SID}">
 			<div class="w3-btn w3-small w3-orange w3-right" id="logout">로그아웃</div>
 			<div class="w3-btn w3-small w3-light-green w3-left" id="idList"> 회원들 </div>

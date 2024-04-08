@@ -116,6 +116,15 @@
 응답문서	:	/WEB-INF/views/fboard/fileboardEdit.jsp
 
 
+-----------------------------------------------------------------------------
+# 방명록 관련 요청 설계
+
+# 방명록 폼보기 요청
+요청내용 	:	/gboard/gboard.son
+파라미터	:	None
+컨트롤러	:	com.human.son.controller.Gboard
+처리함수	:	gboardList()
+응답문서	:	/WEB-INF/views/gboard/gboard.jsp
 
 
 -----------------------------------------------------------------------------

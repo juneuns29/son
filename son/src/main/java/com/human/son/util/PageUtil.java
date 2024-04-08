@@ -12,22 +12,6 @@ public class PageUtil {
 	
 	private int startRno, endRno; // 페이지 시작  rownum, 마지막 rownum
 	
-	public PageUtil() {}
-	
-	public PageUtil(int nowPage, int totalCount) {
-		this(nowPage, totalCount, 3, 3);
-	}
-	
-	public PageUtil(int nowPage, int totalCount, int pageRow, int pageGroup) {
-		this.nowPage = nowPage;
-		this.totalCount = totalCount;
-		this.pageRow = pageRow;
-		this.pageGroup = pageGroup;
-		calcTotalPage();
-		calcPage();
-		calcRno();
-	}
-	
 	public void setPage() {
 		setPage(nowPage, totalCount, 3, 3);
 	}

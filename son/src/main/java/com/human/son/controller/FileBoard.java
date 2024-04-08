@@ -25,7 +25,6 @@ public class FileBoard {
 	public ModelAndView boardList(HttpSession session, ModelAndView mv, RedirectView rv, PageUtil page) {
 		// 할일
 		int nowPage = page.getNowPage();
-		System.out.println("###################### " + nowPage);
 		if(nowPage == 0) {
 			nowPage = 1;
 		}
