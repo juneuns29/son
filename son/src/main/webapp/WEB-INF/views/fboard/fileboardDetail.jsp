@@ -24,7 +24,12 @@
 		});
 		
 		$('#list').click(function(){
-			$(location).attr('href', '/fboard/fileboard.son');
+			// frm의 action 속성값을 변경한다.
+			$('#frm').attr('action', '/fboard/fileboard.son');
+			// 글번호는 리스트뷰에서 필요없으므로 전송하지 않게 처리
+			$('#bno').prop('disabled', true);
+			// 폼태그 전송
+			$('#frm').submit();
 		});
 		
 	});
@@ -34,20 +39,22 @@
 
 	<form method="POST" action="/fboard/fboardEdit.son" name="frm" id="frm">
 		<input type="hidden" name="bno" id="bno" value="${DATA.bno}">
+		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
 	</form>
+	
 	<div class="w3-content mxw700">
 		<h1 class="w3-padding w3-center w3-blue">파일게시글 내용</h1>
 		
 		<div class="w3-col w3-padding w3-card-4 w3-light-grey w3-text-blue">
-			<h2 class="w3-center w3-blue w3-border-bottom" id="title">Test01</h2>
+			<h2 class="w3-center w3-blue w3-border-bottom" id="title">${DATA.title}</h2>
 			 
 			<div class="w3-row w3-section w3-padding">
 				<h3 class="w3-col inblock w3-right-align" style="width: 150px;"><span class="w3-xxlarge fa fa-user"></span> 작성자 </h3>
-		    	<h3 class="w3-rest w3-center w3-text-blue-gray w3-border-bottom" id="writer"> jennie</h3>
+		    	<h3 class="w3-rest w3-center w3-text-blue-gray w3-border-bottom" id="writer">${DATA.id}</h3>
 			</div>
 			<div class="w3-row w3-section w3-padding">
 				<h3 class="w3-col inblock w3-right-align" style="width: 150px;"><span class="w3-xxlarge fa fa-calendar-o"></span> 작성일 </h3>
-		    	<h3 class="w3-rest w3-center w3-text-blue-gray w3-border-bottom" id="wdate"> 2024-04-05 13:30:30</h3>
+		    	<h3 class="w3-rest w3-center w3-text-blue-gray w3-border-bottom" id="wdate">${DATA.sdate}</h3>
 			</div>
 			<div class="w3-row w3-section w3-padding">
 				<h3 class="w3-col inblock w3-right-align" style="width: 150px;"><span class="w3-xxlarge fa fa-file-image-o"></span> 첨부파일 </h3>
@@ -60,14 +67,7 @@
 			<div class="w3-row w3-section w3-padding">
 				<h3 class="w3-col inblock w3-right-align" style="width: 150px;"><span class="w3-xxlarge fa fa-calendar-o"></span> 글내용 </h3>
 		    	<div class="w3-rest w3-padding w3-text-blue-gray w3-border-bottom">
-		    		<pre id="body"> 
-# 파일게시판 게시글 상세보기 요청
-요청내용 	:	/fboard/fboardDetail.son
-파라미터	:	bno
-컨트롤러	:	com.human.son.controller.FileBoard
-처리함수	:	boardDetail()
-응답문서	:	/WEB-INF/views/fboard/fileboardDetail.jsp
-					</pre>
+		    		<pre id="body">${DATA.body}</pre>
 				</div>
 			</div>
 		</div>

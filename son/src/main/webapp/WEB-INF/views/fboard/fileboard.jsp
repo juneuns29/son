@@ -15,8 +15,12 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
+
+		/* 게시글 상세보기 이벤트 처리 */
 		$('.fblist').click(function(){
 			var sbno = $(this).attr('id');
+			// 현재페이지 셋팅
+			$('#nowPage').val('${PAGE.nowPage}');
 			
 			$('#bno').val(sbno);
 			$('#frm').submit();
@@ -58,6 +62,7 @@
 	<!-- 전송용 폼 태그 -->
 	<form method="POST" action="/fboard/fboardDetail.son" id="frm" name="frm">
 		<input type="hidden" name="bno" id="bno">
+		<input type="hidden" name="nowPage" id="nowPage">
 	</form>
 	
 	<!-- 페이지 요청 폼 -->
@@ -90,7 +95,12 @@
 			</div>
 <c:if test="${not empty LIST}">
 	<c:forEach var="DATA" items="${LIST}">
+		<c:if test="${not empty SID}">
 			<div class="w3-col w3-border-bottom w3-margin-top fblist" id="${DATA.bno}">
+		</c:if>
+		<c:if test="${empty SID}">
+			<div class="w3-col w3-border-bottom w3-margin-top" id="${DATA.bno}">
+		</c:if>
 				<div class="inblock w3-left pdr5" style="width: 100px;"><div class="w3-center fbno">${DATA.bno}</div></div>
 				<div class="inblock w3-right" style="width: 50px;"><div class="w3-center file">${DATA.cnt}</div></div>
 				<div class="inblock w3-right pdr5" style="width: 170px;"><small class="w3-center wdate">${DATA.sdate}</small></div>

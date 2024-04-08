@@ -25,6 +25,7 @@ public class FileBoard {
 	public ModelAndView boardList(HttpSession session, ModelAndView mv, RedirectView rv, PageUtil page) {
 		// 할일
 		int nowPage = page.getNowPage();
+		System.out.println("###################### " + nowPage);
 		if(nowPage == 0) {
 			nowPage = 1;
 		}
@@ -45,9 +46,17 @@ public class FileBoard {
 	}
 	
 	@RequestMapping("/fboardDetail.son")
-	public ModelAndView boardDetail(HttpSession session, ModelAndView mv, RedirectView rv, int bno) {
+	public ModelAndView boardDetail(HttpSession session, ModelAndView mv, RedirectView rv, 
+																BoardVO bVO, PageUtil page) {
+		// 할일
+		// 파라미터는 매개변수에 받고 있으므로 생략
+		// 데이터베이스 작업으로 데이터 꺼내오고
+		bVO = fDao.getBnoDetail(bVO.getBno());
+		// 데이터 전달하고
+		mv.addObject("DATA", bVO);
+		mv.addObject("PAGE", page);
+		// 뷰 셋팅하고
 		mv.setViewName("fboard/fileboardDetail");
-		
 		return mv;
 	}
 	

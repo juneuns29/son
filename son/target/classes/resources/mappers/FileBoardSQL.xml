@@ -37,6 +37,17 @@
 			isshow = 'Y'
 	</select>
 	
+	<!-- 게시글 상세조회 질의명령 -->
+	<select id="selDetail" resultType="bVO" parameterType="int">
+		SELECT
+			fbno bno, mno, id, title, body, wdate
+		FROM
+			fileboard f, member m
+		WHERE
+			writer = mno
+			AND fbno = #{bno}
+	</select>
+	
 	<insert id="addBoard" parameterType="bVO">
 		INSERT INTO
 			fileboard(fbno, title, body, writer)

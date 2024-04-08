@@ -19,4 +19,11 @@ public class FileBoardDao {
 	public int getTotal() {
 		return session.selectOne("fSQL.selTotal");
 	}
+	
+	/**
+	 * 글번호로 게시글 상세조회 전담 처리함수
+	 */
+	public BoardVO getBnoDetail(int bno) {
+		return session.selectOne("fSQL.selDetail", bno);
+	}
 }
