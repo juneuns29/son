@@ -41,6 +41,16 @@
 		$('#join').click(function(){
 			$(location).attr('href', '/member/join.son');
 		});
+		
+		/* 페이지 클릭이벤트 */
+		$('.pageBtn').click(function(){
+			// 이동할 페이지번호 알아내고
+			var nowPage = $(this).attr('id');
+			// 입력태그에 데이터 채우고
+			$('#nowPage').val(nowPage);
+			// 폼태그 전송하고
+			$('#pageFrm').submit();
+		});
 	});
 </script>
 </head>
@@ -48,6 +58,11 @@
 	<!-- 전송용 폼 태그 -->
 	<form method="POST" action="/fboard/fboardDetail.son" id="frm" name="frm">
 		<input type="hidden" name="bno" id="bno">
+	</form>
+	
+	<!-- 페이지 요청 폼 -->
+	<form method="POST" action="/fboard/fileboard.son" id="pageFrm" name="pageFrm">
+		<input type="hidden" name="nowPage" id="nowPage">
 	</form>
 	
 	<div class="w3-content mxw700">
@@ -87,12 +102,31 @@
 	</c:forEach>
 	
 		<div class="w3-col w3-center w3-margin-top">
-			<div class="w3-bar w3-border w3-round">
-				<span class="w3-bar-item w3-button w3-green w3-hover-lime" id="${PAGE.startPage - 1}">&laquo;</span>
+			<div class="w3-bar w3-border w3-border w3-border-blue w3-round">
+<c:if test="${PAGE.startPage eq 1}">
+				<span class="w3-bar-item w3-pale-blue">&laquo;</span>
+</c:if>
+<c:if test="${PAGE.startPage ne 1}">
+				<span class="w3-bar-item w3-btn w3-hover-blue pageBtn" 
+													id="${PAGE.startPage - 1}">&laquo;</span>
+</c:if>
 <c:forEach var="pno" begin="${PAGE.startPage}" end="${PAGE.endPage}">
-				<span class="w3-bar-item w3-button w3-green w3-hover-lime">${pno}</span>
+	<c:if test="${PAGE.nowPage eq pno}"><!-- 현재 보고있는 페이지인 경우 -->
+				<span class="w3-bar-item w3-btn w3-pink w3-hover-blue pageBtn" 
+																id="${pno}">${pno}</span>
+	</c:if>
+	<c:if test="${PAGE.nowPage ne pno}">
+				<span class="w3-bar-item w3-btn w3-hover-blue pageBtn" 
+																id="${pno}">${pno}</span>
+	</c:if>
 </c:forEach>
-				<span class="w3-bar-item w3-button w3-green w3-hover-lime" id="${PAGE.endPage + 1}">&raquo;</span>
+<c:if test="${PAGE.endPage ne PAGE.totalPage}">
+				<span class="w3-bar-item w3-btn w3-hover-blue pageBtn" 
+													id="${PAGE.endPage + 1}">&raquo;</span>
+</c:if>
+<c:if test="${PAGE.endPage eq PAGE.totalPage}">
+				<span class="w3-bar-item w3-pale-blue">&raquo;</span>
+</c:if>
 			</div>
 		</div>
 </c:if>

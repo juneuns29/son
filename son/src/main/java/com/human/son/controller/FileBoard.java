@@ -30,7 +30,6 @@ public class FileBoard {
 		}
 		
 		int totalCnt = fDao.getTotal();
-		System.out.println(totalCnt);
 		
 		page.setPage(nowPage, totalCnt);
 		
