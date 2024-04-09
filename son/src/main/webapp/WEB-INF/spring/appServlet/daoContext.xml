@@ -15,4 +15,7 @@
 	<bean id="gDao" class="com.human.son.dao.GboardDao" />
 	<bean id="fDao" class="com.human.son.dao.FileBoardDao" />
 	
+	<bean id="fileService" class="com.human.son.service.FileBoardService" />
+	
+	
 </beans>

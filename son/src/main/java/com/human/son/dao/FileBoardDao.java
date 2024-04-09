@@ -1,12 +1,12 @@
 package com.human.son.dao;
 
-import java.util.List;
+import java.util.*;
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mybatis.spring.*;
+import org.springframework.beans.factory.annotation.*;
 
-import com.human.son.util.PageUtil;
-import com.human.son.vo.BoardVO;
+import com.human.son.util.*;
+import com.human.son.vo.*;
 
 public class FileBoardDao {
 	@Autowired
@@ -35,5 +35,12 @@ public class FileBoardDao {
 	 */
 	public int addBoard(BoardVO bVO) {
 		return session.insert("fSQL.addBoard", bVO);
+	}
+	
+	/**
+	 * 파일 정보 데이터베이스 입력 전담 처리함수
+	 */
+	public int addFileInfo(FileVO fVO) {
+		return session.insert("fSQL.addFile", fVO);
 	}
 }

@@ -102,7 +102,7 @@
 			
 			<div class="w3-row w3-section w3-padding">
 				<label for="body" class="w3-col w3-right-align lbl" style="width: 150px;">
-					<span class="w3-xxlarge fa fa-file-image-o"></span> 첨부파일 
+					<span class="w3-xxlarge fa fa-file-image-o"></span>글내용 
 				</label>
 		    	<div class="w3-rest mgt10">
 		    		<textarea name="body" id="body" placeholder="글 내용을 작성하세요!" 

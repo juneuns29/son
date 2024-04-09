@@ -1,25 +1,28 @@
 package com.human.son.controller;
 
-import java.util.List;
+import java.util.*;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.*;
+import org.springframework.web.servlet.*;
+import org.springframework.web.servlet.view.*;
 
-import com.human.son.dao.FileBoardDao;
-import com.human.son.util.PageUtil;
-import com.human.son.vo.BoardVO;
+import com.human.son.dao.*;
+import com.human.son.util.*;
+import com.human.son.vo.*;
+import com.human.son.service.*;
 
 @Controller
 @RequestMapping("/fboard")
 public class FileBoard {
 	@Autowired
 	FileBoardDao fDao;
+	@Autowired
+	FileBoardService fService;
 	
 	@RequestMapping("/fileboard.son")
 	public ModelAndView boardList(HttpSession session, ModelAndView mv, RedirectView rv, PageUtil page) {
