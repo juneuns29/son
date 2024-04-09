@@ -78,12 +78,17 @@ public class FileBoard {
 				
 				
 		 */
-		MultipartFile[] file = bVO.getFile();
+//		MultipartFile[] file = bVO.getFile();
 		
+		// fileboard 테이블에 데이터 입력하고
+		int cnt = fDao.addBoard(bVO);
 		
-		System.out.println("title : " + bVO.getTitle());
+		if(cnt == 1) {
+			rv.setUrl("/fboard/fileboard.son");
+		} else {
+			rv.setUrl("/fboard/fboardWrite.son");
+		}
 		
-		rv.setUrl("/fboard/fileboard.son");
 		mv.setView(rv);
 		return mv;
 	}

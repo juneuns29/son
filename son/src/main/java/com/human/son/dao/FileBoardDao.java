@@ -16,6 +16,9 @@ public class FileBoardDao {
 		return session.selectList("fSQL.selList", page);
 	}
 	
+	/**
+	 * 게시글 총 갯수 조회 전담 처리함수
+	 */
 	public int getTotal() {
 		return session.selectOne("fSQL.selTotal");
 	}
@@ -25,5 +28,12 @@ public class FileBoardDao {
 	 */
 	public BoardVO getBnoDetail(int bno) {
 		return session.selectOne("fSQL.selDetail", bno);
+	}
+	
+	/**
+	 * 게시글 내용 데이터베이스 입력 전담 처리함수
+	 */
+	public int addBoard(BoardVO bVO) {
+		return session.insert("fSQL.addBoard", bVO);
 	}
 }
