@@ -66,9 +66,24 @@
 	
 	<insert id="addFile" parameterType="fVO">
 		INSERT INTO
-			fileinfo(fileno, fbno, upname, savename, len)
+			fileinfo(fileno, upname, savename, len, fbno)
 		VALUES(
-			fileSEQ.NEXTVAL, #{bno}, #{upname}, #{savename}, #{len}
+			fileSEQ.NEXTVAL, #{upname}, #{savename}, #{len}, 
+			(
+				SELECT
+					MAX(fbno)
+				FROM
+					fileboard
+				WHERE
+					writer = (
+								SELECT
+									mno
+								FROM
+									member
+								WHERE
+									id = #{id}
+							)
+			)
 		)
 	</insert>
 </mapper>

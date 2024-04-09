@@ -5,7 +5,7 @@ import java.util.*;
 
 public class FileVO {
 	private int fno, bno, cnt;
-	private String upname, savename, dir, sdate;
+	private String id, upname, savename, dir, sdate;
 	private long len;
 	private Date savedate;
 	public int getFno() {
@@ -25,6 +25,12 @@ public class FileVO {
 	}
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getUpname() {
 		return upname;

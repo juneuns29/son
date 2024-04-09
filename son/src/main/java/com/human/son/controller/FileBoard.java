@@ -84,9 +84,9 @@ public class FileBoard {
 //		MultipartFile[] file = bVO.getFile();
 		
 		// fileboard 테이블에 데이터 입력하고
-		int cnt = fDao.addBoard(bVO);
+		boolean bool = fService.insertProc(bVO);
 		
-		if(cnt == 1) {
+		if(bool == true) {
 			rv.setUrl("/fboard/fileboard.son");
 		} else {
 			rv.setUrl("/fboard/fboardWrite.son");
