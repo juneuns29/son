@@ -56,7 +56,7 @@ public class PageUtil {
 	}
 
 	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
+		this.nowPage = nowPage == 0 ? 1 : nowPage;
 	}
 
 	public int getTotalCount() {

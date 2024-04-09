@@ -22,13 +22,20 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 파일 업로드를 위한 뷰 서블릿 설정 -->
+	<beans:bean id="multipartResolver"
+				class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="50000000" />
+		<beans:property name="maxInMemorySize" value="50000000" />
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
+	
 	<beans:bean id="colorList" class="com.human.son.util.ColorList" />
 	<!--  
 	<beans:bean id="cList" class="com.human.son.util.ColorList">
 		<beans:qualifier value="w3color" />
 	</beans:bean>
 	-->
-	
 	
 	<!--  빈처리 설정파일 가져오기 -->
 	<beans:import resource="daoContext.xml"/>
