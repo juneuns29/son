@@ -54,8 +54,10 @@ public class FileBoard {
 		// 파라미터는 매개변수에 받고 있으므로 생략
 		// 데이터베이스 작업으로 데이터 꺼내오고
 		bVO = fDao.getBnoDetail(bVO.getBno());
+		List<FileVO> list = fDao.getImgList(bVO.getBno());
 		// 데이터 전달하고
 		mv.addObject("DATA", bVO);
+		mv.addObject("LIST", list);
 		mv.addObject("PAGE", page);
 		// 뷰 셋팅하고
 		mv.setViewName("fboard/fileboardDetail");

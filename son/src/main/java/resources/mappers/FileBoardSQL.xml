@@ -48,11 +48,32 @@
 			AND fbno = #{bno}
 	</select>
 	
+	<!-- 첨부파일 리스트 조회 질의명령 -->
+	<select id="imgList" resultType="fVO" parameterType="int">
+		SELECT
+			fileno fno, savename, dir
+		FROM
+			fileInfo
+		WHERE
+			isshow = 'Y'
+			AND fbno = #{bno}
+	</select>
+	
 	<insert id="addBoard" parameterType="bVO">
+	<!--  
+		메인 질의명령이 실행되기 전 또는 후에 질의명령을 보내서
+		데이터를 꺼내서 사용할 수 있는 방법
+		
+		selectKey 태그는 한개만 추가할 수 있고
+		한개의 데이터만 조회할 수 있다.
+	-->
+		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
+			SELECT fbrdseq.NEXTVAL FROM dual
+		</selectKey>
 		INSERT INTO
 			fileboard(fbno, title, body, writer)
 		VALUES(
-			fbrdseq.NEXTVAL, #{title}, #{body}, 
+			#{bno}, #{title}, #{body}, 
 			(
 				SELECT
 					mno
@@ -68,22 +89,7 @@
 		INSERT INTO
 			fileinfo(fileno, upname, savename, len, fbno)
 		VALUES(
-			fileSEQ.NEXTVAL, #{upname}, #{savename}, #{len}, 
-			(
-				SELECT
-					MAX(fbno)
-				FROM
-					fileboard
-				WHERE
-					writer = (
-								SELECT
-									mno
-								FROM
-									member
-								WHERE
-									id = #{id}
-							)
-			)
+			fileSEQ.NEXTVAL, #{upname}, #{savename}, #{len}, #{bno}
 		)
 	</insert>
 </mapper>

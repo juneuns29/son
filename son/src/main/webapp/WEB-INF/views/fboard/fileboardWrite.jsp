@@ -41,9 +41,10 @@
 				$('#body').focus();
 				return;
 			}
-			var file = $(document.frm.file).val();
-			for(var i = 0 ; i < file.length ; i++ ){
-				if(!file){
+			
+			for(var i = 0 ; i < $(document.frm.file).length ; i++ ){
+				var sfile = $(document.frm.file).eq(i).val();
+				if(!sfile){
 					$(document.frm.file).eq(i).prop('disabled', true);
 				}
 			}
@@ -54,18 +55,6 @@
 		$('#list').click(function(){
 			$(location).attr('href', '/fboard/fileboard.son');
 		});
-		/*
-		$(document.frm.file).change(function(){
-			var sfile = $(this).val();
-			if(sfile){
-				var tno = getFno();
-				$('#fileBox').append(
-					'<input type="file" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom" name="file" id="file'+ tno +'">'
-				);
-				
-			}
-		});
-		*/
 		
 		function addTag(e1){
 			var sfile = $(e1).val();
@@ -87,7 +76,6 @@
 				}
 			}
 		}
-		
 		
 		$('#file1').change(function(){
 			addTag(this);

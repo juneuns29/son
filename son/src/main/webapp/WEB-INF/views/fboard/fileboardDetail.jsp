@@ -56,14 +56,18 @@
 				<h3 class="w3-col inblock w3-right-align" style="width: 150px;"><span class="w3-xxlarge fa fa-calendar-o"></span> 작성일 </h3>
 		    	<h3 class="w3-rest w3-center w3-text-blue-gray w3-border-bottom" id="wdate">${DATA.sdate}</h3>
 			</div>
+			
+<c:if test="${not empty LIST}">
 			<div class="w3-row w3-section w3-padding">
 				<h3 class="w3-col inblock w3-right-align" style="width: 150px;"><span class="w3-xxlarge fa fa-file-image-o"></span> 첨부파일 </h3>
 		    	<div class="w3-rest w3-center w3-text-blue-gray" id="files">
 		  <c:forEach var="IMG" items="${LIST}">
-		    		<img src="/upload/${IMG}" width="100" height="auto">
+		    		<img src="${IMG.dir}${IMG.savename}" width="100" height="auto">
 		  </c:forEach>
 		    	</div>
 			</div>
+</c:if>
+			
 			<div class="w3-row w3-section w3-padding">
 				<h3 class="w3-col inblock w3-right-align" style="width: 150px;"><span class="w3-xxlarge fa fa-calendar-o"></span> 글내용 </h3>
 		    	<div class="w3-rest w3-padding w3-text-blue-gray w3-border-bottom">

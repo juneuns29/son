@@ -29,6 +29,12 @@ public class FileBoardDao {
 	public BoardVO getBnoDetail(int bno) {
 		return session.selectOne("fSQL.selDetail", bno);
 	}
+	/**
+	 * 첨부파일 리스트조회 전담 처리함수
+	 */
+	public List<FileVO> getImgList(int bno){
+		return session.selectList("fSQL.imgList", bno);
+	}
 	
 	/**
 	 * 게시글 내용 데이터베이스 입력 전담 처리함수
