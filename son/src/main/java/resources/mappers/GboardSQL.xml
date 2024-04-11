@@ -3,5 +3,36 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="gSQL">
-
+	<select id="selList" resultType="bVO">
+		SELECT
+			gno bno, id, body, wdate, filename sname
+		FROM
+			gboard g, member m, avatar a
+		WHERE
+			writer = mno
+			AND avatar = ano
+	</select>
+	
+	<select id="getCnt" resultType="int" parameterType="string">
+		SELECT
+			COUNT(*)
+		FROM
+			gboard
+		WHERE
+			writer = (
+							SELECT
+								mno
+							FROM
+								member
+							WHERE
+								id = #{id}
+						)
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			gboard
+	</select>
 </mapper>

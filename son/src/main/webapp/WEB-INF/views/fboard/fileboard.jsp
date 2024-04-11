@@ -146,7 +146,7 @@
 </c:if>
 			</div>
 		</div>
-</c:if>
+</c:if> <!-- 리스트가 비어있지 않은 경우 방명록 리스트 조건처리 닫는 태그 -->
 <c:if test="${empty LIST}">
 			<div class="w3-col w3-border-bottom w3-margin-top">
 				<h3 class="w3-center w3-text-gray">* 아직 작성된 글이 없습니다. *</h3>

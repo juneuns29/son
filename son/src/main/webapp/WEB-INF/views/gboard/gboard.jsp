@@ -99,7 +99,7 @@
 			<div class="w3-col w3-padding w3-card-4 w3-margin-bottom">
 				<div class="w3-col" 
 					style="width: 110px; height: 100px; padding-right: 10px; border-right: 1px solid lightgray;">
-					<img src="/resources/image/avatar/${DATA.sname}" class="imgBox w3-left w3-border">
+					<img src="/image/avatar/${DATA.sname}" class="imgBox w3-left w3-border">
 				</div>
 				<div class="w3-rest" style="padding-left: 10px;">
 					<div class="w3-col w3-border-bottom" style="padding-bottom: 3px;">
@@ -133,6 +133,36 @@
 				<div class="w3-half w3-blue w3-btn" id="write">등록</div>
 			</footer>
 		</form>
+		
+		<div class="w3-col w3-center w3-margin-top">
+			<div class="w3-bar w3-border w3-border w3-border-blue w3-round">
+<c:if test="${PAGE.startPage eq 1}">
+				<span class="w3-bar-item w3-pale-blue">&laquo;</span>
+</c:if>
+<c:if test="${PAGE.startPage ne 1}">
+				<span class="w3-bar-item w3-btn w3-hover-blue pageBtn" 
+													id="${PAGE.startPage - 1}">&laquo;</span>
+</c:if>
+<c:forEach var="pno" begin="${PAGE.startPage}" end="${PAGE.endPage}">
+	<c:if test="${PAGE.nowPage eq pno}"><!-- 현재 보고있는 페이지인 경우 -->
+				<span class="w3-bar-item w3-btn w3-pink w3-hover-blue pageBtn" 
+																id="${pno}">${pno}</span>
+	</c:if>
+	<c:if test="${PAGE.nowPage ne pno}">
+				<span class="w3-bar-item w3-btn w3-hover-blue pageBtn" 
+																id="${pno}">${pno}</span>
+	</c:if>
+</c:forEach>
+<c:if test="${PAGE.endPage ne PAGE.totalPage}">
+				<span class="w3-bar-item w3-btn w3-hover-blue pageBtn" 
+													id="${PAGE.endPage + 1}">&raquo;</span>
+</c:if>
+<c:if test="${PAGE.endPage eq PAGE.totalPage}">
+				<span class="w3-bar-item w3-pale-blue">&raquo;</span>
+</c:if>
+			</div>
+		</div>
+		
 	</div>
 
 <c:if test="${not empty MSG}">
