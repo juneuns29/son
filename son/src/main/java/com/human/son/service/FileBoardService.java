@@ -67,7 +67,7 @@ public class FileBoardService {
 				file[i].transferTo(saveFile); // 파일로 저장시켜주는 함수
 				// 이제 파일이 저장이 완료된 상태
 				// 작업 경로 파일 저장
-				String path1 = "D:\\repo\\son\\son\\src\\main\\webapp\\resources";
+				String path1 = "D:\\repo\\son\\son\\src\\main\\webapp\\resources\\upload";
 				File saveFile1 = new File(path1, sname);
 				file[i].transferTo(saveFile1);
 			} catch(Exception e) {

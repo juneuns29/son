@@ -54,7 +54,7 @@
 		$('#list').click(function(){
 			$(location).attr('href', '/fboard/fileboard.son');
 		});
-		
+		/*
 		$(document.frm.file).change(function(){
 			var sfile = $(this).val();
 			if(sfile){
@@ -65,6 +65,35 @@
 				
 			}
 		});
+		*/
+		
+		function addTag(e1){
+			var sfile = $(e1).val();
+			
+			if(sfile){
+				var tno = getFno();
+				alert(tno);
+				$('#fileBox').append('<input type="file" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom" name="file" id="file'+ tno +'">');
+				alert("##### " + $('#fileBox > input').length);
+				$('#file' + tno).change(addTag($('#file' + tno)));
+				alert('2. ' + tno);
+			} 
+			/*
+			if(!sfile){
+				alert("******************* ");
+				var tlist = $('#fileBox > input');
+				
+				if(tlist.length != 1){
+					$(e1).remove();
+				}
+			}
+			*/
+		}
+		
+		
+		$('#file1').change(function(){
+			addTag(this);
+		})
 	});
 </script>
 </head>
