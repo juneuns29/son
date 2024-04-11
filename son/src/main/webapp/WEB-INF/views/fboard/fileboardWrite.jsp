@@ -72,28 +72,27 @@
 			
 			if(sfile){
 				var tno = getFno();
-				alert(tno);
-				$('#fileBox').append('<input type="file" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom" name="file" id="file'+ tno +'">');
-				alert("##### " + $('#fileBox > input').length);
-				$('#file' + tno).change(addTag($('#file' + tno)));
-				alert('2. ' + tno);
-			} 
-			/*
-			if(!sfile){
-				alert("******************* ");
-				var tlist = $('#fileBox > input');
-				
-				if(tlist.length != 1){
+				$('#fileBox').append(
+					'<input type="file" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom" name="file" id="file'+ tno +'">'
+				);
+				$('#file' + tno).change(function(){
+					addTag($('#file' + tno));
+				});
+			} else {
+				var len = $('#fileBox > input').length;
+				alert(len);
+				if($(e1) != $('#fileBox > input').eq(len - 1)){
+					var tlist = $('#fileBox > input');
 					$(e1).remove();
 				}
 			}
-			*/
 		}
 		
 		
 		$('#file1').change(function(){
 			addTag(this);
 		})
+		
 	});
 </script>
 </head>
