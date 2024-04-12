@@ -28,7 +28,7 @@
 					<span class="w3-xxlarge fa fa-user"></span> 작성자
 				</label>
 		    	<div class="w3-rest mgt10">
-		    		<input type="text" name="id" id="id" value="${SID}" readonly
+		    		<input type="text" name="id" id="id" value="${DATA.id}" disabled
 		    				 class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom">
 		    	</div>
 			</div>
@@ -37,7 +37,7 @@
 					<span class="w3-xxlarge fa fa-tag"></span> 제 목 
 				</label>
 		    	<div class="w3-rest mgt10">
-		    		<input type="text" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom" name="title" id="title">
+		    		<input type="text" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom" name="title" id="title" value="${DATA.title}">
 		    	</div>
 			</div>
 			<div class="w3-row w3-section w3-padding">
@@ -62,7 +62,7 @@
 				</label>
 		    	<div class="w3-rest mgt10">
 		    		<textarea name="body" id="body" placeholder="글 내용을 작성하세요!" 
-		    				class="w3-input w3-border" style="resize: none;" rows="7"></textarea>
+		    				class="w3-input w3-border" style="resize: none;" rows="7">${DATA.body}</textarea>
 				</div>
 			</div>
 		</form>
