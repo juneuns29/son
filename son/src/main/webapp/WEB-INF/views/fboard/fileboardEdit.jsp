@@ -44,8 +44,15 @@
 				<label class="w3-col w3-right-align lbl" style="width: 150px;">
 					<span class="w3-xxlarge fa fa-file-image-o"></span> 첨부파일 
 				</label>
-		    	<div class="w3-rest mgt10" id="fileBox">
-		    		<input type="file" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom" name="file" id="file1">
+		    	<div class="w3-rest mgt10">
+		    		<div class="w3-col" id="fileBox">
+		    			<input type="file" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom" name="file" id="file1">
+		    		</div>
+		    		<div class="w3-col w3-center w3-text-blue-gray w3-margin-top" id="files">
+		  <c:forEach var="IMG" items="${LIST}">
+		    			<img src="${IMG.dir}${IMG.savename}" width="100" height="auto">
+		  </c:forEach>
+		    		</div>
 		    	</div>
 			</div>
 			

@@ -136,4 +136,33 @@ public class FileBoard {
 		// 반환값 반환
 		return mv;
 	}
+	
+	/**
+	 * 게시글 수정 폼보기 요청 전담 처리함수
+	 */
+	@RequestMapping("/fboardEdit.son")
+	public ModelAndView boardEdit(HttpSession session, ModelAndView mv, 
+										RedirectView rv, BoardVO bVO, int nowPage) {
+		// 할일
+		// 세션검사
+		String sid = (String) session.getAttribute("SID");
+		if(sid == null) {
+			rv.setUrl("/member/login.son");
+			mv.setView(rv);
+			return mv;
+		}
+		
+		// 글번호에 해당하는 상세내용 조회
+		bVO = fDao.getBnoDetail(bVO.getBno());
+		// 첨부파일 리스트 조회
+		List<FileVO> list = fDao.getImgList(bVO.getBno());
+		
+		mv.addObject("nowPage", nowPage); // 현재 보고있는 페이지
+		mv.addObject("DATA", bVO);	// 게시글 상세정보
+		mv.addObject("LIST", list); // 첨부파일 리스트
+		
+		// 뷰 셋팅
+		mv.setViewName("fboard/fileboardEdit");
+		return mv;
+	}
 }
