@@ -3,14 +3,28 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="gSQL">
-	<select id="selList" resultType="bVO">
+	<select id="selList" resultType="bVO" parameterType="page">
 		SELECT
-			gno bno, id, body, wdate, filename sname
+		    rno, bno, id, body, wdate, sname
 		FROM
-			gboard g, member m, avatar a
+		    (
+		        SELECT
+		            ROWNUM rno, bno, id, body, wdate, sname
+		        FROM
+		            (
+		                SELECT
+		                    gno bno, id, body, wdate, filename sname
+		                FROM
+		                    gboard g, member m, avatar a
+		                WHERE
+		                    writer = mno
+		                    AND avatar = ano
+		                ORDER BY
+		                    wdate DESC
+		            )
+		    )
 		WHERE
-			writer = mno
-			AND avatar = ano
+		    rno BETWEEN #{startRno} AND #{endRno}
 	</select>
 	
 	<select id="getCnt" resultType="int" parameterType="string">

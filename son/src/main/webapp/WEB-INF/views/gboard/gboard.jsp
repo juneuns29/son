@@ -73,10 +73,25 @@
 			
 			$('#frm').submit();
 		});
+		
+		$('.pageBtn').click(function(){
+			// 할일
+			// 어떤 버튼일 클릭되었는지 알아내서 페이지 번호를 꺼내온다.
+			var spage = $(this).attr('id');
+			// 태그의 value 속성에 데이터 채우고
+			$('#nowPage').val(spage);
+			
+			// 폼태그 전송하고
+			$('#pageFrm').submit();
+		});
 	});
 </script>
 </head>
 <body>
+	<form method="post" action="/gboard/gboard.son" id="pageFrm">
+		<input type="hidden" name="nowPage" id="nowPage">
+	</form>
+	
 	<div class="w3-content mxw600">
 		<h1 class="w3-col w3-blue w3-center w3-padding">Son 방명록</h1>
 		<div class="w3-col">
@@ -114,25 +129,6 @@
 			</div>
 </c:forEach>
 		</div>
-	</div>
-	
-	<div id="wmodal" class="w3-modal">
-		<form method="POST" action="/gboard/gWriteProc.son" name="frm" id="frm" 
-													class="w3-modal-content mxw550" >
-			<input type="hidden" name="id" value="${SID}">
-			<header class="w3-container w3-blue"> 
-				<span class="w3-btn w3-display-topright" id="close">&times;</span>
-				<h2>Son 방명록 작성</h2>
-			</header>
-			<div class="w3-container w3-padding">
-				<textarea name="body" id="body" class="w3-input w3-border" 
-							style="resize: none;" placeholder="인사글을 작성하세요!"></textarea>
-			</div>
-			<footer class="w3-col">
-				<div class="w3-half w3-purple w3-btn" id="cbtn">취소</div>
-				<div class="w3-half w3-blue w3-btn" id="write">등록</div>
-			</footer>
-		</form>
 		
 		<div class="w3-col w3-center w3-margin-top">
 			<div class="w3-bar w3-border w3-border w3-border-blue w3-round">
@@ -162,6 +158,26 @@
 </c:if>
 			</div>
 		</div>
+		
+	</div>
+	
+	<div id="wmodal" class="w3-modal">
+		<form method="POST" action="/gboard/gWriteProc.son" name="frm" id="frm" 
+													class="w3-modal-content mxw550" >
+			<input type="hidden" name="id" value="${SID}">
+			<header class="w3-container w3-blue"> 
+				<span class="w3-btn w3-display-topright" id="close">&times;</span>
+				<h2>Son 방명록 작성 - <small>${SID}</small></h2>
+			</header>
+			<div class="w3-container w3-padding">
+				<textarea name="body" id="body" class="w3-input w3-border" 
+							style="resize: none;" placeholder="인사글을 작성하세요!"></textarea>
+			</div>
+			<footer class="w3-col">
+				<div class="w3-half w3-purple w3-btn" id="cbtn">취소</div>
+				<div class="w3-half w3-blue w3-btn" id="write">등록</div>
+			</footer>
+		</form>
 		
 	</div>
 
