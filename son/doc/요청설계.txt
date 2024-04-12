@@ -121,7 +121,7 @@
 컨트롤러	:	com.human.son.controller.FileBoard
 처리함수	:	delProc()
 응답문서	:	
-				redirect ] /fboard/fboard.son
+				redirect ] /fboard/fileboard.son
 
 -----------------------------------------------------------------------------
 # 방명록 관련 요청 설계

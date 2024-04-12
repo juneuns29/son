@@ -34,8 +34,10 @@
 		
 		// 삭제버튼 클릭이벤트
 		$('#delete').click(function(){
-			$('#frm').attr('action', '/fboard/fboardDelProc.son');
-			$('#frm').submit();
+			if(confirm('삭제할 까요?')){
+				$('#frm').attr('action', '/fboard/fboardDelProc.son');
+				$('#frm').submit();
+			}
 		});
 	});
 </script>

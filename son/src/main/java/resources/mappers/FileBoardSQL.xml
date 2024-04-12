@@ -6,15 +6,23 @@
 	<select id="selList" resultType="bVO" parameterType="page">
 		<!-- resultType은 조회한 한행을 기억할 타입으로 지정한다. -->
 		SELECT
-		    rno, bno, title, body, mno, id, wdate
+		    rno, bno, title, body, mno, id, wdate, cnt
 		FROM
 		    (
 		        SELECT
-		            ROWNUM rno, bno, title, body, mno, id, wdate
+		            ROWNUM rno, bno, title, body, mno, id, wdate, cnt
 		        FROM
 		            (
 		                SELECT
-		                    fbno bno, title, body, mno, id, wdate
+		                    fbno bno, title, body, mno, id, wdate,
+		                    (
+		                    	SELECT
+		                    		COUNT(*)
+		                    	FROM
+		                    		fileinfo
+		                    	WHERE
+		                    		fbno = f.fbno
+		                    ) cnt
 		                FROM
 		                    fileboard f, member m
 		                WHERE
