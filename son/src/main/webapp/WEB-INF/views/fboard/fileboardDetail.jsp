@@ -32,12 +32,18 @@
 			$('#frm').submit();
 		});
 		
+		// 삭제버튼 클릭이벤트
+		$('#delete').click(function(){
+			$('#frm').attr('action', '/fboard/fboardDelProc.son');
+			$('#frm').submit();
+		});
 	});
 </script>
 </head>
 <body>
 
 	<form method="POST" action="/fboard/fboardEdit.son" name="frm" id="frm">
+		<input type="hidden" name="id" value="${SID}">
 		<input type="hidden" name="bno" id="bno" value="${DATA.bno}">
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
 	</form>
@@ -80,9 +86,10 @@
 		<div class="w3-col">
 <c:if test="${not empty DATA}">
 	<c:if test="${SID eq DATA.id}">
-			<div class="w3-third w3-btn w3-section w3-green w3-ripple" id="home">Home</div>
-			<div class="w3-third w3-btn w3-section w3-blue w3-ripple" id="list">글목록</div>
-			<div class="w3-third w3-btn w3-section w3-amber w3-ripple" id="edit">글수정</div>
+			<div class="w3-quarter w3-btn w3-section w3-green w3-ripple" id="home">Home</div>
+			<div class="w3-quarter w3-btn w3-section w3-blue w3-ripple" id="list">글목록</div>
+			<div class="w3-quarter w3-btn w3-section w3-amber w3-ripple" id="edit">글수정</div>
+			<div class="w3-quarter w3-btn w3-section w3-red w3-ripple" id="delete">글삭제</div>
 	</c:if>
 </c:if>
 <c:if test="${empty DATA or empty SID or (SID ne DATA.id)}">

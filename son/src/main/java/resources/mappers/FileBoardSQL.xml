@@ -92,4 +92,24 @@
 			fileSEQ.NEXTVAL, #{upname}, #{savename}, #{len}, #{bno}
 		)
 	</insert>
+	
+	<!-- 게시글 삭제 처리 질의 명령 -->
+	<update id="delFboard" parameterType="bVO">
+		<selectKey keyProperty="mno" resultType="int" order="BEFORE">
+			SELECT
+				mno
+			FROM
+				member
+			WHERE
+				id = #{id}
+		</selectKey>
+		UPDATE
+			fileboard
+		SET
+			isshow = 'N'
+		WHERE
+			fbno = #{bno}
+			AND writer = #{mno}
+	</update>
+	
 </mapper>

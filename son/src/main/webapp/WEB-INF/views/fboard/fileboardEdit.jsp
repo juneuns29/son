@@ -61,9 +61,10 @@
 		</form>
 		
 		<div class="w3-col">
-			<div class="w3-third w3-btn w3-section w3-green w3-ripple" id="home">Home</div>
-			<div class="w3-third w3-btn w3-section w3-blue w3-ripple" id="list">글목록</div>
-			<div class="w3-third w3-btn w3-section w3-amber w3-ripple" id="write">글등록</div>
+			<div class="w3-quarter w3-btn w3-section w3-green w3-ripple" id="home">Home</div>
+			<div class="w3-quarter w3-btn w3-section w3-blue w3-ripple" id="list">글목록</div>
+			<div class="w3-quarter w3-btn w3-section w3-amber w3-ripple" id="write">글등록</div>
+			<div class="w3-quarter w3-btn w3-section w3-red w3-ripple" id="delete">글삭제</div>
 		</div>
 	</div>
 </body>

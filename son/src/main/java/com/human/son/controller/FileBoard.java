@@ -97,4 +97,29 @@ public class FileBoard {
 		mv.setView(rv);
 		return mv;
 	}
+	
+	/**
+	 * 게시글 삭제 요청 전담 처리함수
+	 */
+	@RequestMapping("/fboardDelProc.son")
+	public ModelAndView delProc(HttpSession session, ModelAndView mv, RedirectView rv, 
+																	BoardVO bVO, int nowPage) {
+		// 할일
+		//  세션 검사하고
+		String sid = (String) session.getAttribute("SID");
+		if(sid == null) {
+			// 로그인 안한경우
+			// ==> 삭제 처리하면 안된다.
+			rv.setUrl("/member/login.son");
+			mv.setView(rv);
+			return mv;
+		}
+		bVO.setId(sid);
+		// 로그인한 사람과 작성자 일치여부 확인
+		// 로그인한 사람의 회원번호 조회
+		
+		
+		
+		return mv;
+	}
 }

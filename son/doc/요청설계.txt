@@ -115,6 +115,13 @@
 처리함수	:	boardEdit()
 응답문서	:	/WEB-INF/views/fboard/fileboardEdit.jsp
 
+# 파일게시판 게시글 삭제 처리 요청
+요청내용 	:	/fboard/fboardDelProc.son
+파라미터	:	bno, nowPage
+컨트롤러	:	com.human.son.controller.FileBoard
+처리함수	:	delProc()
+응답문서	:	
+				redirect ] /fboard/fboard.son
 
 -----------------------------------------------------------------------------
 # 방명록 관련 요청 설계

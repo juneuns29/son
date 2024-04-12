@@ -60,6 +60,30 @@
 			AND id = #{id}
 	</select>
 	
+	
+	<!-- 아이디로 해당 회원의 회원번호 조회 
+	
+	<select id="selMno" resultType="int" parameterType="string">
+		SELECT
+			mno
+		FROM
+			member
+		WHERE
+			id = #{id}
+	</select>
+	-->
+	
+	<!-- 글번호로 작성자 회원번호 조회 
+	<select id="selWriter" resultType="int" parameterType="int">
+		SELECT
+			writer
+		FROM
+			fileboard
+		WHERE
+			fbno = #{bno}
+	</select>
+	-->
+	
 	<insert id="addMember" parameterType="mVO">
 		INSERT INTO
 			member(mno, name, id, pw, mail, tel, gen, avatar)

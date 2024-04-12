@@ -49,4 +49,8 @@ public class FileBoardDao {
 	public int addFileInfo(FileVO fVO) {
 		return session.insert("fSQL.addFile", fVO);
 	}
+	
+	/**
+	 * 게시글 삭제 데이터베이스 작업 전담 처리함수
+	 */
 }
