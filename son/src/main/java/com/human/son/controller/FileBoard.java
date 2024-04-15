@@ -165,4 +165,27 @@ public class FileBoard {
 		mv.setViewName("fboard/fileboardEdit");
 		return mv;
 	}
+	
+	/**
+	 *  첨부파일 삭제 처리 요청 전담 처리함수
+	 */
+	@RequestMapping("/fboardDelImg.son")
+	@ResponseBody
+	public HashMap<String, String> delImgProc(int fno){
+		// 반환값 변수
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		int cnt = fDao.delImage(fno); // 삭제처리에 성공하면 1 반환, 실패 : 0 반환
+		
+		String result = "OK";
+		
+		if(cnt != 1) {
+			// 삭제처리에 실패한 경우
+			result = "NO";
+		}
+		
+		map.put("result", result);
+		
+		return map;
+	}
 }

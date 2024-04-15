@@ -122,6 +122,13 @@
 처리함수	:	delProc()
 응답문서	:	
 				redirect ] /fboard/fileboard.son
+				
+# 첨부파일 삭제 처리 요청
+요청내용 	:	/fboard/fboardDelImg.son
+파라미터	:	fno
+컨트롤러	:	com.human.son.controller.FileBoard
+처리함수	:	delImgProc()
+응답문서	:	JSON ] {"result": "OK | NO"}
 
 -----------------------------------------------------------------------------
 # 방명록 관련 요청 설계

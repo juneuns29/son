@@ -120,4 +120,14 @@
 			AND writer = #{mno}
 	</update>
 	
+	<!-- 글 삭제 처리 질의명령 -->
+	<update id="delImage" parameterType="int">
+		UPDATE
+			fileinfo
+		SET
+			isshow = 'N'
+		WHERE
+			fileno = #{fno}
+	</update>
+	
 </mapper>
