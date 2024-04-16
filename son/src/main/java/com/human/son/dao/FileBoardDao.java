@@ -63,4 +63,11 @@ public class FileBoardDao {
 	public int delImage(int fno) {
 		return session.update("fSQL.delImage", fno);
 	}
+	
+	/**
+	 * 첨부파일들 일괄 삭제 데이터베이스 작업 전담 처리함수
+	 */
+	public int delImages(List<Integer> list) {
+		return session.update("fSQL.delImages", list);
+	}
 }

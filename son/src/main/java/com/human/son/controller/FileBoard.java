@@ -188,4 +188,14 @@ public class FileBoard {
 		
 		return map;
 	}
+	
+	/**
+	 * 이미지삭제 일괄처리요청 전담 처리함수
+	 */
+	@RequestMapping("/delImgList.son")
+	public ModelAndView delImgList(HttpSession session, ModelAndView mv, RedirectView rv, BoardVO bVO, int nowPage) {
+		// 할일
+		
+		return mv;
+	}
 }

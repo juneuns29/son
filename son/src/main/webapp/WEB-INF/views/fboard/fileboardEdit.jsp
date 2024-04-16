@@ -15,6 +15,8 @@
 	$(document).ready(function(){
 		var stitle = '${DATA.title}';
 		
+		/*
+		// 1. 비동기 통신으로 처리하는 방법
 		$('.imgBtn').click(function(){
 			// 할일
 			// 삭제 처리 확인
@@ -48,10 +50,66 @@
 				}
 			});
 		});
+		*/
+		
+		$('.imgBtn').click(function(){
+			if(confirm('이미지를 삭제할까요?')){
+				/*
+					confirm('메세지')
+					==> 컨펌 창을 띄우고
+						확인 버튼을 클릭하면 true를
+						취소 버튼을 클릭하면 false 를 반환해준다.
+				*/
+				// 확인 버튼을 클릭한 경우
+				// 할일
+				// 1. 클릭된 이미지의 이미지번호를 읽는다.
+				var imgno = $(this).attr('id').substring(3);
+				
+				// 중복 처리
+				var inolist = $(document.imgFrm.imgnos);
+				
+				for(var i = 0 ; i < inolist.length ; i++ ){
+					if(inolist.eq(i).val() == imgno){
+						// 중복된 이미지가 선택된 경우
+						alert('이미 추가된 이미지 입니다.');
+						return;
+					}
+				}
+				//$('#imgFrm').append('<input type="hidden" name="imgnos" id="del' + imgno + '" value="' + imgno + '">');
+				var el = document.createElement('input');
+				$(el).attr('type', 'hidden');
+				$(el).attr('id', 'del' + imgno);
+				$(el).attr('name', 'imgnos');
+				$(el).val(imgno);
+				
+				// 메모리에 만들어둔 태그를 #imgFrm 에 추가한다.
+				$('#imgFrm').append(el);
+				
+				// 추가된 태그 갯수 꺼내고
+				var qt = $(document.imgFrm.imgnos).length;
+				// 추가된 갯수 쓰고
+				$('#qt').html(qt);
+				// 버튼 태그 보여주고
+				if(qt != 0){
+					$('#delfiles').removeClass('w3-hide');
+				}
+			}
+		});
+		
+		// 이미지 삭제 이벤트 등록
+		$('#delImgBtn').click(function(){
+			// form 태그 전송
+			$('#imgFrm').submit();
+		});
 	});
 </script>
 </head>
 <body>
+
+	<!-- 이미지 번호 전송용 폼태그 -->
+	<form method="post" action="/fboard/delImgList.son" name="imgFrm" id="imgFrm">
+	</form>
+	
 	<div class="w3-content mxw700">
 		<h1 class="w3-padding w3-center w3-blue">게시글 수정</h1>
 		
@@ -87,6 +145,10 @@
 		    			<img src="${IMG.dir}${IMG.savename}" width="100" height="auto"
 		    					class="w3-btn imgBtn" id="img${IMG.fno}">
 		  </c:forEach>
+		    		</div>
+		    		
+		    		<div class="w3-col w3-hide" id="delfiles">
+		    			<div class="w3-col w3-btn w3-orange" id="delImgBtn"><span id="qt"></span> 개 이미지 삭제</div>
 		    		</div>
 		    	</div>
 			</div>

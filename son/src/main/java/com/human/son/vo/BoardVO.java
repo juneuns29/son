@@ -1,6 +1,6 @@
 package com.human.son.vo;
 
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.*;
 import org.springframework.web.multipart.*;
 
@@ -8,6 +8,8 @@ public class BoardVO {
 	private int rno, bno, mno, ano, cnt;
 	private String name, id, title, body, sdate, sname;
 	private ArrayList<String> filenames;
+	private Integer[] imgnos;
+	private List<Integer> imgList;
 	private MultipartFile[] file;
 	private Date wdate;
 	/*
@@ -28,6 +30,19 @@ public class BoardVO {
 		name 속성이 같은 태그가 여러개가 전송이 될 것이므로
 		이럴 때는 배열형태로 받아야 한다.
 	 */
+	public Integer[] getImgnos() {
+		return imgnos;
+	}
+	public void setImgnos(Integer[] imgnos) {
+		this.imgnos = imgnos;
+		imgList = Arrays.asList(imgnos);
+	}
+	public List<Integer> getImgList() {
+		return imgList;
+	}
+	public void setImgList(List<Integer> imgList) {
+		this.imgList = imgList;
+	}
 	public int getRno() {
 		return rno;
 	}

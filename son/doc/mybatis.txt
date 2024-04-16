@@ -1,0 +1,273 @@
+# 동적 질의
+
+예 ]
+	게시글을 수정하게 되는 경우
+	제목, 본문 을 수정할 수 있다고 할 경우
+	제목만 수정하는 경우
+	본문만 수정하는 경우
+	제목과 본문을 모두 수정하는 경우
+	세가지로 질의명령이 만들어질 수 있다.
+	==> 질의명령
+		
+		1. 제목만 수정하는 경우
+			UPDATE
+				board
+			SET
+				title = #{title}
+			WHERE
+				bno = #{bno"
+			;
+		
+		2. 본문만 수정하는 경우
+			UPDATE
+				board
+			SET
+				body = #{body}
+			WHERE
+				bno = #{bno}
+			;
+		
+		3. 제목과 본문 모두 수정하는 경우
+			UPDATE
+				board
+			SET
+				title = #{title},
+				body = #{body}
+			WHERE
+				bno = #{bno}
+			;
+			
+		이 세가지 질의명령을 조건에 따라서 동적으로 만들주는 문법을 마이바티스에서 제공해 주고 있다.
+		
+		1. 조건 처리
+			
+			<if	test="조건식">
+				질의명령
+			</if>
+			
+			==>
+				UPDATE
+				
+				SET
+			<if test="title != null">
+					title = #{title},
+			</if>
+			<if test="body != null">
+					body = #{body}
+			</if>
+				WHERE
+					bno = #{bno}
+				;
+				
+		2. trim
+			==> 질의 명령의 특성상 조건식을 처리할 때
+				첫번째 조건은 그냥 쓰면 되지만
+				두번째 조건 부터는 AND 또는 OR로 연결해야 한다.
+				이때 어떤 조건이 논리연산자(AND | OR)가 붙어야 하는지는 
+				상황에 딸라 달라질 것이다.
+				
+				이런 상황에 사용할 수 있는 마이바티스 문법이다.
+				
+				형식 ]
+					<trim prefix="WHERE" prefixOverrides="AND | OR">
+						조건처리
+					</trim>
+					
+				의미 ]
+					이 문장이 실행되는 순간 
+					무조건 앞에 "WHERE" 를 붙이고
+					다음 문장부터는 AND나 OR를 이용해서 
+					첫번째는 생략하고
+					두번째부터 붙여서 질의명령을 완성하세요.
+					
+					로그인 질의명령
+						SELECT
+							COUNT(*)
+						FROM
+							member
+						WEHRE
+							id = #{id}
+							AND pw = #{pw}
+					아이디체크 질의명령
+						SELECT
+							COUNT(*)
+						FROM
+							member
+						WEHRE
+							id = #{id}
+							
+					==>
+						SELECT
+							COUNT(*)
+						FROM
+							member
+						<trim prefix="WHERE" prefixOverrides="AND | OR">
+							<if test="id != null">
+								AND id = #{id}
+							</if>
+							<if test="pw != null">
+								AND pw = #{pw}
+							</if>
+						</trim>
+						
+						==> 로그인 처리의 경우
+							SELECT
+								COUNT(*)
+							FROM
+								member
+							<trim prefix="WHERE" prefixOverrides="AND | OR">
+									AND id = #{id}
+									AND pw = #{pw}
+							</trim>
+							==>
+							인데 <trim> 태그의 prefixOverrides에 AND가 정의 되어있으므로
+								SELECT
+									COUNT(*)
+								FROM
+									member
+								WHERE
+										id = #{id}
+										AND pw = #{pw}
+										
+						==> 게시글 수정의 경우
+						
+							UPDATE
+								board
+							<trim prefix="SET" suffixOverrides=",">
+								<if test="title != null">
+									title = #{title},
+								</if>
+								<if test="body != null">
+									body = #{body},
+								</if>
+							</trim>
+							WHERE
+								bno = #{bno}
+							
+							==>
+								만약 제목과 본문을 모두 수정하는 경우
+									UPDATE
+										board
+									SET <== prefix에서 정의 해놓은 문장
+											title = #{title},
+											body = #{body} 
+											<== 이 행 마지막의 , 는 suffixOverrides에서 , 로 정의 했으므로
+												맨마지막 문자의 끝나는 문자 , 는 제거해서 질의명령을 완성한다.
+									WHERE
+										bno = #{bno}
+								본문만 수정하는 경우
+									UPDATE
+										board
+									SET <== prefix에서 정의 해놓은 문장
+											body = #{body} 
+											<== 이 행 마지막의 , 는 suffixOverrides에서 , 로 정의 했으므로
+												맨마지막 문자의 끝나는 문자 , 는 제거해서 질의명령을 완성한다.
+									WHERE
+										bno = #{bno}
+								제목만 수정하는 경우
+									UPDATE
+										board
+									SET <== prefix에서 정의 해놓은 문장
+											title = #{title}
+											<== 이 행 마지막의 , 는 suffixOverrides에서 , 로 정의 했으므로
+												맨마지막 문자의 끝나는 문자 , 는 제거해서 질의명령을 완성한다.
+									WHERE
+										bno = #{bno}
+							
+		3. set
+			형식 ]
+				
+				<set>
+					<if test="조건식1">
+						질의명령,
+					</if>
+					<if test="조건식2">
+						질의명령,
+					</if>
+					<if test="조건식3">
+						질의명령,
+					</if>
+					...
+				</set>
+				
+		4. where
+			형식 ]
+				
+				<where>
+					<if test="조건식1">
+						질의명령,
+					</if>
+					<if test="조건식2">
+						질의명령,
+					</if>
+					<if test="조건식3">
+						질의명령,
+					</if>
+					...
+				</where>
+				
+		5. choose
+			
+			형식 ]
+				<choose>
+					<when test="조건식1">
+						질의명령
+					</when>
+					<when test="조건식2">
+						질의명령
+					</when>
+					...
+					<otherwise>
+						위에 기술된 조건에 모두 맞지 않은 경우 질의명령
+					</otherwise>
+				</choose>
+				
+		6. foreach
+			
+			형식 ]
+				<foreach item="변수이름" index="st" collection="데이터"
+						open="???" seperator="???" close="???">
+				</foreach>
+			의미 ]
+				리스트에 담긴 데이터 갯수만큼 반복해서
+				특정 질의명령을 완성해주는 명령
+				
+			태그 속성들 ]
+				
+				item		: 변수
+				index		: 순서를 기억할 변수
+				collection	: 실제 데이터가 담긴 변수(ArrayList)
+				open		: 반복전에 처리할 내용
+				seperator	: 매번 반복할 때마다 처리할 내용. 구분자
+				close		: 반복후 처리할 내용
+				
+				예 ]
+				부서번호를 입력하면 해당 부서 소속의 사원들의 
+					사원이름, 직급, 급여
+				를 조회해서 반환해주는 질의
+				단, 부서번호는 여러개 입력할 수 있는 것으로 한다.
+				
+				SELECT
+					ename, job, sal
+				FROM
+					emp
+				WHERE
+					deptno IN (?, ?, ?)
+					
+				==>
+				
+				<select id="seldnoList" resultType="mVO" parameterType="List">
+					SELECT
+						ename, job, sal
+					FROM
+						emp
+					WHERE
+						deptno IN
+						<foreach item="dno" index="idx" collection="list" 
+								open="(" close=")" seperator=",">
+								#{dno}
+						</foreach>
+				</select>
+					
+				
+			

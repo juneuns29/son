@@ -56,6 +56,7 @@
 			$(location).attr('href', '/fboard/fileboard.son');
 		});
 		
+		/*
 		function addTag(e1){
 			var sfile = $(e1).val();
 			
@@ -80,7 +81,24 @@
 		$('#file1').change(function(){
 			addTag(this);
 		})
+		*/
 		
+		$('#fileBox').on('change', document.frm.file, function(evt){
+			var tno = getFno();
+			
+			var filename = evt.target.value;
+			var tid = evt.target.id;
+			var old_fno = tno - 1;
+			if(!filename && (tid != ('file' + old_fno))){
+				$('#' + tid).remove();
+			} else if(filename && tid != ('file' + old_fno)) {
+			} else {
+				$('#fileBox').append(
+					'<input type="file" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom" name="file" id="file'+ tno +'">'
+				);
+			}
+			
+		});
 	});
 </script>
 </head>
