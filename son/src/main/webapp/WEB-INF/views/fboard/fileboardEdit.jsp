@@ -101,6 +101,21 @@
 			// form 태그 전송
 			$('#imgFrm').submit();
 		});
+		
+		
+		// home 버튼 클릭이벤트
+		$('#home').click(function(){
+			$(location).attr('href', '/main.son');
+		});
+		// list 버튼 클릭이벤트
+		$('#list').click(function(){
+			// imgFrm 태그의 action 속성값 변경하고
+			$('#imgFrm').attr('action', '/fboard/fileboard.son');
+			// 폼태그 전송하고
+			$('#imgFrm').submit();
+		});
+		
+		
 	});
 </script>
 </head>
@@ -108,13 +123,18 @@
 
 	<!-- 이미지 번호 전송용 폼태그 -->
 	<form method="post" action="/fboard/delImgList.son" name="imgFrm" id="imgFrm">
+		<input type="hidden" name="bno" value="${DATA.bno}">
+		<input type="hidden" name="nowPage" value="${nowPage}">
 	</form>
 	
 	<div class="w3-content mxw700">
 		<h1 class="w3-padding w3-center w3-blue">게시글 수정</h1>
 		
-		<form method="POST" action="/fboard/writeProc.son" name="frm" id="frm"
+		<form method="POST" action="/fboard/editProc.son" name="frm" id="frm" enctype="multipart/form-data"
 			 		class="w3-col w3-padding w3-card-4 w3-light-grey w3-text-blue">
+			<input type="hidden" name="bno" value="${DATA.bno}">
+			<input type="hidden" name="nowPage" value="${nowPage}">
+			
 			<div class="w3-row w3-section w3-padding">
 				<label class="w3-col w3-right-align lbl" style="width: 150px;">
 					<span class="w3-xxlarge fa fa-user"></span> 작성자
@@ -167,7 +187,7 @@
 		<div class="w3-col">
 			<div class="w3-third w3-btn w3-section w3-green w3-ripple" id="home">Home</div>
 			<div class="w3-third w3-btn w3-section w3-blue w3-ripple" id="list">글목록</div>
-			<div class="w3-third w3-btn w3-section w3-amber w3-ripple" id="write">글등록</div>
+			<div class="w3-third w3-btn w3-section w3-amber w3-ripple" id="edit">글수정</div>
 		</div>
 	</div>
 </body>

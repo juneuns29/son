@@ -21,7 +21,8 @@
 		                    	FROM
 		                    		fileinfo
 		                    	WHERE
-		                    		fbno = f.fbno
+		                    		isshow = 'Y'
+		                    		AND fbno = f.fbno
 		                    ) cnt
 		                FROM
 		                    fileboard f, member m

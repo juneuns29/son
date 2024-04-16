@@ -195,7 +195,36 @@ public class FileBoard {
 	@RequestMapping("/delImgList.son")
 	public ModelAndView delImgList(HttpSession session, ModelAndView mv, RedirectView rv, BoardVO bVO, int nowPage) {
 		// 할일
+		// 세션검사
 		
+		// 데이터베이스 작업 처리
+		int cnt = fDao.delImages(bVO.getImgList());
+		System.out.println("처리된 이미지 갯수 : " + cnt);
+		// 데이터 전달
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("BNO", bVO.getBno());
+		mv.addObject("PATH", "/fboard/fboardEdit.son");
+		
+		// 뷰를 부르고
+		// 여기서는 forward 방식으로 리다이렉트용 뷰를 만들어서 전달하는 것으로 한다.
+		/*
+			rv.setUrl("/fboard/fileboard.son?bno=" + bVO.getBno() + 
+													"&nowPage=" + nowPage);
+			mv.setView(rv)
+		 */
+		mv.setViewName("fboard/redirect");
+		return mv;
+	}
+	
+	/**
+	 * 게시글 수정 처리 요청 전담 처리함수
+	 */
+	@RequestMapping("/editProc.son")
+	public ModelAndView editProc(HttpSession session, ModelAndView mv, RedirectView rv, BoardVO bVO, int nowPage) {
+		// 할일
+		
+		mv.addObject("nowPage", nowPage);
+		mv.addObject("BNO", bVO.getBno());
 		return mv;
 	}
 }
