@@ -74,7 +74,22 @@
 		
 		/*  이 부분에 코드 작성 */
 		
-		
+		$('#myInfo').click(function(){
+			// 할일
+			// 태그를 추가
+			var el = document.createElement('input'); // 메모리에 <input> 생성
+			$(el).attr('type', 'hidden');	// <input type="hidden">
+			$(el).attr('name', 'id');		// <input type="hidden" name="id">
+			$(el).val('${SID}');			// <input type="hidden" name="id" value="${SID}">
+			
+			// 만든 태그를 폼태그에 추가
+			$('#frm').append(el);
+			// 폼태그 속성들 추가
+			// action
+			$('#frm').attr('action', '/member/myInfo.son');
+			// 폼태그 전송
+			$('#frm').submit();
+		});
 		
 	});
 </script>

@@ -186,4 +186,25 @@ public class Member {
 		MemberVO mVO = mDao.getMemberInfo(id);
 		return mVO;
 	}
+	
+	/**
+	 * 로그인 회원정보 조회 요청 전담 처리함수
+	 */
+	@RequestMapping("/myInfo.son")
+	public ModelAndView myInfo(HttpSession session, ModelAndView mv, 
+											RedirectView rv, MemberVO mVO, String id) {
+		// 할일
+		// 세션검사
+		// String sid = (String)session.getAttribute("SID");
+		System.out.println("###################### 1 " + id);
+		System.out.println("###################### 2 " + mVO.getId());
+		// 아이디로 조회해서 반환값 받고
+		mVO = mDao.getMemberInfo(id);
+		
+		// 데이터 심고
+		mv.addObject("DATA", mVO);
+		mv.setViewName("member/myInfo");
+		// 반환값 반환하고
+		return mv;
+	}
 }
