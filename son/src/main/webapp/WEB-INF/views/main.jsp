@@ -51,10 +51,36 @@
 		$('#idList').click(function(){
 			$(location).attr('href', '/member/memberList.son');
 		});
+		
+		/*  
+			myInfo 버튼이 클릭되면 아이디가 frm 태그에 bno 를 기억할 태그를 추가해서 
+			/member/myInfo.son 으로 전송해서
+			로그인한 회원의 정보를 출력하도록
+			myInfo.jsp의 내용을 완성하세요.
+			
+			컨트롤러 함수는 myInfo()로 한다.
+			
+			단, 이페이지의 모든 작업은 jQuery로 처리하기로 한다.
+			
+			제출은 
+				main.jsp
+				myInfo.jsp
+				Member.java
+			파일을 제출하는 것으로 한다.
+			
+		*/
+		
+		/*  이 부분에 코드 작성 */
+		
+		
+		
 	});
 </script>
 </head>
 <body>
+	<form method="POST" id="frm">
+	</form>
+	
 	<div class="w3-content mxw650 w3-center">
 		<h1 class="w3-deep-purple w3-padding w3-card-4"> 
 <c:if test="${not empty SID}">
@@ -74,6 +100,7 @@
 <c:if test="${not empty SID}">
 			<div class="w3-btn w3-small w3-orange w3-right" id="logout">로그아웃</div>
 			<div class="w3-btn w3-small w3-light-green w3-left" id="idList"> 회원들 </div>
+			<div class="w3-btn w3-small w3-blue w3-left" id="myInfo">myInfo</div>
 </c:if>
 <c:if test="${empty SID}">
 			<div class="w3-btn w3-small w3-blue w3-right" id="join">회원가입</div>
