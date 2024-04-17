@@ -158,7 +158,7 @@
 				</label>
 		    	<div class="w3-rest mgt10">
 		    		<div class="w3-col" id="fileBox">
-		    			<input type="file" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom" name="file" id="file1">
+		    			<input type="file" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom w3-margin-bottom" name="file" id="file1">
 		    		</div>
 		    		<div class="w3-col w3-center w3-text-blue-gray w3-margin-top" id="files">
 		  <c:forEach var="IMG" items="${LIST}">

@@ -84,18 +84,34 @@
 		*/
 		
 		$('#fileBox').on('change', document.frm.file, function(evt){
-			var tno = getFno();
-			
 			var filename = evt.target.value;
 			var tid = evt.target.id;
-			var old_fno = tno - 1;
-			if(!filename && (tid != ('file' + old_fno))){
-				$('#' + tid).remove();
-			} else if(filename && tid != ('file' + old_fno)) {
+			var old_no = tid.substring(3);
+			
+			var last_id= $('#fileBox > input').last().attr('id');
+			
+			if(!filename){
+				if(tid != last_id){
+					$('#'+tid).remove();
+					$('#img'+old_no).remove();
+				}
 			} else {
-				$('#fileBox').append(
-					'<input type="file" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom" name="file" id="file'+ tno +'">'
-				);
+				if(tid == last_id){
+					// 마지막 태그에서 파일을 선택한 경우
+					var tno = getFno();
+					var el1 = document.createElement('input');
+					$(el1).attr('type', 'file');
+					$(el1).attr('id', 'file' + tno);
+					$(el1).attr('name', 'file');
+					$(el1).addClass('w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom mgt10');
+					
+					$('#fileBox').append(el1);
+					
+					var imgEl = document.createElement('img');
+					$(imgEl).attr('id', 'img' + old_no);
+				} else {
+					// 마지막이 아닌태그들이 변경되는 경우
+				}
 			}
 			
 		});
@@ -129,9 +145,13 @@
 				<label class="w3-col w3-right-align lbl" style="width: 150px;">
 					<span class="w3-xxlarge fa fa-file-image-o"></span> 첨부파일 
 				</label>
-		    	<div class="w3-rest mgt10" id="fileBox">
-		    		<input type="file" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom" name="file" id="file1">
-		    	</div>
+				<div class="w3-rest mgt10">
+			    	<div class="w3-col mgt10" id="fileBox">
+			    		<input type="file" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom" name="file" id="file1">
+			    	</div>
+			    	<div class="w3-col mgt20" id="imgBox">
+			    	</div>
+				</div>
 			</div>
 			
 			<div class="w3-row w3-section w3-padding">
