@@ -223,9 +223,22 @@ public class FileBoard {
 	public ModelAndView editProc(HttpSession session, ModelAndView mv, RedirectView rv, BoardVO bVO, int nowPage) {
 		// 할일
 		// 서비스 함수 호출해서 작업 처리
+		boolean bool = fService.editProc(bVO);
+		String path = "/fboard/fboardDetail.son";
+		if(!bool) {
+			// 수정작업에 실패한 경우
+			// 수정페이지로 리다이렉트
+			path = "/fboard/fboardEdit.son";
+		}
 		
+		// 데이터 전달하고
+		mv.addObject("PATH", path);
 		mv.addObject("nowPage", nowPage);
 		mv.addObject("BNO", bVO.getBno());
+		
+		// 뷰 부르고
+		mv.setViewName("fboard/redirect");
+		// 반환하고
 		return mv;
 	}
 	

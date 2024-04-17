@@ -143,7 +143,9 @@
 파라미터	:	bno, title, body, nowPage
 컨트롤러	:	com.human.son.controller.FileBoard
 처리함수	:	editProc()
-응답문서	:	redirect ] /fboard/fboardDetail.son
+응답문서	:	redirect ] 
+					성공 : /fboard/fboardDetail.son
+					실패 : /fboard/fboardEdit.son
 
 -----------------------------------------------------------------------------
 # 방명록 관련 요청 설계

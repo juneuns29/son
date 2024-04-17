@@ -70,4 +70,11 @@ public class FileBoardDao {
 	public int delImages(List<Integer> list) {
 		return session.update("fSQL.delImages", list);
 	}
+	
+	/**
+	 * 게시글 수정 데이터베이스 작업 전담 처리함수
+	 */
+	public int editFboard(BoardVO bVO) {
+		return session.update("fSQL.editFboard", bVO);
+	}
 }

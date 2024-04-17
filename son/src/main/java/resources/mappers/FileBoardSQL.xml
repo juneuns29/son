@@ -145,4 +145,29 @@
 			</foreach>
 	</update>
 	
+	<!-- 게시글 수정 처리 질의명령 -->
+	<update id="editFboard" parameterType="bVO">
+		UPDATE
+			fileboard
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="title != null">
+				title = #{title},
+			</if>
+			<if test="body != null">
+				body = #{body},
+			</if>
+		</trim>
+	<!--  
+		<set suffixOverrides=",">
+			<if test="title != null">
+				title = #{title},
+			</if>
+			<if test="body != null">
+				body = #{body},
+			</if>
+		</set>
+	-->
+		WHERE
+			bno = #{bno}
+	</update>
 </mapper>

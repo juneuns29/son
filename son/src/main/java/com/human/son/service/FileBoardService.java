@@ -82,20 +82,11 @@ public class FileBoardService {
 	}
 	
 	/**
-	 * 게시글과 파일정보 데이터를 데이터베이스에 입력하는 함수
+	 * 업로드파일 데이터베이스 작업 전담 처리함수
 	 */
-	@Transactional
-	public boolean insertProc(BoardVO bVO) {
-		// 반환값 변수
-		boolean bool = true;
-		
-		// 게시글 업로드
-		int cnt = fDao.addBoard(bVO);
-		if(cnt != 1) {
-			// 게시글 등록 중 에러 발생한 경우
-			return false;
-		}
-		
+	public int insertImgProc(BoardVO bVO) {
+		int fcnt = 0;
+
 		// 파일 저장
 		String[] sname = uploadProc(bVO.getFile());
 		
@@ -103,7 +94,6 @@ public class FileBoardService {
 		String path = this.getClass().getResource("/").getPath();
 		path +=  "../../resources/upload";
 		
-		int fcnt = 0;
 		// 파일 정보 입력
 		for(int i = 0 ; i < bVO.getFile().length ; i++ ) {
 			// vo 만들고
@@ -123,6 +113,27 @@ public class FileBoardService {
 			
 			fcnt += fDao.addFileInfo(fVO);
 		}
+		
+		return fcnt;
+	}
+	
+	/**
+	 * 게시글과 파일정보 데이터를 데이터베이스에 입력하는 함수
+	 */
+	@Transactional
+	public boolean insertProc(BoardVO bVO) {
+		// 반환값 변수
+		boolean bool = true;
+		
+		// 게시글 업로드
+		int cnt = fDao.addBoard(bVO);
+		if(cnt != 1) {
+			// 게시글 등록 중 에러 발생한 경우
+			return false;
+		}
+		
+		int fcnt = insertImgProc(bVO);
+		
 		if(fcnt != bVO.getFile().length) {
 			bool = false;
 		}
@@ -134,11 +145,31 @@ public class FileBoardService {
 	/**
 	 * 	게시글 수정 처리 서비스 함수
 	 */
+	@Transactional
 	public boolean editProc(BoardVO bVO) {
+		// 이 함수는 다수의 데이터베이스 작업을 처리하는 함수인데
+		// 처리도중 한개라도 에러가 발생하면 롤벡해주는 함수...
+		// 그 기능(트랜젝션 처리)을 제공해주고있는 요소가 @Transactional 어노테이션이다.
+		
+		// 할일
 		// 반환값 변수
 		boolean bool = true;
-		// 10 분 쉬는걸로...
+		// 제목과 본문이 수정되어있는지 확인
+		if(bVO.getTitle() != null || bVO.getBody() != null) {
+			int cnt = fDao.editFboard(bVO);
+			if(cnt == 0) {
+				// 수정작업에 실패한 경우
+				bool = false;
+			}
+		}
 		
+		// 업로드된 파일이 있는지 확인해서 처리
+		if(bVO.getFile().length != 0) {
+			int cnt = insertImgProc(bVO);
+			if(cnt != bVO.getFile().length) {
+				bool = false;
+			}
+		}
 		
 		return bool;
 	}
