@@ -168,6 +168,6 @@
 		</set>
 	-->
 		WHERE
-			bno = #{bno}
+			fbno = #{bno}
 	</update>
 </mapper>

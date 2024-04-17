@@ -164,7 +164,7 @@ public class FileBoardService {
 		}
 		
 		// 업로드된 파일이 있는지 확인해서 처리
-		if(bVO.getFile().length != 0) {
+		if(bVO.getFile() != null) {
 			int cnt = insertImgProc(bVO);
 			if(cnt != bVO.getFile().length) {
 				bool = false;
