@@ -88,12 +88,15 @@
 			var tid = evt.target.id;
 			var old_no = tid.substring(3);
 			
+			// 선택된 이미지  URL 꺼내기
+			var imgPath = URL.createObjectURL(evt.target.files[0]);
+			
 			var last_id= $('#fileBox > input').last().attr('id');
 			
 			if(!filename){
 				if(tid != last_id){
 					$('#'+tid).remove();
-					$('#img'+old_no).remove();
+					$('#imgFr'+old_no).remove();
 				}
 			} else {
 				if(tid == last_id){
@@ -109,8 +112,21 @@
 					
 					var imgEl = document.createElement('img');
 					$(imgEl).attr('id', 'img' + old_no);
+					$(imgEl).attr('width', '100');
+					$(imgEl).attr('height', 'auto');
+					$(imgEl).attr('src', imgPath);
+					$(imgEl).addClass('w3-display-middle');
+					
+					var imgFr = document.createElement('div');
+					$(imgFr).addClass('w3-display-container inblock imgBox100 w3-border mgw10');
+					
+					$(imgFr).append(imgEl);
+					$(imgFr).attr('id', 'imgFr' + old_no);
+					
+					$('#imgBox').append(imgFr);
 				} else {
 					// 마지막이 아닌태그들이 변경되는 경우
+					$('#img' + old_no).attr('src', imgPath);
 				}
 			}
 			
@@ -149,7 +165,7 @@
 			    	<div class="w3-col mgt10" id="fileBox">
 			    		<input type="file" class="w3-input w3-center w3-text-blue-gray w3-border w3-border-bottom" name="file" id="file1">
 			    	</div>
-			    	<div class="w3-col mgt20" id="imgBox">
+			    	<div class="w3-col mgt20 w3-center" id="imgBox">
 			    	</div>
 				</div>
 			</div>
