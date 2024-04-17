@@ -89,7 +89,7 @@
 			var old_no = tid.substring(3);
 			
 			// 선택된 이미지  URL 꺼내기
-			var imgPath = URL.createObjectURL(evt.target.files[0]);
+			var imgPath = '';
 			
 			var last_id= $('#fileBox > input').last().attr('id');
 			
@@ -99,6 +99,7 @@
 					$('#imgFr'+old_no).remove();
 				}
 			} else {
+				imgPath = URL.createObjectURL(evt.target.files[0]);
 				if(tid == last_id){
 					// 마지막 태그에서 파일을 선택한 경우
 					var tno = getFno();
