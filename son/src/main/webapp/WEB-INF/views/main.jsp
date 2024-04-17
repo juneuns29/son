@@ -66,6 +66,8 @@
 				main.jsp
 				myInfo.jsp
 				Member.java
+				요청설계.txt
+				
 			파일을 제출하는 것으로 한다.
 			
 		*/
