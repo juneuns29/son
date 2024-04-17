@@ -222,9 +222,11 @@ public class FileBoard {
 	@RequestMapping("/editProc.son")
 	public ModelAndView editProc(HttpSession session, ModelAndView mv, RedirectView rv, BoardVO bVO, int nowPage) {
 		// 할일
+		// 서비스 함수 호출해서 작업 처리
 		
 		mv.addObject("nowPage", nowPage);
 		mv.addObject("BNO", bVO.getBno());
 		return mv;
 	}
+	
 }

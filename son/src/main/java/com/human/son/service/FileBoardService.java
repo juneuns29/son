@@ -130,4 +130,16 @@ public class FileBoardService {
 		// 반환값 반환
 		return bool;
 	}
+	
+	/**
+	 * 	게시글 수정 처리 서비스 함수
+	 */
+	public boolean editProc(BoardVO bVO) {
+		// 반환값 변수
+		boolean bool = true;
+		// 10 분 쉬는걸로...
+		
+		
+		return bool;
+	}
 }

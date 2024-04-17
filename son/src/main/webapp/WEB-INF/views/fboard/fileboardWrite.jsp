@@ -137,7 +137,7 @@
 </head>
 <body>
 	<div class="w3-content mxw700">
-		<h1 class="w3-padding w3-center w3-blue">Write</h1>
+		<h1 class="w3-padding w3-center w3-blue">SON Board Write</h1>
 		
 		<form method="POST" action="/fboard/writeProc.son" name="frm" id="frm" enctype="multipart/form-data"
 			 		class="w3-col w3-padding w3-card-4 w3-light-grey w3-text-blue">
