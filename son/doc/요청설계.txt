@@ -161,17 +161,19 @@
 
 # 방명록 폼보기 요청
 요청내용 	:	/gboard/gboard.son
-파라미터	:	None
+파라미터	:	[nowPage]
 컨트롤러	:	com.human.son.controller.Gboard
 처리함수	:	gboardList()
 응답문서	:	/WEB-INF/views/gboard/gboard.jsp
 
 # 방명록 글쓰기 폼보기 요청
-요청내용 	:
-파라미터	:
-컨트롤러	:
-처리함수	:
-응답문서	:
+요청내용 	:	/gboard/gWrite.son
+파라미터	:	nowPage
+컨트롤러	:	com.human.son.controller.Gboard
+처리함수	:	gWrite
+응답문서	:	/WEB-INF/views/gboard/gboardWrite.jsp
+
+인터셉터 처리 : <mapping path="/gboard/gWrite*.son" />
 
 # 방명록 글등록 처리 요청
 요청내용 	:	/gboard/gWriteProc.son

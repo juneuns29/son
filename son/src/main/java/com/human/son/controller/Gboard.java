@@ -63,5 +63,18 @@ public class Gboard {
 		return mv;
 	}
 	
-	
+	/**
+	 * 방명록 작성 폼보기 요청 전담 처리함수
+	 */
+	@RequestMapping(path="/gWrite.son", params="nowPage")
+	public ModelAndView gWrite(HttpSession session, ModelAndView mv, 
+											RedirectView rv, int nowPage) {
+		// 세션검사는 Interceptor에서 처리할 것이므로 여기서는 생략...
+		// 데이터 심고
+		mv.addObject("nowPage", nowPage);
+		// 뷰 정하고
+		mv.setViewName("gboard/gboardWrite");
+		// 반환하고
+		return mv;
+	}
 }

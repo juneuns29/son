@@ -24,6 +24,16 @@
 		<!-- 로그인체크 -->
 		<interceptor>
 			<mapping path="/member/*.son" />
+			<mapping path="/fboard/*.son" />
+			<exclude-mapping path="/member/idCheck.son"/>
+			<exclude-mapping path="/member/memberInfo.son"/>
+			<exclude-mapping path="/member/login.son"/>
+			<exclude-mapping path="/member/loginProc.son"/>
+			<exclude-mapping path="/member/join.son"/>
+			<exclude-mapping path="/member/joinProc.son"/>
+			<exclude-mapping path="/fboard/fileboard.son"/>
+			<exclude-mapping path="/fboard/fboardDelImg.son"/>
+			<beans:ref bean="loginCheck" />
 		</interceptor>
 	</interceptors>
 	

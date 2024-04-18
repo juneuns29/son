@@ -84,12 +84,32 @@
 			// 폼태그 전송하고
 			$('#pageFrm').submit();
 		});
+		
+		$('#gwbtn').click(function(){
+			/*
+				요청 방법 :
+					1. location 객체 이용하는 방법
+					2. a 태그 이용하는 방법 : 여기서는 없으므로 통과
+					3. form 태그 이용하는 방법
+				
+				여기서는 데이터를 전달해야 하고
+				폼태그도 이미 있므으로 form 태그를 활요하는 것으로 한다.
+			*/
+			/*
+			// nowPage 셋팅하고
+			$('#nowPage').val('${PAGE.nowPage}');
+			*/
+			// action 속성값을 변경해서 제출한다.
+			$('#pageFrm').attr('action', '/gboard/gWrite.son');
+			// form 태그 제출
+			$('#pageFrm').submit();
+		});
 	});
 </script>
 </head>
 <body>
 	<form method="post" action="/gboard/gboard.son" id="pageFrm">
-		<input type="hidden" name="nowPage" id="nowPage">
+		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
 	</form>
 	
 	<div class="w3-content mxw600">
@@ -104,6 +124,7 @@
 <c:if test="${not empty SID}"> <!-- 로그인 한 경우 -->
 			<div class="w3-red w3-btn" id="logout">로그아웃</div>
 	<c:if test="${empty CNT or CNT eq 0}">
+			<div class="w3-lime w3-btn w3-right" id="gwbtn">방명록 작성</div>
 			<div class="w3-orange w3-btn w3-right" id="wbtn">글작성</div>
 	</c:if>
 </c:if>
