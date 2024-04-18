@@ -9,6 +9,7 @@
 						https://www.springframework.org/schema/beans/spring-beans.xsd">
 	<beans:bean id="logoutCheck" class="com.human.son.service.LogoutCheckInterceptor" />
 	<beans:bean id="loginCheck" class="com.human.son.service.LoginCheckInterceptor" />
+	<beans:bean id="gboardCheck" class="com.human.son.service.GboardInterceptor" />
 	
 	<interceptors>
 		<!-- 로그아웃체크 -->
@@ -25,7 +26,6 @@
 		<interceptor>
 			<mapping path="/member/*.son" />
 			<mapping path="/fboard/*.son" />
-			<mapping path="/gboard/gWrite*.son" />
 			<exclude-mapping path="/member/idCheck.son"/>
 			<exclude-mapping path="/member/memberInfo.son"/>
 			<exclude-mapping path="/member/login.son"/>
@@ -35,6 +35,10 @@
 			<exclude-mapping path="/fboard/fileboard.son"/>
 			<exclude-mapping path="/fboard/fboardDelImg.son"/>
 			<beans:ref bean="loginCheck" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/gboard/gWrite*.son" />
+			<beans:ref bean="gboardCheck"></beans:ref>
 		</interceptor>
 	</interceptors>
 	
