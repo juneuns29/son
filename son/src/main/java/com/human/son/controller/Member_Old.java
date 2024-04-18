@@ -14,8 +14,8 @@ import com.human.son.vo.*;
 import com.human.son.util.*;
 
 @Controller
-@RequestMapping("/member")
-public class Member {
+@RequestMapping("/memberOld")
+public class Member_Old {
 	@Autowired
 	MemberDao mDao;
 	
@@ -28,15 +28,29 @@ public class Member {
 	@RequestMapping("/login.son")
 	public ModelAndView login(HttpSession session, ModelAndView mv, RedirectView rv) {
 		String view = "member/login";
-		mv.setViewName(view); // 포워드
+		if(session.getAttribute("SID") != null) {
+			view = "/main.son";
+			rv.setUrl(view);
+			mv.setView(rv); // 리다이렉트 
+		} else {
+			mv.setViewName(view); // 포워드
+		}
 		return mv;
 	}
 	
 	@RequestMapping("/loginProc.son")
-	public ModelAndView loginProc(HttpSession session, ModelAndView mv, RedirectView rv, 
-														MemberVO mVO, String id, String pw) {
+	public ModelAndView loginProc(HttpSession session, ModelAndView mv, RedirectView rv,
+			/* String id, String pw, */MemberVO mVO) {
 		String view = "/main.son";
 		
+		if(session.getAttribute("SID") != null) {
+			// 이미 로그인 한 경우
+			rv.setUrl(view);
+			mv.setView(rv);
+			return mv;
+		}
+		
+//		System.out.println(mVO.getId() + " - " + mVO.getPw());
 		// 로그인 안된경우
 		// 데이터베이스 조회
 		int cnt = mDao.getLogin(mVO);
@@ -58,7 +72,9 @@ public class Member {
 	@RequestMapping("/logout.son")
 	public ModelAndView logout(HttpSession session, ModelAndView mv, RedirectView rv) {
 		String view = "/main.son";
-		session.removeAttribute("SID");
+		if(session.getAttribute("SID") != null) {
+			session.removeAttribute("SID");
+		}
 		rv.setUrl(view);
 		mv.setView(rv);
 		return mv;
@@ -69,7 +85,15 @@ public class Member {
 	 */
 	@RequestMapping("/join.son")
 	public ModelAndView join(HttpSession session, ModelAndView mv, RedirectView rv) {
-		mv.setViewName("member/join"); // 포워드
+		// 세션검사
+		if(session.getAttribute("SID") != null) {
+			// 이미 로그인 되어있는 경우
+			rv.setUrl("/main.son");
+			mv.setView(rv); // 리다이렉트
+		} else {
+			// 로그인 안되어있는 경우
+			mv.setViewName("member/join"); // 포워드
+		}
 		return mv;
 	}
 	
@@ -102,21 +126,26 @@ public class Member {
 	@RequestMapping("/joinProc.son")
 	public ModelAndView joinProc(HttpSession session, ModelAndView mv, 
 											RedirectView rv, MemberVO mVO) {
-		// 데이터베이스 작업
-		int cnt = mDao.addMemb(mVO);
-		
-		// 뷰 셋팅하고
-		if(cnt == 1) {
-			// 회원가입에 성공한 경우
-			// 세션에 아이디 기억시키고
-			session.setAttribute("SID", mVO.getId());
-			// 뷰 셋팅하고
+		if(session.getAttribute("SID") != null) {
 			rv.setUrl("/main.son");
+			mv.setView(rv);
 		} else {
-			// 회원가입에 실패한 경우
-			rv.setUrl("/member/join.son");
+			// 데이터베이스 작업
+			int cnt = mDao.addMemb(mVO);
+			
+			// 뷰 셋팅하고
+			if(cnt == 1) {
+				// 회원가입에 성공한 경우
+				// 세션에 아이디 기억시키고
+				session.setAttribute("SID", mVO.getId());
+				// 뷰 셋팅하고
+				rv.setUrl("/main.son");
+			} else {
+				// 회원가입에 실패한 경우
+				rv.setUrl("/member/join.son");
+			}
+			mv.setView(rv);
 		}
-		mv.setView(rv);
 		
 		return mv;
 	}
@@ -130,13 +159,20 @@ public class Member {
 		// 뷰 정하고
 		String view = "member/memberList";
 		
-		// 데이터베이스 조회
-		List list = mDao.getIdList();
-		// 데이터 기억시키고
-		mv.addObject("LIST", list);
-		mv.addObject("COLOR", color.getColorList());
-		// 뷰 기억시키고
-		mv.setViewName(view); // forward(jsp문서)
+		// 로그인 검사
+		if(session.getAttribute("SID") == null) {
+			// 로그인 안한경우
+			rv.setUrl("/member/login.son");
+			mv.setView(rv); // redirect(이동할 요청 url)
+		} else {
+			// 데이터베이스 조회
+			List list = mDao.getIdList();
+			// 데이터 기억시키고
+			mv.addObject("LIST", list);
+			mv.addObject("COLOR", color.getColorList());
+			// 뷰 기억시키고
+			mv.setViewName(view); // forward(jsp문서)
+		}
 		
 		return mv;
 	}
@@ -158,6 +194,10 @@ public class Member {
 	public ModelAndView myInfo(HttpSession session, ModelAndView mv, 
 											RedirectView rv, MemberVO mVO, String id) {
 		// 할일
+		// 세션검사
+		// String sid = (String)session.getAttribute("SID");
+		System.out.println("###################### 1 " + id);
+		System.out.println("###################### 2 " + mVO.getId());
 		// 아이디로 조회해서 반환값 받고
 		mVO = mDao.getMemberInfo(id);
 		

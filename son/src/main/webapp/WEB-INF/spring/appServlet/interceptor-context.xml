@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans 
+	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+						https://www.springframework.org/schema/mvc/spring-mvc.xsd
+						http://www.springframework.org/schema/beans 
+						https://www.springframework.org/schema/beans/spring-beans.xsd">
+	<beans:bean id="logoutCheck" class="com.human.son.service.LogoutCheckInterceptor" />
+	<beans:bean id="loginCheck" class="com.human.son.service.LoginCheckInterceptor" />
+	
+	<interceptors>
+		<!-- 로그아웃체크 -->
+		<interceptor>
+			<mapping path="/member/*.son" />
+			<exclude-mapping path="/member/idCheck.son"/>
+			<exclude-mapping path="/member/memberInfo.son"/>
+			<exclude-mapping path="/member/logout.son"/>
+			<exclude-mapping path="/member/memberList.son"/>
+			<exclude-mapping path="/member/myInfo.son"/>
+			<beans:ref bean="logoutCheck"/>
+		</interceptor>
+		<!-- 로그인체크 -->
+		<interceptor>
+			<mapping path="/member/*.son" />
+		</interceptor>
+	</interceptors>
+	
+</beans:beans>

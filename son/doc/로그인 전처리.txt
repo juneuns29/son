@@ -1,0 +1,16 @@
+
+# 로그인 되어있어야 하는 경우
+/member/logout.son
+/member/memberList.son
+/member/myInfo.son
+
+
+# 로그인 되어있으면 안되는 경우
+/member/login.son
+/member/loginProc.son
+/member/join.son
+/member/joinProc.son
+
+# 그 이외...
+/member/idCheck.son
+/member/memberInfo.son
