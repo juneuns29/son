@@ -49,4 +49,20 @@
 		FROM
 			gboard
 	</select>
+	
+	<insert id="addGboard" parameterType="bVO">
+		<selectKey keyProperty="mno" resultType="int" order="BEFORE">
+			SELECT
+				mno
+			FROM
+				member
+			WHERE
+				id = #{id}
+		</selectKey>
+		INSERT INTO
+			gboard(gno, writer, body)
+		VALUES(
+			gbrdseq.NEXTVAL, #{mno}, #{body}
+		)
+	</insert>
 </mapper>

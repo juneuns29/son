@@ -25,6 +25,7 @@
 		<interceptor>
 			<mapping path="/member/*.son" />
 			<mapping path="/fboard/*.son" />
+			<mapping path="/gboard/gWrite*.son" />
 			<exclude-mapping path="/member/idCheck.son"/>
 			<exclude-mapping path="/member/memberInfo.son"/>
 			<exclude-mapping path="/member/login.son"/>

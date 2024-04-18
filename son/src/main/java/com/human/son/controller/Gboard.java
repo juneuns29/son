@@ -66,15 +66,38 @@ public class Gboard {
 	/**
 	 * 방명록 작성 폼보기 요청 전담 처리함수
 	 */
-	@RequestMapping(path="/gWrite.son", params="nowPage")
+	@RequestMapping(path={"/gWrite.son", "/gboardWrite.son"}, params="nowPage")
 	public ModelAndView gWrite(HttpSession session, ModelAndView mv, 
 											RedirectView rv, int nowPage) {
+		/*
+			path={"/gWrite.son", "/gboardWrite.son"}, 
+			==> "/gWrite.son"와 "/gboardWrite.son" 의 요청 모두를 처리함수
+			params={"nowPage", "id"} 
+			==> 반드시 파라미터로 nowPage와 id를 받아야만 된다.
+		 */
 		// 세션검사는 Interceptor에서 처리할 것이므로 여기서는 생략...
 		// 데이터 심고
 		mv.addObject("nowPage", nowPage);
 		// 뷰 정하고
 		mv.setViewName("gboard/gboardWrite");
 		// 반환하고
+		return mv;
+	}
+	
+	/**
+	 * 방명록 글등록 처리 요청 전담 처리함수
+	 */
+	@RequestMapping(path="/gWriteProc.son", params={"id", "body", "nowPage"})
+	public ModelAndView writeProc(HttpSession session, ModelAndView mv, RedirectView rv, BoardVO bVO, int nowPage) {
+		int cnt = gDao.addGboard(bVO);
+		if(cnt != 1) {
+			rv.setUrl("/gboard/gWrite.son?nowPage=" + nowPage);
+			// redirect.jsp 에서 처리하는 것은 과제로 남깁니다.
+		} else {
+			rv.setUrl("/gboard/gboard.son");
+		}
+		
+		mv.setView(rv);
 		return mv;
 	}
 }

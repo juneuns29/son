@@ -32,4 +32,11 @@ public class GboardDao {
 	public int getTotal() {
 		return session.selectOne("gSQL.getTotal");
 	}
+	
+	/**
+	 * 게시글 등록 처리 전담 처리함수
+	 */
+	public int addGboard(BoardVO bVO) {
+		return session.insert("gSQL.addGboard", bVO);
+	}
 }

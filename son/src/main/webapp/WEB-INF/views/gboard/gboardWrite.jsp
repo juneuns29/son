@@ -43,11 +43,26 @@
 		
 		// reset 버튼 클릭이벤트
 		$('#reset').click(function(){
-			$('#body').val('');
+			$('#tbody').val('');
 		});
 		
 		// 목록버튼 클릭이벤트
-		$('#')
+		$('#list').click(function(){
+			$('#frm').submit();
+		});
+		
+		// 등록 버튼 클릭이벤트
+		$('#write').click(function(){
+			var sbody = $('#tbody').val();
+			if(!sbody){
+				// 입력된 내용이 없는 경우
+				$('#tbody').focus();
+				return;
+			}
+			$('#frm').append('<textarea name="body">' + sbody + '</textarea>');
+			$('#frm').attr('action', '/gboard/gWriteProc.son');
+			$('#frm').submit();
+		});
 	});
 </script>
 </head>
@@ -73,7 +88,7 @@
 		
 		<div class="w3-col w3-margin-top" >
 			<div class="w3-container w3-padding w3-margin-bottom w3-card-4" style="padding: 15px 20px!important;">
-				<textarea name="body" id="body" class="w3-input w3-border" rows="5"
+				<textarea id="tbody" class="w3-input w3-border" rows="5"
 							style="resize: none;" placeholder="인사글을 작성하세요!"></textarea>
 			</div>
 			<footer class="w3-col">
