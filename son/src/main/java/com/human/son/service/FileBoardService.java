@@ -2,8 +2,10 @@ package com.human.son.service;
 
 import java.io.File;
 
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.human.son.dao.FileBoardDao;
@@ -84,6 +86,7 @@ public class FileBoardService {
 	/**
 	 * 업로드파일 데이터베이스 작업 전담 처리함수
 	 */
+	@Transactional
 	public int insertImgProc(BoardVO bVO) {
 		int fcnt = 0;
 
@@ -106,7 +109,9 @@ public class FileBoardService {
 			
 			// vo에 데이터 채우고
 			fVO.setDir(path);
+			if(i  != 1) {
 			fVO.setUpname(oriname);
+			}
 			fVO.setSavename(sname[i]);
 			fVO.setLen(len);
 			//fVO.setId(bVO.getId()); // selectKey로 bno를 저장했으므로...
