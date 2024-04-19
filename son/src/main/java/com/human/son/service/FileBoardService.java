@@ -137,7 +137,10 @@ public class FileBoardService {
 			return false;
 		}
 		
-		int fcnt = insertImgProc(bVO);
+		int fcnt = 0;
+		if(bVO.getFile() != null) { // 업로드한 파일이 있는 경우에만 실행...
+			fcnt = insertImgProc(bVO);
+		}
 		
 		if(fcnt != bVO.getFile().length) {
 			bool = false;
