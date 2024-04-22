@@ -12,6 +12,7 @@ public class MemberDao {
 	SqlSessionTemplate session;
 	
 	public int getLogin(MemberVO mVO) {
+		System.out.println("################# dao.login ###############");
 		return session.selectOne("mSQL.login", mVO);
 	}
 	

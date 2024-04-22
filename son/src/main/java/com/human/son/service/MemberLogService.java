@@ -1,19 +1,16 @@
 package com.human.son.service;
 
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import org.aspectj.lang.*;
+import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.reflect.*;
+import org.slf4j.*;
+import org.springframework.stereotype.*;
 
-import com.human.son.vo.MemberVO;
+import com.human.son.vo.*;
 
 @Service // service 클래스를 bean 처리해주는 어노테이션
 @Aspect // 이클래스가 aop 처리를 위한 클래스임을 밝혀주는 어노테이션
@@ -34,12 +31,12 @@ public class MemberLogService {
 				 	**Proc()	: Proc로 끝나는 클래스 멤버 모든 함수
 				 	(..)		: 매개변수를 불러오는 구문...
 	 */
+	/*
 	@Pointcut("execution(* com.human.son.controller.Member.**(..))")
 	public void recordLogin() {
 		System.out.println("#################### aop start ##################");
 	}
 	
-	/*
 	@After("recordLogin()") // recordLogin() 함수가 실행된 후 실행
 	public void writeLogin(JoinPoint point) {
 		// JoinPoint : 함수의 매개변수 들을 기억하는 약속된 변수
@@ -68,6 +65,7 @@ public class MemberLogService {
 		
 		String id = "";
 		String act = "";
+		System.out.println("*************** aop service login **************");
 		
 		// 실행함수에 따라 조건처리
 		if(funcName.equals("loginProc")) {
