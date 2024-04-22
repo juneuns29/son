@@ -1,17 +1,21 @@
 package com.human.son.controller;
 
-import java.util.*;
-import javax.servlet.http.*;
+import java.util.HashMap;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.*;
-import org.springframework.web.servlet.view.*;
+import javax.servlet.http.HttpSession;
 
-import com.human.son.dao.*;
-import com.human.son.vo.*;
-import com.human.son.util.*;
+import org.slf4j.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
+import com.human.son.dao.MemberDao;
+import com.human.son.util.ColorList;
+import com.human.son.vo.MemberVO;
 
 @Controller
 @RequestMapping("/member")
@@ -21,6 +25,9 @@ public class Member {
 	
 	@Autowired
 	ColorList color;
+	
+	// logger 꺼내오고 ==> aop에서 처리
+//	private static final Logger membLog = LoggerFactory.getLogger("membLog");
 	
 	/**
 	 * 로그인 화면 보기 요청 전담 처리함수
@@ -45,6 +52,10 @@ public class Member {
 			view = "/member/login.son";
 		} else {
 			session.setAttribute("SID", mVO.getId());
+			/*
+			// 로그 작성
+			membLog.info(mVO.getId() + " 님이 로그인 했습니다.");
+			*/
 		}
 		
 		rv.setUrl(view);
@@ -56,8 +67,13 @@ public class Member {
 	 * 로그아웃 요청 전담 처리 함수
 	 */
 	@RequestMapping("/logout.son")
-	public ModelAndView logout(HttpSession session, ModelAndView mv, RedirectView rv) {
+	public ModelAndView logoutProc(HttpSession session, ModelAndView mv, RedirectView rv) {
 		String view = "/main.son";
+		/*
+		// 로그 작성 ==> aop 에서 처리
+		String sid = (String) session.getAttribute("SID");
+		membLog.info(sid + " 님이 로그아웃 했습니다.");
+		*/
 		session.removeAttribute("SID");
 		rv.setUrl(view);
 		mv.setView(rv);
@@ -110,6 +126,10 @@ public class Member {
 			// 회원가입에 성공한 경우
 			// 세션에 아이디 기억시키고
 			session.setAttribute("SID", mVO.getId());
+			/*
+			// 로그 작성
+			membLog.info(mVO.getId() + " 님이 회원가입에 성공 했습니다.");
+			*/
 			// 뷰 셋팅하고
 			rv.setUrl("/main.son");
 		} else {
