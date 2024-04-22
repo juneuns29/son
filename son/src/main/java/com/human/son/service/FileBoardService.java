@@ -111,8 +111,12 @@ public class FileBoardService {
 			// vo에 데이터 채우고
 			fVO.setDir(path);
 			fVO.setUpname(oriname);
+			
+			/*
+			 */
 			// transaction test
 			fVO.setSavename(sname[0]);
+			
 //			fVO.setSavename(sname[i]);
 			fVO.setLen(len);
 			//fVO.setId(bVO.getId()); // selectKey로 bno를 저장했으므로...
