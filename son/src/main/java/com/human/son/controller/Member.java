@@ -47,16 +47,16 @@ public class Member {
 		// 로그인 안된경우
 		// 데이터베이스 조회
 		int cnt = mDao.getLogin(mVO);
-		
+		mVO.setCnt(cnt);
 		if(cnt != 1) {
 			view = "/member/login.son";
-		} else {
-			session.setAttribute("SID", mVO.getId());
+		} //else {
+//			session.setAttribute("SID", mVO.getId()); // ==> aop 에서 처리
 			/*
 			// 로그 작성
 			membLog.info(mVO.getId() + " 님이 로그인 했습니다.");
 			*/
-		}
+//		}
 		
 		rv.setUrl(view);
 		mv.setView(rv);
@@ -74,7 +74,7 @@ public class Member {
 		String sid = (String) session.getAttribute("SID");
 		membLog.info(sid + " 님이 로그아웃 했습니다.");
 		*/
-		session.removeAttribute("SID");
+//		session.removeAttribute("SID");
 		rv.setUrl(view);
 		mv.setView(rv);
 		return mv;
@@ -120,12 +120,12 @@ public class Member {
 											RedirectView rv, MemberVO mVO) {
 		// 데이터베이스 작업
 		int cnt = mDao.addMemb(mVO);
-		
+		mVO.setCnt(cnt);
 		// 뷰 셋팅하고
 		if(cnt == 1) {
 			// 회원가입에 성공한 경우
-			// 세션에 아이디 기억시키고
-			session.setAttribute("SID", mVO.getId());
+			// 세션에 아이디 기억시키고 ==> aop 에서 처리
+//			session.setAttribute("SID", mVO.getId()); // aop에서 처리
 			/*
 			// 로그 작성
 			membLog.info(mVO.getId() + " 님이 회원가입에 성공 했습니다.");
