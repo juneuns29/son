@@ -1,11 +1,10 @@
 package com.human.son.service;
 
 import java.io.File;
+import java.util.ArrayList;
 
-import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.*;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.human.son.dao.FileBoardDao;
@@ -86,8 +85,8 @@ public class FileBoardService {
 	/**
 	 * 업로드파일 데이터베이스 작업 전담 처리함수
 	 */
-	@Transactional
-	public int insertImgProc(BoardVO bVO) {
+	public ArrayList<FileVO> insertImgProc(BoardVO bVO) {
+		ArrayList<FileVO> list = new ArrayList<FileVO>();
 		int fcnt = 0;
 
 		// 파일 저장
@@ -97,10 +96,12 @@ public class FileBoardService {
 		String path = this.getClass().getResource("/").getPath();
 		path +=  "../../resources/upload";
 		
+		FileVO fVO = null;
+		
 		// 파일 정보 입력
 		for(int i = 0 ; i < bVO.getFile().length ; i++ ) {
 			// vo 만들고
-			FileVO fVO = new FileVO();
+			fVO = new FileVO();
 			fVO.setBno(bVO.getBno());
 			// 업로드 파일이름 꺼내고
 			String oriname = bVO.getFile()[i].getOriginalFilename();
@@ -109,17 +110,18 @@ public class FileBoardService {
 			
 			// vo에 데이터 채우고
 			fVO.setDir(path);
-			if(i  != 1) {
 			fVO.setUpname(oriname);
-			}
-			fVO.setSavename(sname[i]);
+			// transaction test
+			fVO.setSavename(sname[0]);
+//			fVO.setSavename(sname[i]);
 			fVO.setLen(len);
 			//fVO.setId(bVO.getId()); // selectKey로 bno를 저장했으므로...
-			
-			fcnt += fDao.addFileInfo(fVO);
+			list.add(fVO);
+//			fcnt += fDao.addFileInfo(fVO);
 		}
 		
-		return fcnt;
+//		return fcnt;
+		return list;
 	}
 	
 	/**
@@ -139,7 +141,10 @@ public class FileBoardService {
 		
 		int fcnt = 0;
 		if(bVO.getFile() != null) { // 업로드한 파일이 있는 경우에만 실행...
-			fcnt = insertImgProc(bVO);
+			ArrayList<FileVO> list = insertImgProc(bVO);
+			for(FileVO vo : list) {
+				fcnt += fDao.addFileInfo(vo);
+			}
 		}
 		
 		if(fcnt != bVO.getFile().length) {
@@ -173,7 +178,11 @@ public class FileBoardService {
 		
 		// 업로드된 파일이 있는지 확인해서 처리
 		if(bVO.getFile() != null) {
-			int cnt = insertImgProc(bVO);
+			ArrayList<FileVO> list = insertImgProc(bVO);
+			int cnt = 0;
+			for(FileVO vo : list) {
+				cnt += fDao.addFileInfo(vo);
+			}
 			if(cnt != bVO.getFile().length) {
 				bool = false;
 			}
