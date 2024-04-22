@@ -65,7 +65,6 @@ public class MemberLogService {
 		
 		String id = "";
 		String act = "";
-		System.out.println("*************** aop service login **************");
 		
 		// 실행함수에 따라 조건처리
 		if(funcName.equals("loginProc")) {
@@ -95,6 +94,5 @@ public class MemberLogService {
 		}
 		
 		membLog1.info(id + " 회원이 " + act + " 했습니다.");
-		
 	}
 }
