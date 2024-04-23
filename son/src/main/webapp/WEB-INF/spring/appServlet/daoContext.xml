@@ -11,7 +11,9 @@
 	<bean id="mDao" class="com.human.son.dao.MemberDao" />
 	<bean id="gDao" class="com.human.son.dao.GboardDao" />
 	<bean id="fDao" class="com.human.son.dao.FileBoardDao" />
+	<bean id="sDao" class="com.human.son.dao.SurveyDao" />
 	
 	<bean id="fileService" class="com.human.son.service.FileBoardService" />
+	<bean id="surveyService" class="com.human.son.service.SurveyService" />
 	
 </beans>
