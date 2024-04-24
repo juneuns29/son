@@ -11,18 +11,18 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#home').click(function(){
-			$(location).attr('href', '/main.memb');
+			$(location).attr('href', '/main.cls');
 		});
 		
 		$('#join').click(function(){
-			$(location).attr('href', '/member/join.memb');
+			$(location).attr('href', '/member/join.cls');
 		});
 
 		// 로그인 버튼 클릭이벤트 
 		
 		/*
 			입력태그의 내용을 읽어서 form 태그에 데이터를 추가하고
-			form 태그를 memberLogin.memb 로 제출하는 코드를 작성하세요.
+			form 태그를 memberLogin.cls 로 제출하는 코드를 작성하세요.
 			form 태그의 전송방식은 "POST"로 한다.
 		*/
 	});

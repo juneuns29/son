@@ -9,4 +9,17 @@
 		FROM
 		    quest
 	</select>
+	
+	<insert id="addQuest" parameterType="sVO">
+		<selectKey keyProperty="qno" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(qno) + 1, 1001) FROM quest
+		</selectKey>
+		INSERT INTO
+			quest
+		VALUES(
+			#{qno}, #{body}, 
+		<if test="qupno eq 0">null</if>
+		<if test="qupno neq 0">#{qupno}</if>
+		)
+	</insert>
 </mapper>

@@ -28,6 +28,7 @@
 		<typeAlias alias="mVO" type="com.human.son.vo.MemberVO"/>
 		<typeAlias alias="bVO" type="com.human.son.vo.BoardVO"/>
 		<typeAlias alias="fVO" type="com.human.son.vo.FileVO"/>
+		<typeAlias alias="sVO" type="com.human.son.vo.SurveyVO"/>
 		<typeAlias alias="page" type="com.human.son.util.PageUtil"/>
 	</typeAliases>
 	

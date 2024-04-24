@@ -7,6 +7,13 @@ public class SurveyVO {
 	private int rno, qno, tpno, qano, qupno, svno, cnt;
 	private String id, title, body, sdate;
 	private Date startDate, endDate, adate;
+	private ArrayList<SurveyVO> bogis;
+	public ArrayList<SurveyVO> getBogis() {
+		return bogis;
+	}
+	public void setBogis(ArrayList<SurveyVO> bogis) {
+		this.bogis = bogis;
+	}
 	public int getRno() {
 		return rno;
 	}
