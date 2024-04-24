@@ -135,7 +135,7 @@
 		</div>
 	</div>
 
-<c:if test="${not empty RESULT}">
+<c:if test="${not empty param.RESULT}">
 	<div id="wmodal" class="w3-modal">
 		<div class="w3-modal-content mxw550" >
 			<header class="w3-container w3-blue"> 
@@ -144,8 +144,8 @@
 			</header>
 			<div class="w3-container w3-padding">
 				<h3 class="w3-center">
-		<c:if test="${RESULT eq 'OK'}">설문조사 데이터 초기화가 완료되었습니다.</c:if>
-		<c:if test="${RESULT eq 'NO'}">설문조사 데이터 초기화에 실패했습니다.</c:if>
+		<c:if test="${param.RESULT eq 'OK'}">설문조사 데이터 초기화가 완료되었습니다.</c:if>
+		<c:if test="${param.RESULT eq 'NO'}">설문조사 데이터 초기화에 실패했습니다.</c:if>
 				</h3>
 			</div>
 			<footer class="w3-col">

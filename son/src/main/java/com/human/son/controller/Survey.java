@@ -26,7 +26,6 @@ public class Survey {
 	public ModelAndView dataInit(HttpSession session, ModelAndView mv, RedirectView rv) {
 		// 데이터베이스 작업
 		String result = sSrvc.setQData();
-		System.out.println("***************** result : " + result);
 		// 데이터 전달하고
 		mv.addObject("RESULT", result);
 		mv.addObject("PATH", "/main.son");
