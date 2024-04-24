@@ -134,5 +134,34 @@
 </c:if>
 		</div>
 	</div>
+
+<c:if test="${not empty RESULT}">
+	<div id="wmodal" class="w3-modal">
+		<div class="w3-modal-content mxw550" >
+			<header class="w3-container w3-blue"> 
+				<span class="w3-btn w3-display-topright" id="close">&times;</span>
+				<h2>설문 데이터 초기화 결과</h2>
+			</header>
+			<div class="w3-container w3-padding">
+				<h3 class="w3-center">
+		<c:if test="${RESULT eq 'OK'}">설문조사 데이터 초기화가 완료되었습니다.</c:if>
+		<c:if test="${RESULT eq 'NO'}">설문조사 데이터 초기화에 실패했습니다.</c:if>
+				</h3>
+			</div>
+			<footer class="w3-col">
+				<div class="w3-col w3-purple w3-btn" id="cbtn">확인</div>
+			</footer>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#wmodal').css('display', 'block');
+			// 모달창 버튼 클릭이벤트
+			$('#cbtn, #close').click(function(){
+				$('#wmodal').css('display', 'none');
+			});
+		});
+	</script>
+</c:if>
 </body>
 </html>

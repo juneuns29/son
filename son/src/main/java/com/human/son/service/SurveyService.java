@@ -6,6 +6,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.human.son.dao.SurveyDao;
 import com.human.son.vo.SurveyVO;
@@ -28,6 +29,7 @@ public class SurveyService {
 	/**
 	 * 데이터베이스에 문제 정보 입력 전담 처리함수
 	 */
+	@Transactional
 	public String setQData() {
 		String result = "NO";
 		// 문항 내용들 가져오고
