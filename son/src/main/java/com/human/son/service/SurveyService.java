@@ -145,12 +145,11 @@ public class SurveyService {
 	
 	// 설문문항 등록 전담 처리함수
 	@Transactional
-	public String setSurvey() {
+	public String setSurvey(SurveyVO sVO) {
 		String result = "OK";
 		int cnt = 0;
 		
-		SurveyVO sVO = new SurveyVO();
-		sVO.setTpno(1001);
+		// 등록페이지가 없으므로 실제는 없어야 되는 코드
 		for(int i = 0 ; i < 25 ; i++ ) {
 			sVO.setQno(1001 + i);
 			cnt += sDao.setSurvey(sVO);
@@ -162,4 +161,5 @@ public class SurveyService {
 		
 		return result;
 	}
+	
 }

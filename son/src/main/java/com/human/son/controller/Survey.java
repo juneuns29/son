@@ -59,11 +59,11 @@ public class Survey {
 	 * 설문조사 문항 등록 요청 전담 처리함수
 	 */
 	@RequestMapping("/addSurvey.son")
-	public ModelAndView addSurvey(HttpSession session, ModelAndView mv, RedirectView rv) {
+	public ModelAndView addSurvey(HttpSession session, ModelAndView mv, RedirectView rv, SurveyVO sVO) {
 		// 할일
 		// 세션검사 ==> 인터셉터에서 처리
 		// 데이터베이스 입력작업
-		String result = sSrvc.setSurvey();
+		String result = sSrvc.setSurvey(sVO);
 		rv.setUrl("/survey/surveyList.son");
 		mv.setView(rv);
 		return mv;

@@ -25,7 +25,15 @@
 		    tpno, title, 
 		    CASE WHEN (sysdate BETWEEN startdate AND enddate) THEN 'OK'
 		    ELSE 'NO'
-		    END as ing
+		    END as ing,
+		    (
+		        SELECT
+		            COUNT(*)
+		        FROM
+		            survey
+		        WHERE
+		            stno = tpno
+		    ) cnt
 		FROM
 		    topic
 		ORDER BY
