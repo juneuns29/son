@@ -10,6 +10,28 @@
 		    quest
 	</select>
 	
+	<select id="ingCnt" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			topic
+		WHERE
+			sysdate BETWEEN startdate AND enddate
+	</select>
+	
+	<!-- 설문 리스트 조회 질의명령 -->
+	<select id="surveyList" resultType="sVO">
+		SELECT
+		    tpno, title, 
+		    CASE WHEN (sysdate BETWEEN startdate AND enddate) THEN 'OK'
+		    ELSE 'NO'
+		    END as ing
+		FROM
+		    topic
+		ORDER BY
+			startdate DESC, enddate
+	</select>
+	
 	<insert id="addQuest" parameterType="sVO">
 		<selectKey keyProperty="qno" resultType="int" order="BEFORE">
 			SELECT NVL(MAX(qno) + 1, 1001) FROM quest

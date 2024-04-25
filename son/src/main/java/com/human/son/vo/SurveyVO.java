@@ -5,9 +5,15 @@ import java.util.*;
 
 public class SurveyVO {
 	private int rno, qno, tpno, qano, qupno, svno, cnt;
-	private String id, title, body, sdate;
+	private String id, title, body, sdate, ing;
 	private Date startDate, endDate, adate;
 	private ArrayList<SurveyVO> bogis;
+	public String getIng() {
+		return ing;
+	}
+	public void setIng(String ing) {
+		this.ing = ing;
+	}
 	public ArrayList<SurveyVO> getBogis() {
 		return bogis;
 	}
