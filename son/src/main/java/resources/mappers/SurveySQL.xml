@@ -50,6 +50,24 @@
 		    stno = #{tpno}
 	</select>
 	
+	<!-- 아이디와 설문주제번호로 참여 카운트 조회 질의명령 -->
+	<select id="answerCnt" resultType="int" parameterType="sVO">
+		SELECT
+		    COUNT(*)
+		FROM
+		    surveyanswer
+		WHERE
+		    sa_id = #{id}
+		    AND SSNO IN (
+		                    SELECT
+		                        sqno
+		                    FROM
+		                        survey
+		                    WHERE
+		                        stno = #{tpno}
+		                )
+	</select>
+	
 	<insert id="addQuest" parameterType="sVO">
 		<selectKey keyProperty="qno" resultType="int" order="BEFORE">
 			SELECT NVL(MAX(qno) + 1, 1001) FROM quest

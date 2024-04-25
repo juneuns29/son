@@ -207,11 +207,27 @@
 처리함수	:	addSurvey()
 응답문서	:	redirect ] /survey/surveyList.son
 
+# 설문참여 요청
+요청내용 	:	/survey/surveyQuest.son
+파라미터	:	tpno
+컨트롤러	:	com.human.son.contoller.Survey
+처리함수	:	surveyQuest()
+응답문서	:	/WEB-INF/views/survey/surveyQuest.jsp
 
+# 설문 응답 처리요청
+요청내용 	:	/survey/surveyAnswer.son
+파라미터	:	tpno, qano, id
+컨트롤러	:	com.human.son.contoller.Survey
+처리함수	:	surveyAnswer()
+응답문서	:	redirect ]
+					성공 : /survey/surveyResult.son
+					실패 : /survey/surveyQuest.son
+			
+# 설문 결과보기 요청
+요청내용 	:	/survey/surveyResult.son
+파라미터	:	tpno
+컨트롤러	:	com.human.son.contoller.Survey
+처리함수	:	surveyResult()
+응답문서	:	/WEB-INF/views/survey/surveyResult.jsp
 
 -----------------------------------------------------------------------------
-요청내용 	:
-파라미터	:
-컨트롤러	:
-처리함수	:
-응답문서	:
