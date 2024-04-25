@@ -32,6 +32,16 @@
 			startdate DESC, enddate
 	</select>
 	
+	<!-- 설문주제번호로 설문 문항 등록여부 조회 질의명령 -->
+	<select id="getSurveyCnt" resultType="string" parameterType="int">
+		SELECT
+		    DECODE(COUNT(*), 0, 'NO', 'YES')
+		FROM
+		    survey
+		WHERE
+		    stno = #{tpno}
+	</select>
+	
 	<insert id="addQuest" parameterType="sVO">
 		<selectKey keyProperty="qno" resultType="int" order="BEFORE">
 			SELECT NVL(MAX(qno) + 1, 1001) FROM quest
@@ -42,6 +52,16 @@
 			#{qno}, #{body}, 
 		<if test="qupno eq 0">null</if>
 		<if test="qupno neq 0">#{qupno}</if>
+		)
+	</insert>
+	
+	<!-- 설문조사 문항 등록 질의명령 -->
+	<insert id="setSurvey" parameterType="sVO">
+		INSERT INTO
+		    survey
+		VALUES(
+		    (SELECT NVL(MAX(svno) + 1, 1001) FROM survey),
+		    #{tpno}, #{qno}
 		)
 	</insert>
 </mapper>

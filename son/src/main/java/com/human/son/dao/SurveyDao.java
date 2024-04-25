@@ -38,4 +38,11 @@ public class SurveyDao {
 	public List<SurveyVO> getTopicList(){
 		return session.selectList("sSQL.surveyList");
 	}
+	
+	/**
+	 * 설문조사 문항등록 전담 처리함수
+	 */
+	public int setSurvey(SurveyVO sVO) {
+		return session.insert("sSQL.setSurvey", sVO);
+	}
 }

@@ -54,4 +54,18 @@ public class Survey {
 		mv.setViewName("survey/surveyList");
 		return mv;
 	}
+	
+	/**
+	 * 설문조사 문항 등록 요청 전담 처리함수
+	 */
+	@RequestMapping("/addSurvey.son")
+	public ModelAndView addSurvey(HttpSession session, ModelAndView mv, RedirectView rv) {
+		// 할일
+		// 세션검사 ==> 인터셉터에서 처리
+		// 데이터베이스 입력작업
+		String result = sSrvc.setSurvey();
+		rv.setUrl("/survey/surveyList.son");
+		mv.setView(rv);
+		return mv;
+	}
 }
