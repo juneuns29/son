@@ -68,4 +68,19 @@ public class Survey {
 		mv.setView(rv);
 		return mv;
 	}
+	
+	/**
+	 * 설문조사 문항보기 요청 전담 처리함수
+	 */
+	@RequestMapping("/surveyQuest.son")
+	public ModelAndView surveyQuest(HttpSession session, ModelAndView mv, 
+											RedirectView rv, SurveyVO sVO) {
+		// 데이터베이스 조회해서 데이터 가져오고
+		
+		// 데이터 전달하고
+		
+		// 뷰 부르고
+		mv.setViewName("survey/surveyQuest");
+		return mv;
+	}
 }

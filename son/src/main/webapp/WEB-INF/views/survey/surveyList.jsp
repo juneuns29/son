@@ -29,6 +29,22 @@
 			$(location).attr('href', '/member/join.son');
 		});
 		
+		// ingSurvey 클릭이벤트
+		$('.ingSurvey').click(function(){
+			// 할일 
+			// 1. 클릭된 설문의 설문번호 알아내고
+			var sno = $(this).attr('id');
+			
+			// 설문번호를 폼태그에 채우고
+			var el = document.createElement('input');
+			$(el).attr('type', 'hidden').attr('name', 'tpno').val(sno);
+			
+			$('#frm').append(el);
+			// $('#frm').append('<input type="hidden" name="tpno" value="' + sno +  '">');
+			
+			$('#frm').attr('action', '/survey/surveyQuest.son');
+			$('#frm').submit();
+		});
 	});
 </script>
 </head>

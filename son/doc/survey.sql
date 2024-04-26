@@ -65,3 +65,72 @@ SELECT
 FROM
     quest
 ;
+
+
+SELECT
+    COUNT(*)
+FROM
+    surveyanswer
+WHERE
+    sa_id = 'euns'
+    AND SSNO IN (
+                    SELECT
+                        sqno
+                    FROM
+                        survey
+                    WHERE
+                        stno = 1001
+                )
+;
+SELECT
+    COUNT(*)
+FROM
+    surveyanswer, topic, survey
+WHERE
+    sa_id = 'euns'
+    AND tpno = stno
+    AND ssno = svno
+    AND tpno = 1001
+;
+
+-- 현재 진행중인 설문의 문항번호들 조회
+SELECT
+    sqno qno
+FROM
+    survey
+WHERE
+    stno IN (
+                SELECT
+                    tpno
+                FROM
+                    topic
+                WHERE
+                    sysdate BETWEEN startdate AND enddate
+            )    
+;
+
+-- 설문주제번호(1001)로 설문 문항번호들 조회
+SELECT
+    sqno qno
+FROM
+    survey
+WHERE
+    stno = 1001
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

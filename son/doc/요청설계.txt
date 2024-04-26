@@ -207,7 +207,7 @@
 처리함수	:	addSurvey()
 응답문서	:	redirect ] /survey/surveyList.son
 
-# 설문참여 요청
+# 설문 문항보기 요청
 요청내용 	:	/survey/surveyQuest.son
 파라미터	:	tpno
 컨트롤러	:	com.human.son.contoller.Survey
