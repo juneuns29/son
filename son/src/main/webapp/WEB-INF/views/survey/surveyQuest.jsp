@@ -58,7 +58,7 @@
 				<div class="w3-col w3-padding w3-margin-bottom w3-light-gray w3-card-4 w3-left-align pdl50">
 					<h4>
 						<li>
-							${SVO.title}
+							${SVO.body}
 						</li>
 						<ol style="list-style-type: none; padding-left: 0px!important;">
 			<c:forEach var="ANS" items="${SVO.bogis}" varStatus="st">
@@ -72,6 +72,10 @@
 				</div>
 	</c:forEach>
 			</ol>
+		</div>
+		<div class="w3-col w3-margin-top w3-margin-bottom">
+			<div class="w3-btn w3-green" id="cancle">취 소</div>
+			<div class="w3-btn w3-pink w3-right" id="sbtn">제 출</div>
 		</div>
 	</div>
 </body>

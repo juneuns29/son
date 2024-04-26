@@ -68,6 +68,25 @@
 		                )
 	</select>
 	
+	<!-- 설문주제번호로 설문 문항 조회 질의명령 -->
+	<select id="getQList" resultType="sVO" parameterType="sVO">
+		SELECT
+			stno tpno, qno, qbody body, DECODE(qupno, NULL, 0, qupno) qupno
+		FROM
+			survey, quest
+		WHERE
+		    qno = sqno
+		    AND stno = #{tpno}
+<if test="qupno eq 0">
+		    AND qupno IS NULL
+</if>
+<if test="qupno neq 0">
+		    AND qupno = #{qupno}
+</if>
+		ORDER BY
+		    qno
+	</select>
+	
 	<insert id="addQuest" parameterType="sVO">
 		<selectKey keyProperty="qno" resultType="int" order="BEFORE">
 			SELECT NVL(MAX(qno) + 1, 1001) FROM quest

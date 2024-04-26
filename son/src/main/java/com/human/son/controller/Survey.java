@@ -76,9 +76,10 @@ public class Survey {
 	public ModelAndView surveyQuest(HttpSession session, ModelAndView mv, 
 											RedirectView rv, SurveyVO sVO) {
 		// 데이터베이스 조회해서 데이터 가져오고
+		List<SurveyVO> list = sSrvc.getSurvey(sVO);
 		
 		// 데이터 전달하고
-		
+		mv.addObject("LIST", list);
 		// 뷰 부르고
 		mv.setViewName("survey/surveyQuest");
 		return mv;

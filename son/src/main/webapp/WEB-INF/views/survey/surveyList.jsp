@@ -31,6 +31,9 @@
 		
 		// ingSurvey 클릭이벤트
 		$('.ingSurvey').click(function(){
+			if(!confirm('설문에 참여하시겠습니까?')){
+				return;
+			}
 			// 할일 
 			// 1. 클릭된 설문의 설문번호 알아내고
 			var sno = $(this).attr('id');
@@ -43,6 +46,7 @@
 			// $('#frm').append('<input type="hidden" name="tpno" value="' + sno +  '">');
 			
 			$('#frm').attr('action', '/survey/surveyQuest.son');
+			
 			$('#frm').submit();
 		});
 	});
