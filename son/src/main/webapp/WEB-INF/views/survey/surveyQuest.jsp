@@ -29,6 +29,17 @@
 			$(location).attr('href', '/member/join.son');
 		});
 		
+		$('#sbtn').click(function(){
+			var sano = $('input[type="radio"]:checked');
+			for(i = 0 ; i < sano.length ; i++ ){
+				var sno = sano.eq(i).val();
+				var el = document.createElement('input');
+				$(el).attr('type', 'hidden').attr('name', 'qanos').val(sno);
+				$('#frm').append(el);
+			}
+			$('#frm').attr('action', '/survey/surveyAnswer.son');
+			//$('#frm')
+		});
 	});
 </script>
 </head>
@@ -54,7 +65,14 @@
 		<div class="w3-col">
 			
 			<ol style="padding-left: 0px!important;">
-	<c:forEach var="SVO" items="${LIST}">
+	<c:forEach var="SVO" items="${LIST}" varStatus="st1">
+	<c:if test="${st1.index eq 0}">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#frm').append('<input type="hidden" name="tpno" value="${SVO.tpno}">');
+			});
+		</script>
+	</c:if>
 				<div class="w3-col w3-padding w3-margin-bottom w3-light-gray w3-card-4 w3-left-align pdl50">
 					<h4>
 						<li>

@@ -5,9 +5,16 @@ import java.util.*;
 
 public class SurveyVO {
 	private int rno, qno, tpno, qano, qupno, svno, cnt;
+	private int[] qanos;
 	private String id, title, body, sdate, ing;
 	private Date startDate, endDate, adate;
 	private ArrayList<SurveyVO> bogis;
+	public int[] getQanos() {
+		return qanos;
+	}
+	public void setQanos(int[] qanos) {
+		this.qanos = qanos;
+	}
 	public String getIng() {
 		return ing;
 	}

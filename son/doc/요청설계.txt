@@ -214,7 +214,7 @@
 처리함수	:	surveyQuest()
 응답문서	:	/WEB-INF/views/survey/surveyQuest.jsp
 
-# 설문 응답 처리요청
+# 설문 응답 처리요청 - 주말과제
 요청내용 	:	/survey/surveyAnswer.son
 파라미터	:	tpno, qano, id
 컨트롤러	:	com.human.son.contoller.Survey
