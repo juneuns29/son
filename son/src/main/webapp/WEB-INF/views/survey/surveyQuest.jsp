@@ -82,7 +82,7 @@
 			<c:forEach var="ANS" items="${SVO.bogis}" varStatus="st">
 							<li>
 								<input type="radio" name="${ANS.qupno}" value="${ANS.qno}" id="i${ANS.qno}">
-								<label for="i${ANS.qno}"> ${st.index + 1}). ${ANS.body}</label>
+								<label for="i${ANS.qno}"><small> ${st.index + 1})&nbsp; &nbsp; ${ANS.body}</small></label>
 							</li>
 			</c:forEach>
 						</ol>
