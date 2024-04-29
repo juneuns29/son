@@ -93,15 +93,29 @@ public class Survey {
 											RedirectView rv, SurveyVO sVO) {
 		// 데이터베이스 처리 결과 확인하고
 		boolean bool = sVO.getQanos().length == sVO.getCnt();
-		
+		/*
 		if(bool == true) {
-			rv.setUrl("/survey/surveyResult.son");
+			rv.setUrl("/survey/surveyResult.son?tpno=" + sVO.getTpno());
 		} else {
-			rv.setUrl("/survey/surveyQuest.son");
+			rv.setUrl("/survey/surveyQuest.son?tpno=" + sVO.getTpno());
 		}
-		
 		// 뷰 셋팅하고
 		mv.setView(rv);
+		*/
+		
+		// redirect.jsp 이용하는 방법
+		String path = "/survey/surveyResult.son";
+		if(!bool) {
+			path = "/survey/surveyQuest.son";
+		}
+		
+		// 데이터 전달하고
+		mv.addObject("TPNO", sVO.getTpno());
+		mv.addObject("PATH", path);
+		
+		// 뷰 셋팅하고
+		mv.setViewName("redirect");
+		
 		return mv;
 	}
 	
@@ -111,6 +125,12 @@ public class Survey {
 	@RequestMapping("/surveyResult.son")
 	public ModelAndView surveyResult(HttpSession session, ModelAndView mv, 
 											RedirectView rv, SurveyVO sVO) {
+		// 데이터베이스 조회해서 데이터 가져오고
+		List<SurveyVO> list = sSrvc.getSurvey(sVO);
+		
+		// 데이터 전달하고
+		mv.addObject("LIST", list);
+		
 		// 뷰 부르고
 		mv.setViewName("survey/surveyResult");
 		return mv;

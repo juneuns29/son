@@ -28,6 +28,9 @@
 <c:if test="${not empty RESULT}">
 		<input type="hidden" name="RESULT" value="${RESULT}">
 </c:if>
+<c:if test="${not empty TPNO}">
+		<input type="hidden" name="tpno" value="${TPNO}">
+</c:if>
 	</form>
 </body>
 </html>
