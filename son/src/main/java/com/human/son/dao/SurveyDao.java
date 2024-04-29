@@ -53,4 +53,11 @@ public class SurveyDao {
 	public List<SurveyVO> getSurvey(SurveyVO sVO){
 		return session.selectList("sSQL.getQList", sVO);
 	}
+	
+	/**
+	 * 설문 응답 데이터베이스 입력 전담 처리함수
+	 */
+	public int addAnswer(SurveyVO sVO) {
+		return session.insert("sSQL.addAnswer", sVO);
+	}
 }

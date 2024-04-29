@@ -5,6 +5,7 @@ import java.util.*;
 
 public class SurveyVO {
 	private int rno, qno, tpno, qano, qupno, svno, cnt;
+	private double per;
 	private int[] qanos;
 	private String id, title, body, sdate, ing;
 	private Date startDate, endDate, adate;
@@ -69,6 +70,12 @@ public class SurveyVO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
+	public double getPer() {
+		return per;
+	}
+	public void setPer(double per) {
+		this.per = per;
+	}
 	public String getId() {
 		return id;
 	}
@@ -118,7 +125,8 @@ public class SurveyVO {
 	@Override
 	public String toString() {
 		return "SurveyVO [rno=" + rno + ", qno=" + qno + ", tpno=" + tpno + ", qano=" + qano + ", qupno=" + qupno
-				+ ", svno=" + svno + ", cnt=" + cnt + ", id=" + id + ", title=" + title + ", body=" + body + ", sdate="
-				+ sdate + ", startDate=" + startDate + ", endDate=" + endDate + ", adate=" + adate + "]";
+				+ ", svno=" + svno + ", cnt=" + cnt + ", per=" + per + ", qanos=" + Arrays.toString(qanos) + ", id="
+				+ id + ", title=" + title + ", body=" + body + ", sdate=" + sdate + ", ing=" + ing + ", startDate="
+				+ startDate + ", endDate=" + endDate + ", adate=" + adate + ", bogis=" + bogis + "]";
 	}
 }

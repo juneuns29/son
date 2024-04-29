@@ -84,4 +84,35 @@ public class Survey {
 		mv.setViewName("survey/surveyQuest");
 		return mv;
 	}
+	
+	/**
+	 * 설문응답 처리 요청 전담 처리함수
+	 */
+	@RequestMapping("/surveyAnswer.son")
+	public ModelAndView surveyAnswer(HttpSession session, ModelAndView mv, 
+											RedirectView rv, SurveyVO sVO) {
+		// 데이터베이스 처리 결과 확인하고
+		boolean bool = sVO.getQanos().length == sVO.getCnt();
+		
+		if(bool == true) {
+			rv.setUrl("/survey/surveyResult.son");
+		} else {
+			rv.setUrl("/survey/surveyQuest.son");
+		}
+		
+		// 뷰 셋팅하고
+		mv.setView(rv);
+		return mv;
+	}
+	
+	/**
+	 * 설문조사 결과 페이지 보기 요청 전담 처리함수
+	 */
+	@RequestMapping("/surveyResult.son")
+	public ModelAndView surveyResult(HttpSession session, ModelAndView mv, 
+											RedirectView rv, SurveyVO sVO) {
+		// 뷰 부르고
+		mv.setViewName("survey/surveyResult");
+		return mv;
+	}
 }

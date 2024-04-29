@@ -71,7 +71,7 @@
 	<!-- 설문주제번호로 설문 문항 조회 질의명령 -->
 	<select id="getQList" resultType="sVO" parameterType="sVO">
 		SELECT
-			stno tpno, qno, qbody body, DECODE(qupno, NULL, 0, qupno) qupno
+			stno tpno, svno, qno, qbody body, DECODE(qupno, NULL, 0, qupno) qupno
 		FROM
 			survey, quest
 		WHERE
@@ -107,6 +107,24 @@
 		VALUES(
 		    (SELECT NVL(MAX(svno) + 1, 1001) FROM survey),
 		    #{tpno}, #{qno}
+		)
+	</insert>
+	
+	<!-- 설문 응답 등록 질의명령 -->
+	<insert id="addAnswer" parameterType="sVO">
+		INSERT INTO
+		    surveyanswer(sano, ssno, sa_id)
+		VAlUES(
+		    (SELECT NVL(MAX(sano)+1, 1001) FROM surveyanswer),
+		    (SELECT
+		        svno
+		    FROM
+		        survey
+		    WHERE
+		        sqno = #{qano}
+		        AND stno = #{tpno}
+		    ),
+		    #{id}
 		)
 	</insert>
 </mapper>

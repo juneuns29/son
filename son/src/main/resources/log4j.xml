@@ -22,9 +22,18 @@
 		</layout>
 	</appender>
 	
-	<!-- file Appender -->
+	<!-- Member Log Appender -->
 	<appender name="membAppender" class="org.apache.log4j.FileAppender">
 		<param name="File" value="${catalina.base}/webapps/son/resources/log/member.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %d{yyyy/MM/dd HH:mm:ss} - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- Survey Log Appender -->
+	<appender name="surveyAppender" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${catalina.base}/webapps/son/resources/log/survey.log" />
 		<param name="Append" value="true" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%-5p: %d{yyyy/MM/dd HH:mm:ss} - %m%n" />
@@ -36,6 +45,12 @@
 	<logger name="membLog">
 		<level value="info" />
 		<appender-ref ref="membAppender" />
+	</logger>
+	
+	<!-- Survey answer logger -->
+	<logger name="surveyLog">
+		<level value="info" />
+		<appender-ref ref="surveyAppender" />
 	</logger>
 	
 	<logger name="mytld.mycompany.myapp">

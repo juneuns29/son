@@ -29,35 +29,13 @@
 			$(location).attr('href', '/member/join.son');
 		});
 		
-		// 취소버튼 클릭이벤트
-		$('#cancle').click(function(){
-			// 1. 자바스크립트로 처리하는 방법
-//			location.href = '/survey/surveyList.son';
-			// 2. jQuery 함수로 처리하는 방법
-//			$(location).attr('href', '/survey/surveyList.son');
-			// 3. form 태그를 이용하는 방법
-			$('#frm').attr('action', '/survey/surveyList.son');
-			$('#frm').submit();
-		});
-		
-		$('#sbtn').click(function(){
-			var sano = $('input[type="radio"]:checked');
-			for(i = 0 ; i < sano.length ; i++ ){
-				var sno = sano.eq(i).val();
-				var el = document.createElement('input');
-				$(el).attr('type', 'hidden').attr('name', 'qanos').val(sno);
-				$('#frm').append(el);
-			}
-			$('#frm').attr('action', '/survey/surveyAnswer.son');
-			$('#frm').submit();
-		});
 	});
 </script>
 </head>
 <body>
 	<form method="POST" id="frm"></form>
 	<div class="w3-content mxw700">
-		<h1 class="w3-padding w3-center w3-green" style="margin-bottom: 0px!important;">진행중인 설문조사</h1>
+		<h1 class="w3-padding w3-center w3-green" style="margin-bottom: 0px!important;">${DATA.title} - 설문조사 결과</h1>
 		
 		<div class="w3-col w3-margin-bottom">
 			<div class="w3-col m2 w3-btn w3-small w3-lime w3-ripple" id="home">Home</div>
@@ -92,8 +70,10 @@
 						<ol style="list-style-type: none; padding-left: 0px!important;">
 			<c:forEach var="ANS" items="${SVO.bogis}" varStatus="st">
 							<li>
-								<input type="radio" name="${ANS.qupno}" value="${ANS.qno}" id="i${ANS.qno}">
-								<label for="i${ANS.qno}"><small> ${st.index + 1})&nbsp; &nbsp; ${ANS.body}</small></label>
+								<div class="w3-col"><small> ${st.index + 1})&nbsp; &nbsp; ${ANS.body}</small></div>
+								<div class="w3-col">
+									<div class="w3-blue" style="width: ${ANS.per}%;"></div>
+								</div>
 							</li>
 			</c:forEach>
 						</ol>
@@ -101,10 +81,6 @@
 				</div>
 	</c:forEach>
 			</ol>
-		</div>
-		<div class="w3-col w3-margin-top w3-margin-bottom">
-			<div class="w3-btn w3-green" id="cancle">취 소</div>
-			<div class="w3-btn w3-pink w3-right" id="sbtn">제 출</div>
 		</div>
 	</div>
 </body>

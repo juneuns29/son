@@ -1,13 +1,14 @@
 package com.human.son.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import javax.servlet.http.*;
+
+import org.aspectj.lang.*;
+import org.aspectj.lang.annotation.*;
+import org.slf4j.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.transaction.annotation.*;
 
 import com.human.son.dao.SurveyDao;
 import com.human.son.vo.SurveyVO;
@@ -16,6 +17,8 @@ import com.human.son.vo.SurveyVO;
 public class SurveyService {
 	@Autowired
 	SurveyDao sDao;
+	
+	private static final Logger svrLog = LoggerFactory.getLogger("surveyLog");
 	
 	/**
 	 * 입력 문항 갯수 조회 전담 처리함수
@@ -183,4 +186,49 @@ public class SurveyService {
 		
 		return list;
 	}
+	
+	/**
+	 * 설문 응답 입력 서비스 함수
+	 */
+	@Before("execution(* com.human.son.controller.Survey.surveyAnswer(..))")
+	@Transactional
+	public void addAnswer(JoinPoint join) {
+		// 할일
+		// 세션에서 아이디 꺼내고
+		HttpSession session = (HttpSession) join.getArgs()[0];
+		String id = (String) session.getAttribute("SID");
+		
+		// VO 꺼내고
+		SurveyVO sVO = (SurveyVO) join.getArgs()[3];
+		// 꺼낸 아이디 VO에 입력하고
+		sVO.setId(id);
+		/*
+			컨트롤러에서 받은 파라미터에는
+			선택한 응답 번호들이
+			배열로 채워져있다.
+			이것을 배열길이만큼 반복해서
+			하나씩 꺼내서 응답번호에 채워줘야 한다.
+		 */
+		// 응답 번호 배열 꺼내고
+		int[] arr = sVO.getQanos();
+		
+		int cnt = 0 ;
+		for(int i = 0 ; i < arr.length ; i++ ) {
+			// n번째 응답 번호 꺼내고
+			int tmp = arr[i];
+			// 꺼낸 응답번호 VO에 셋팅하고
+			sVO.setQano(tmp);
+			
+			// 필요한 데이터가 모두 준비되었으니 데이터베이스에 전송해서 입력
+			cnt += sDao.addAnswer(sVO);
+		}
+		
+		sVO.setCnt(cnt);
+		if(cnt == arr.length) {
+			// 로그 남기고
+			svrLog.info(sVO.getId() + " 님이 [ " + sVO.getTpno() + " ] 번 설문에 참여했습니다.");
+		}
+		
+	}
+	
 }
