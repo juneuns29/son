@@ -70,7 +70,10 @@
 						<ol style="list-style-type: none; padding-left: 0px!important;">
 			<c:forEach var="ANS" items="${SVO.bogis}" varStatus="st">
 							<li>
-								<div class="w3-col"><small> ${st.index + 1})&nbsp; &nbsp; ${ANS.body}</small></div>
+								<div class="w3-col">
+									<small> ${st.index + 1})&nbsp; &nbsp; ${ANS.body}</small>
+									<small class="w3-right w3-text-indigo">${ANS.per} %</small>
+								</div>
 								<div class="w3-col">
 									<div class="w3-blue" style="width: ${ANS.per}%;"></div>
 								</div>
