@@ -188,6 +188,33 @@ public class SurveyService {
 	}
 	
 	/**
+	 * 설문 문항 리스트 조회 데이터베이스 작업 전담 처리함수
+	 */
+	public List<SurveyVO> getResult(SurveyVO sVO){
+		// 문항 리스트 조회
+		List<SurveyVO> list = sDao.getSurvey(sVO); // 문제만 들어있는 리스트
+		// 각 문제별로 보기들 조회
+		// VO필요하므로
+		for(int i = 0 ; i < list.size(); i++ ) {
+			sVO = list.get(i);
+			// qupno 셋팅
+			sVO.setQupno(sVO.getQno());
+			// 보기리스트 조회
+			ArrayList<SurveyVO> bogis = (ArrayList<SurveyVO>) sDao.getSurvey(sVO);
+			
+			for(SurveyVO vo : bogis) {
+				double per = sDao.getPer(vo);
+				vo.setPer(per);
+			}
+			
+			// 보기리스트 셋팅
+			sVO.setBogis(bogis);
+		}
+		
+		return list;
+	}
+	
+	/**
 	 * 설문 응답 입력 서비스 함수
 	 */
 	@Before("execution(* com.human.son.controller.Survey.surveyAnswer(..))")

@@ -67,4 +67,11 @@ public class SurveyDao {
 	public int answerCnt(SurveyVO sVO) {
 		return session.selectOne("sSQL.answerCnt", sVO);
 	}
+	
+	/**
+	 * 설문 응답율 조회 전담 처리함수
+	 */
+	public double getPer(SurveyVO sVO) {
+		return session.selectOne("sSQL.getPer", sVO);
+	}
 }

@@ -126,7 +126,7 @@ public class Survey {
 	public ModelAndView surveyResult(HttpSession session, ModelAndView mv, 
 											RedirectView rv, SurveyVO sVO) {
 		// 데이터베이스 조회해서 데이터 가져오고
-		List<SurveyVO> list = sSrvc.getSurvey(sVO);
+		List<SurveyVO> list = sSrvc.getResult(sVO);
 		
 		// 데이터 전달하고
 		mv.addObject("LIST", list);

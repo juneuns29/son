@@ -74,8 +74,8 @@
 									<small> ${st.index + 1})&nbsp; &nbsp; ${ANS.body}</small>
 									<small class="w3-right w3-text-indigo">${ANS.per} %</small>
 								</div>
-								<div class="w3-col">
-									<div class="w3-blue" style="width: ${ANS.per}%;"></div>
+								<div class="w3-bar pdl30">
+									<div class="w3-bar-item w3-blue" style="width: ${ANS.per}%;"></div>
 								</div>
 							</li>
 			</c:forEach>

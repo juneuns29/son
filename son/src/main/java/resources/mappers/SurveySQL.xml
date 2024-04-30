@@ -76,11 +76,12 @@
 	<!-- 설문주제번호로 설문 문항 조회 질의명령 -->
 	<select id="getQList" resultType="sVO" parameterType="sVO">
 		SELECT
-			stno tpno, svno, qno, qbody body, DECODE(qupno, NULL, 0, qupno) qupno
+			stno tpno, title, svno, qno, qbody body, DECODE(qupno, NULL, 0, qupno) qupno
 		FROM
-			survey, quest
+			survey, quest, topic
 		WHERE
 		    qno = sqno
+		    AND tpno = stno
 		    AND stno = #{tpno}
 <if test="qupno eq 0">
 		    AND qupno IS NULL
@@ -90,6 +91,53 @@
 </if>
 		ORDER BY
 		    qno
+	</select>
+	
+	<!-- 보기별 응답율 조회 질의명령 -->
+	<select id="getPer" resultType="double" parameterType="sVO">
+		SELECT
+		    ROUND(COUNT(sa_id) / totalcnt * 100, 2) per
+		FROM
+		    surveyanswer, survey,
+		    (
+		        SELECT
+		            COUNT(distinct sa_id) totalcnt
+		        FROM
+		            survey, surveyanswer
+		        WHERE
+		            ssno = svno
+		            AND stno = #{tpno}
+		    )
+		WHERE
+		    svno = ssno(+)
+		    AND stno = #{tpno}
+		    AND sqno = #{qno}
+		GROUP BY
+		    totalcnt
+		<!--  
+		SELECT
+		    ROUND(COUNT(sa_id) / totalcnt * 100, 2) per
+		FROM
+		    survey, quest, surveyAnswer,
+		    (
+		        SELECT
+		            COUNT(distinct sa_id) totalcnt
+		        FROM
+		            survey, surveyanswer
+		        WHERE
+		            ssno = svno
+		            AND stno = #{tpno}
+		    )
+		WHERE
+		    qno = sqno
+		    AND svno = ssno(+)
+		    AND stno = #{tpno}
+		    AND qupno IS NOT NULL
+		GROUP BY
+		    sqno, totalcnt
+		HAVING
+		    sqno = #{qno}
+		-->
 	</select>
 	
 	<insert id="addQuest" parameterType="sVO">
