@@ -35,7 +35,7 @@
 <body>
 	<form method="POST" id="frm"></form>
 	<div class="w3-content mxw700">
-		<h1 class="w3-padding w3-center w3-green" style="margin-bottom: 0px!important;">${DATA.title} - 설문조사 결과</h1>
+		<h1 class="w3-padding w3-center w3-green" style="margin-bottom: 0px!important;">설문조사 결과</h1>
 		
 		<div class="w3-col w3-margin-bottom">
 			<div class="w3-col m2 w3-btn w3-small w3-lime w3-ripple" id="home">Home</div>
@@ -52,7 +52,9 @@
 		</div>
 		
 		<div class="w3-col">
-			
+			<div class="w3-container">
+				<h3 class="w3-text-blue">* ${LIST.get(0).title}</h3>
+			</div>
 			<ol style="padding-left: 0px!important;">
 	<c:forEach var="SVO" items="${LIST}" varStatus="st1">
 	<c:if test="${st1.index eq 0}">
