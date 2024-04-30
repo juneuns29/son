@@ -9,7 +9,10 @@
 <link rel="stylesheet" type="text/css" href="/css/user.css">
 <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
 <style type="text/css">
-
+	html, body {
+		margin-bottom: 20px;
+		padding-bottom: 20px;
+	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -64,7 +67,8 @@
 			});
 		</script>
 	</c:if>
-				<div class="w3-col w3-padding w3-margin-bottom w3-light-gray w3-card-4 w3-left-align pdl50">
+				<div class="w3-col w3-padding w3-margin-bottom w3-light-gray w3-card-4 w3-left-align pdl50"
+						style="padding-bottom: 20px!important;">
 					<h4>
 						<li>
 							${SVO.body}
@@ -76,7 +80,7 @@
 									<small> ${st.index + 1})&nbsp; &nbsp; ${ANS.body}</small>
 									<small class="w3-right w3-text-indigo">${ANS.per} %</small>
 								</div>
-								<div class="w3-col pdl30">
+								<div class="w3-col pdl30" style="height: 10px;">
 									<div class="w3-col w3-blue" style="width: ${ANS.per}%; height: 10px;"> </div>
 								</div>
 							</li>
