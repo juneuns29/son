@@ -45,9 +45,9 @@ public class Survey {
 	 * 설문조사 리스트 페이지보기 요청 전담 처리함수
 	 */
 	@RequestMapping("/surveyList.son")
-	public ModelAndView surveyList(ModelAndView mv) {
+	public ModelAndView surveyList(HttpSession session, ModelAndView mv) {
 		// 데이터베이스 조회해서 결과 받고
-		List<SurveyVO> list = sDao.getTopicList();
+		List<SurveyVO> list = sSrvc.getTopicList(session);
 		
 		// 데이터 전달하고
 		mv.addObject("LIST", list);

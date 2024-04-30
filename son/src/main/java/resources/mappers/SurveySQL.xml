@@ -55,17 +55,22 @@
 		SELECT
 		    COUNT(*)
 		FROM
-		    surveyanswer
+		    surveyanswer, survey
 		WHERE
+			ssno = svno
+			AND sa_id = #{id}
+			AND stno = #{tpno}
+		<!--  
 		    sa_id = #{id}
 		    AND SSNO IN (
 		                    SELECT
-		                        sqno
+		                        svno
 		                    FROM
 		                        survey
 		                    WHERE
 		                        stno = #{tpno}
 		                )
+		-->
 	</select>
 	
 	<!-- 설문주제번호로 설문 문항 조회 질의명령 -->
@@ -127,4 +132,5 @@
 		    #{id}
 		)
 	</insert>
+	
 </mapper>

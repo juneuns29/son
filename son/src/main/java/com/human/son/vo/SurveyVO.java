@@ -4,10 +4,10 @@ import java.text.*;
 import java.util.*;
 
 public class SurveyVO {
-	private int rno, qno, tpno, qano, qupno, svno, cnt;
+	private int rno, qno, tpno, qano, qupno, svno, cnt, answerCnt;
 	private double per;
 	private int[] qanos;
-	private String id, title, body, sdate, ing;
+	private String id, title, body, sdate, ing, result;
 	private Date startDate, endDate, adate;
 	private ArrayList<SurveyVO> bogis;
 	public int[] getQanos() {
@@ -70,6 +70,18 @@ public class SurveyVO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
+	public int getAnswerCnt() {
+		return answerCnt;
+	}
+	public void setAnswerCnt(int answerCnt) {
+		this.answerCnt = answerCnt;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
 	public double getPer() {
 		return per;
 	}
@@ -125,8 +137,9 @@ public class SurveyVO {
 	@Override
 	public String toString() {
 		return "SurveyVO [rno=" + rno + ", qno=" + qno + ", tpno=" + tpno + ", qano=" + qano + ", qupno=" + qupno
-				+ ", svno=" + svno + ", cnt=" + cnt + ", per=" + per + ", qanos=" + Arrays.toString(qanos) + ", id="
-				+ id + ", title=" + title + ", body=" + body + ", sdate=" + sdate + ", ing=" + ing + ", startDate="
-				+ startDate + ", endDate=" + endDate + ", adate=" + adate + ", bogis=" + bogis + "]";
+				+ ", svno=" + svno + ", cnt=" + cnt + ", answerCnt=" + answerCnt + ", per=" + per + ", qanos="
+				+ Arrays.toString(qanos) + ", id=" + id + ", title=" + title + ", body=" + body + ", sdate=" + sdate
+				+ ", ing=" + ing + ", result=" + result + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", adate=" + adate + ", bogis=" + bogis + "]";
 	}
 }

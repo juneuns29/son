@@ -60,4 +60,11 @@ public class SurveyDao {
 	public int addAnswer(SurveyVO sVO) {
 		return session.insert("sSQL.addAnswer", sVO);
 	}
+	
+	/**
+	 * 설문 응답 카운트조회 전담 처리함수
+	 */
+	public int answerCnt(SurveyVO sVO) {
+		return session.selectOne("sSQL.answerCnt", sVO);
+	}
 }

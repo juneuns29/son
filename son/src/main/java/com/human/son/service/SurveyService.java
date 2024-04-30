@@ -231,4 +231,20 @@ public class SurveyService {
 		
 	}
 	
+	/**
+	 * 설문 주제 리스트 조회 전담 처리함수
+	 */
+	public List<SurveyVO> getTopicList(HttpSession session){
+		String id = (String) session.getAttribute("SID");
+		List<SurveyVO> list = sDao.getTopicList();
+		
+		for(SurveyVO vo : list) {
+			vo.setId(id);
+			int cnt = sDao.answerCnt(vo);
+			vo.setAnswerCnt(cnt);
+		}
+		
+		return list;
+	}
+	
 }

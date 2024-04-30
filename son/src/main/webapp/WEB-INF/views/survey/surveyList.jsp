@@ -49,6 +49,22 @@
 			
 			$('#frm').submit();
 		});
+		
+		// .resultSurvey 클릭이벤트
+		$('.resultSurvey').click(function(){
+			if(!confirm('설문결과를 보시겠습니까?')){
+				return;
+			}
+			// 할일 
+			// 클릭된 설문의 설문번호 알아내고
+			var sno = $(this).attr('id');
+			var el = document.createElement('input');
+			$(el).attr('name', 'tpno').attr('type', 'hidden').val(sno);
+			$('#frm').append(el);
+			$('#frm').attr('action', '/survey/surveyResult.son');
+			$('#frm').submit();
+			
+		});
 	});
 </script>
 </head>
@@ -137,11 +153,20 @@
 					</h4>
 			</c:if>
 			<c:if test="${data.ing eq 'OK'}">
-				<h4 class="w3-col w3-btn w3-margin-bottom w3-pink w3-card-4 ingSurvey w3-left-align w3-padding pdl50" id="${data.tpno}">
-					<li>
-						${data.title}
-					</li>
-				</h4>
+				<c:if test="${data.answerCnt eq 0}">
+					<h4 class="w3-col w3-btn w3-margin-bottom w3-pink w3-card-4 ingSurvey w3-left-align w3-padding pdl50" id="${data.tpno}">
+						<li>
+							${data.title}
+						</li>
+					</h4>
+				</c:if>
+				<c:if test="${data.answerCnt ne 0}">
+					<h4 class="w3-col w3-btn w3-margin-bottom w3-blue w3-card-4 resultSurvey w3-left-align w3-padding pdl50" id="${data.tpno}">
+						<li>
+							${data.title}
+						</li>
+					</h4>
+				</c:if>
 			</c:if>
 		</c:if>
 		
