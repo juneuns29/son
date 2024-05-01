@@ -265,10 +265,12 @@ public class SurveyService {
 		String id = (String) session.getAttribute("SID");
 		List<SurveyVO> list = sDao.getTopicList();
 		
-		for(SurveyVO vo : list) {
-			vo.setId(id);
-			int cnt = sDao.answerCnt(vo);
-			vo.setAnswerCnt(cnt);
+		if(id != null) {
+			for(SurveyVO vo : list) {
+				vo.setId(id);
+				int cnt = sDao.answerCnt(vo);
+				vo.setAnswerCnt(cnt);
+			}
 		}
 		
 		return list;

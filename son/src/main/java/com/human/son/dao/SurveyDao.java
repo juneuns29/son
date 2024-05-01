@@ -74,4 +74,11 @@ public class SurveyDao {
 	public double getPer(SurveyVO sVO) {
 		return session.selectOne("sSQL.getPer", sVO);
 	}
+	
+	/**
+	 * 설문번호로 현재 진행중인 설문 카운트 조회 처리함수
+	 */
+	public int selTpnoCnt(int tpno) {
+		return session.selectOne("sSQL.ingTpnoCnt", tpno);
+	}
 }
