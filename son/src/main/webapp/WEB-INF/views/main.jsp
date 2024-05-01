@@ -124,7 +124,10 @@
 			<div class="w3-btn w3-small w3-amber w3-left" id="gboard">방명록</div>
 
 <c:if test="${INGCNT ne 0}">
-			<div class="w3-btn w3-small w3-yellow w3-left" id="survey">설문조사</div>
+			<div class="w3-btn w3-small w3-amber w3-left" id="survey">설문조사</div>
+</c:if>	
+<c:if test="${INGCNT eq 0}">
+			<div class="w3-btn w3-small w3-lime w3-left" id="survey">설문조사</div>
 </c:if>			
 
 <c:if test="${not empty SID and SID eq 'euns'}">
