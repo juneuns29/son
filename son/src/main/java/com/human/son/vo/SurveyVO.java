@@ -7,7 +7,8 @@ public class SurveyVO {
 	private int rno, qno, tpno, qano, qupno, svno, cnt, answerCnt;
 	private double per;
 	private int[] qanos;
-	private String id, title, body, sdate, ing, result;
+	private String id, title, body, sdate, ing, result, start, end;
+	private String[] abody;
 	private Date startDate, endDate, adate;
 	private ArrayList<SurveyVO> bogis;
 	public int[] getQanos() {
@@ -81,6 +82,24 @@ public class SurveyVO {
 	}
 	public void setResult(String result) {
 		this.result = result;
+	}
+	public String getStart() {
+		return start;
+	}
+	public void setStart(String start) {
+		this.start = start;
+	}
+	public String getEnd() {
+		return end;
+	}
+	public void setEnd(String end) {
+		this.end = end;
+	}
+	public String[] getAbody() {
+		return abody;
+	}
+	public void setAbody(String[] abody) {
+		this.abody = abody;
 	}
 	public double getPer() {
 		return per;

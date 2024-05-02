@@ -11,6 +11,7 @@
 	<beans:bean id="loginCheck" class="com.human.son.service.LoginCheckInterceptor" />
 	<beans:bean id="gboardCheck" class="com.human.son.service.GboardInterceptor" />
 	<beans:bean id="surveyCheck" class="com.human.son.service.SurveyInterceptor" />
+	<beans:bean id="adminCheck" class="com.human.son.service.AdminInterceptor" />
 	
 	<interceptors>
 		<!-- 로그아웃체크 -->
@@ -40,6 +41,7 @@
 			<exclude-mapping path="/survey/surveyQuest.son"/>
 			<exclude-mapping path="/survey/surveyAnswer.son"/>
 			<exclude-mapping path="/survey/surveyResult.son"/>
+			<exclude-mapping path="/survey/makeSurvey.son"/>
 			<beans:ref bean="loginCheck" />
 		</interceptor>
 		<interceptor>
@@ -51,6 +53,10 @@
 			<mapping path="/survey/surveyAnswer.son" />
 			<mapping path="/survey/surveyResult.son" />
 			<beans:ref bean="surveyCheck" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/survey/makeSurvey.son" />
+			<beans:ref bean="adminCheck"></beans:ref>
 		</interceptor>
 	</interceptors>
 	

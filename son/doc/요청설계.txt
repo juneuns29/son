@@ -230,4 +230,45 @@
 처리함수	:	surveyResult()
 응답문서	:	/WEB-INF/views/survey/surveyResult.jsp
 
+# 설문 추가 폼보기 요청
+요청내용 	:	/survey/makeSurvey.son
+파라미터	:	none
+컨트롤러	:	com.human.son.contoller.Survey
+처리함수	:	makeSurvey()
+응답문서	:	/WEB-INF/views/survey/makeSurvey.jsp
+
+# 설문주제 등록 처리 작업 요청
+요청내용 	:	/survey/addTopic.son
+파라미터	:	title, startdate, enddate
+컨트롤러	:	com.human.son.contoller.Survey
+처리함수	:	addTopic()
+응답문서	:	JSON ]
+					성공 : {"result": "OK", "tpno": ???}
+					실패 : {"result": "NO"}
+
+# 설문질문 등록 처리 작업 요청
+요청내용 	:	/survey/addQuest.son
+파라미터	:	tpno, qupno, abody, qanos
+컨트롤러	:	com.human.son.contoller.Survey
+처리함수	:	addTopic()
+응답문서	:	JSON ]
+					성공 : {"result": "OK", "qno": ???}
+					실패 : {"result": "NO"}
+
+# 설문보기 등록 처리 작업 요청
+요청내용 	:	/survey/addEx.son
+파라미터	:	tpno, qupno, abody, qanos
+컨트롤러	:	com.human.son.contoller.Survey
+처리함수	:	addEx()
+응답문서	:	JSON ]
+					성공 : {"result": "OK"}
+					실패 : {"result": "NO"}
+
+
+
 -----------------------------------------------------------------------------
+요청내용 	:	
+파라미터	:	
+컨트롤러	:	
+처리함수	:	
+응답문서	:	

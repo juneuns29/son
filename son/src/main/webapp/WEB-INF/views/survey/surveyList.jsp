@@ -65,6 +65,12 @@
 			$('#frm').submit();
 			
 		});
+		
+		// 설문 추가 클릭이벤트
+		$('#addSvy').click(function(){
+			location.href = '/survey/makeSurvey.son';
+		});
+		
 	});
 </script>
 </head>
@@ -78,7 +84,7 @@
 <c:if test="${not empty SID}">
 			<div class="w3-col m2 w3-btn w3-small w3-blue w3-ripple w3-right" id="logout">로그아웃</div>
 	<c:if test="${SID eq 'euns'}">
-			<div class="w3-col m2 w3-btn w3-small w3-indigo w3-ripple w3-right" id="addSvy">설문입력</div>
+			<div class="w3-col m2 w3-btn w3-small w3-indigo w3-ripple w3-right" id="addSvy">설문추가</div>
 	</c:if>
 </c:if>
 <c:if test="${empty SID}">

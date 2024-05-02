@@ -135,4 +135,14 @@ public class Survey {
 		mv.setViewName("survey/surveyResult");
 		return mv;
 	}
+	
+	/**
+	 * 설문 추가 폼보기요청 전담 처리함수
+	 */
+	@RequestMapping("/makeSurvey.son")
+	public ModelAndView makeSurvey(ModelAndView mv) {
+		// 뷰 정하고
+		mv.setViewName("survey/makeSurvey");
+		return mv;
+	}
 }
