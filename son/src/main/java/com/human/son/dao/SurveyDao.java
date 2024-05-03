@@ -81,4 +81,18 @@ public class SurveyDao {
 	public int selTpnoCnt(int tpno) {
 		return session.selectOne("sSQL.ingTpnoCnt", tpno);
 	}
+	
+	/**
+	 * 설문 문항 리스트 조회 전담 처리함수
+	 */
+	public List<SurveyVO> getQuestList(){
+		return session.selectList("sSQL.getQuestList");
+	}
+	
+	/**
+	 * 설문 문항 리스트 조회 전담 처리함수
+	 */
+	public List<SurveyVO> getExList(SurveyVO sVO){
+		return session.selectList("sSQL.getExList", sVO);
+	}
 }

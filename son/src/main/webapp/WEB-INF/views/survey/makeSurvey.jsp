@@ -34,6 +34,7 @@
 		$('#btnInputTitle').click(function(){
 			$('#inputTitle').removeClass('w3-hide');
 			$('#selectTitle').addClass('w3-hide');
+			
 			$(this).removeClass('w3-gray w3-hover-pink').addClass('w3-blue w3-hover-yellow');
 			$('#btnSelectTitle').removeClass('w3-blue w3-hover-yellow').addClass('w3-gray w3-hover-pink');
 		});
@@ -43,6 +44,44 @@
 			$('#inputTitle').addClass('w3-hide');
 			$(this).removeClass('w3-gray w3-hover-pink').addClass('w3-blue w3-hover-yellow');
 			$('#btnInputTitle').removeClass('w3-blue w3-hover-yellow').addClass('w3-gray w3-hover-pink');
+		
+			// 아이디가 selTitle 인 태그의 내용 읽기
+			var str = $('#selTitle').html();
+			if(str){
+				/* str = '내용있음!'; */
+				$('#selTitle').html('');
+			}
+			
+			// 데이터베이스 조회해서 태그 추가하고
+			$.ajax({
+				url: '/survey/questList.son',
+				type: 'POST',
+				dataType: 'json',
+				success: function(obj){
+					// 매개변수 obj는 배열변수다.
+					// 배열에 JSON 형식의 데이터가 채워져 있는 형태이다.
+					// 따라서 배열의 크기만큼 반복해서 처리해야 한다.
+					var len = obj.length;
+					$('#selTitle').append('<option selected># 문항 선택 #</option>');
+					for(var i = 0 ; i < len ; i++ ){
+						$('#selTitle').append('<option value="' + obj[i].qno + '">' + obj[i].body + '</option>')
+					}
+				},
+				error: function(){
+					alert('### 서버 통신 에러 ###');
+				}
+			});
+		});
+		
+		// 아이디가 "squestAddBtn"인 태그 클릭이벤트
+		$('#squestAddBtn').click(function(){
+			var svalue = $('#selTitle').val();
+			var stitle = $('#selTitle > option:selected').text();
+			alert(svalue + ' - ' + stitle);
+			
+			if(stitle != '# 문항 선택 #'){
+				$('#selTitle > option:selected').remove();
+			}
 		});
 	});
 </script>
@@ -100,24 +139,22 @@
 		</div>
 		
 		<!-- 설문 문항 입력 -->
-		<div class="w3-col w3-light-gray w3-margin-top w3-card-4">
+		<div class="w3-col w3-light-gray w3-padding w3-margin-top w3-card-4">
 			<div class="w3-col">
 				<div class="w3-half w3-center w3-button w3-blue w3-hover-yellow" id="btnInputTitle">새 문항 입력</div>
 				<div class="w3-half w3-center w3-button w3-gray w3-hover-pink" id="btnSelectTitle">기존 문항 선택</div>
 			</div>
-			<div class="w3-col w3-padding w3-margin-top w3-margin-bottom" id="inputTitle">
-				<h3 class="w3-blue w3-center">새 문항 입력</h3>
+			<div class="w3-col w3-padding w3-margin-bottom" id="inputTitle">
+				<h4 class="w3-blue w3-center">새 문항 입력</h4>
 				<label for="title" class="w3-col m3 w3-right-align lbl">입력 문항 : </label>
-				<input type="text" id="title" class="w3-col m8 w3-input w3-border">
+				<input type="text" id="title" class="w3-col m6 w3-input w3-border">
+				<div id="tquestAddBtn" class="w3-col w3-button w3-deep-orange w100 mgl5">추가</div>
 			</div>
-			<div class="w3-col w3-padding w3-margin-top w3-margin-bottom w3-hide" id="selectTitle">
-				<h3 class="w3-blue w3-center">기존 문항 선택</h3>
+			<div class="w3-col w3-padding w3-margin-bottom w3-hide" id="selectTitle">
+				<h4 class="w3-blue w3-center">기존 문항 선택</h4>
 				<label for="selTitle" class="w3-col m3 w3-right-align lbl">입력 문항 : </label>
-				<select id="selTitle" class="w3-col m8 w3-input w3-border">
-					<option value="1001">원피스 멤버중 최애 멤버는?</option>
-					<option value="1006">갖고 싶은 악마의 열매는?</option>
-					<option value="1011">원피스 최고의 빌런은?</option>
-				</select>
+				<select id="selTitle" class="w3-col m6 w3-border w3-center w3-select"></select>
+				<div id="squestAddBtn" class="w3-col w3-button w3-deep-orange w100 mgl5">추가</div>
 			</div>
 		</div>
 		

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -144,5 +145,25 @@ public class Survey {
 		// 뷰 정하고
 		mv.setViewName("survey/makeSurvey");
 		return mv;
+	}
+	
+	/**
+	 * 설문조사 문항 리스트 조회요청 전담 처리함수
+	 */
+	@RequestMapping("/questList.son")
+	@ResponseBody
+	public List<SurveyVO> getQuestList(){
+		List<SurveyVO> list = sDao.getQuestList();
+		return list;
+	}
+	
+	/**
+	 * 설문조사 문항 리스트 조회요청 전담 처리함수
+	 */
+	@RequestMapping("/exList.son")
+	@ResponseBody
+	public List<SurveyVO> getExList(SurveyVO sVO){
+		List<SurveyVO> list = sDao.getExList(sVO);
+		return list;
 	}
 }

@@ -86,6 +86,14 @@
 .mgr5 {
     margin-right: 5px;
 }
+
+.mgl3 {
+    margin-left: 3px;
+}
+.mgl5 {
+    margin-left: 5px;
+}
+
 .mgt10 {
     margin-top: 10px;
 }
@@ -172,6 +180,10 @@
 	width: 100px;
 	height: 100px;
 	overflow: hidden;
+}
+
+.w50 {
+	width: 50px;
 }
 
 .w100 {

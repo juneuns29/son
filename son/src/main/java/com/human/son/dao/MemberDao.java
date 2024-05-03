@@ -43,4 +43,6 @@ public class MemberDao {
 	public MemberVO getMemberInfo(String id) {
 		return session.selectOne("mSQL.memberInfo", id);
 	}
+	
+	
 }
