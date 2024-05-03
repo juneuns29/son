@@ -28,7 +28,21 @@
 		});
 		
 		$('.quest').click(function(){
-			$(this).children().eq(1).stop().slideToggle(1000);
+			$(this).children().eq(1).stop().slideToggle(300);
+		});
+		
+		$('#btnInputTitle').click(function(){
+			$('#inputTitle').removeClass('w3-hide');
+			$('#selectTitle').addClass('w3-hide');
+			$(this).removeClass('w3-gray w3-hover-pink').addClass('w3-blue w3-hover-yellow');
+			$('#btnSelectTitle').removeClass('w3-blue w3-hover-yellow').addClass('w3-gray w3-hover-pink');
+		});
+		
+		$('#btnSelectTitle').click(function(){
+			$('#selectTitle').removeClass('w3-hide');
+			$('#inputTitle').addClass('w3-hide');
+			$(this).removeClass('w3-gray w3-hover-pink').addClass('w3-blue w3-hover-yellow');
+			$('#btnInputTitle').removeClass('w3-blue w3-hover-yellow').addClass('w3-gray w3-hover-pink');
 		});
 	});
 </script>
@@ -68,19 +82,47 @@
 		</div>
 		
 		<!-- 설문 문항 추가 내용 확인 리스트 -->
-		<div class="w3-col w3-light-gray w3-margin-top w3-card-4">
+		<div class="w3-col w3-light-gray w3-margin-top w3-card-4" 
+												style="display: none;">
 			<ol id="qList">
-				<li class="quest">
-					<h4 id="q${qno}">설문문항1</h4>
-					<ol style="display: none; list-style-type: lower-alpha;">
-						<li>보기1</li>
-						<li>보기2</li>
-						<li>보기3</li>
-						<li>보기4</li>
-					</ol>
-				</li>
+				<h4>
+					<li class="quest">
+						<span id="q${qno}">설문문항1</span>
+						<ol style="display: none; list-style-type: lower-alpha;">
+							<li>보기1</li>
+							<li>보기2</li>
+							<li>보기3</li>
+							<li>보기4</li>
+						</ol>
+					</li>
+				</h4>
 			</ol>
 		</div>
+		
+		<!-- 설문 문항 입력 -->
+		<div class="w3-col w3-light-gray w3-margin-top w3-card-4">
+			<div class="w3-col">
+				<div class="w3-half w3-center w3-button w3-blue w3-hover-yellow" id="btnInputTitle">새 문항 입력</div>
+				<div class="w3-half w3-center w3-button w3-gray w3-hover-pink" id="btnSelectTitle">기존 문항 선택</div>
+			</div>
+			<div class="w3-col w3-padding w3-margin-top w3-margin-bottom" id="inputTitle">
+				<h3 class="w3-blue w3-center">새 문항 입력</h3>
+				<label for="title" class="w3-col m3 w3-right-align lbl">입력 문항 : </label>
+				<input type="text" id="title" class="w3-col m8 w3-input w3-border">
+			</div>
+			<div class="w3-col w3-padding w3-margin-top w3-margin-bottom w3-hide" id="selectTitle">
+				<h3 class="w3-blue w3-center">기존 문항 선택</h3>
+				<label for="selTitle" class="w3-col m3 w3-right-align lbl">입력 문항 : </label>
+				<select id="selTitle" class="w3-col m8 w3-input w3-border">
+					<option value="1001">원피스 멤버중 최애 멤버는?</option>
+					<option value="1006">갖고 싶은 악마의 열매는?</option>
+					<option value="1011">원피스 최고의 빌런은?</option>
+				</select>
+			</div>
+		</div>
+		
+		
+		
 	</div>
 </body>
 </html>
