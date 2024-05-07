@@ -31,6 +31,65 @@
 			$(this).children().eq(1).stop().slideToggle(300);
 		});
 		
+		$('#addTopic').click(function(){
+			// 작성하고 있는 화면이 리로드 되면 안되므로 비동기 통신으로 처리하기로 한다.
+			// 할일
+			// 1. 주제 읽고
+			var topic = $('#topic').val();
+			if(!topic){
+				$('#topic').focus();
+				return;
+			}
+			// 2. 시작일 읽고
+			var startdate = $('#start').val();
+			if(!startdate){
+				$('#start').focus();
+				return;
+			}
+			// 3. 종료일 읽고
+			var enddate = $('#end').val();
+			if(!enddate){
+				$('#end').focus();
+				return;
+			}
+			
+			var outdata = {
+					title: topic,
+					start: startdate,
+					end: enddate
+			};
+			
+			// 4. 서버에 보내서 결과받고
+			$.ajax({
+				url: '/survey/addTopic.son',
+				type: 'POST',
+				dataType: 'json',
+				data: outdata,
+				success: function(obj){
+					if(obj.result == 'OK'){
+						// 설문주제 등록에 성공한 경우
+						$('#frm').append('<input type="hidden" id="tpno">');
+						$('#tpno').val(obj.tpno);
+					} else {
+						// 설문주제 등록에 실패한 경우
+						$('#modalFr h2').html('등록 실패!');
+						$('#strMsg').html('등록에 실패했습니다.');
+						$('#modalFr').css('display', 'block');
+					}
+				},
+				error: function(){
+					$('#modalFr h2').html('통신 에러!');
+					$('#strMsg').html('서버와 통신에 실패했습니다!');
+					$('#modalFr').css('display', 'block');
+				}
+			});
+			
+		});
+		
+		$('.closeBtn').click(function(){
+			$('#modalFr').css('display', 'none');
+		});
+		
 		$('#btnInputTitle').click(function(){
 			$('#inputTitle').removeClass('w3-hide');
 			$('#selectTitle').addClass('w3-hide');
@@ -160,6 +219,23 @@
 		
 		
 		
+	</div>
+	
+<!-- 메세지 모달 -->
+	<div id="modalFr" class="w3-modal">
+		<div class="w3-modal-content mxw550 w3-animate-top w3-card-4">
+			<header class="w3-container w3-red"> 
+				<span class="w3-button w3-display-topright w3-hover-red closeBtn">&times;</span>
+				<h2>서버 오류!</h2>
+			</header>
+			<div class="w3-container">
+				<h3 id="strMsg" class="w3-center">서버 통신 에러</h3>
+				<br>
+			</div>
+			<footer class="w3-container w3-margin-bottom">
+				<div class="w3-col w3-button w3-deep-orange w3-hover-red w3-margin-bottom closeBtn">확 인</div>
+			</footer>
+		</div>
 	</div>
 </body>
 </html>
