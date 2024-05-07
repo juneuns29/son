@@ -276,4 +276,13 @@ public class SurveyService {
 		return list;
 	}
 	
+	/**
+	 * 설문주제 입력 전담 처리 서비스함수
+	 */
+	public void addTopic(SurveyVO sVO) {
+		// tpno, result가 아직 채워져 있지 않은 상태
+		String result = sDao.addTopic(sVO) == 1 ? "OK" : "NO";
+		sVO.setResult(result);
+		// tpno, result가 채워져있는 상태
+	}
 }

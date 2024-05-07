@@ -215,4 +215,19 @@
 		)
 	</insert>
 	
+	<!-- 설문 주제 등록 질의명령 -->
+	<insert id="addTopic" parameterType="sVO">
+		<selectKey keyProperty="tpno" resultType="int" order="BEFORE">
+			SELECT
+				NVL(MAX(tpno) + 1, 1001)
+			FROM
+				topic
+		</selectKey>
+		INSERT INTO
+			topic
+		VALUES(
+			#{tpno}, #{title}, TO_DATE(#{start}), TO_DATE(#{end})
+		)
+	</insert>
+	
 </mapper>

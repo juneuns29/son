@@ -95,4 +95,11 @@ public class SurveyDao {
 	public List<SurveyVO> getExList(SurveyVO sVO){
 		return session.selectList("sSQL.getExList", sVO);
 	}
+	
+	/**
+	 * 설문 주제 데이터베이스 입력 전담 처리함수
+	 */
+	public int addTopic(SurveyVO sVO) {
+		return session.insert("sSQL.addTopic", sVO);
+	}
 }

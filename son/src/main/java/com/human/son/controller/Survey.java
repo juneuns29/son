@@ -166,4 +166,13 @@ public class Survey {
 		List<SurveyVO> list = sDao.getExList(sVO);
 		return list;
 	}
+	
+	/**
+	 * 설문 주제 등록 처리 요청 전담 처리함수
+	 */
+	@RequestMapping("/addTopic.son")
+	public @ResponseBody SurveyVO addTopic(SurveyVO sVO) {
+		sSrvc.addTopic(sVO);
+		return sVO;
+	}
 }

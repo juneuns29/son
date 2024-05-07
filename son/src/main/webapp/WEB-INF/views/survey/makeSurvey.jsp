@@ -31,6 +31,8 @@
 			$(this).children().eq(1).stop().slideToggle(300);
 		});
 		
+		$('#tpnoFr').css('display', 'none');
+			
 		$('#addTopic').click(function(){
 			// 작성하고 있는 화면이 리로드 되면 안되므로 비동기 통신으로 처리하기로 한다.
 			// 할일
@@ -70,6 +72,11 @@
 						// 설문주제 등록에 성공한 경우
 						$('#frm').append('<input type="hidden" id="tpno">');
 						$('#tpno').val(obj.tpno);
+						
+						$('#topicFr').css('display', 'none');
+						
+						$('#tpnoFr h4').eq(1).text(topic);
+						$('#tpnoFr').css('display', 'block');
 					} else {
 						// 설문주제 등록에 실패한 경우
 						$('#modalFr h2').html('등록 실패!');
@@ -153,6 +160,13 @@
 		<div class="w3-col w3-margin-bottom">
 			<div class="w3-col m2 w3-btn w3-small w3-lime w3-ripple" id="home">Home</div>
 			<div class="w3-col m2 w3-btn w3-small w3-blue w3-ripple w3-right" id="logout">로그아웃</div>
+		</div>
+		
+		<div class="w3-col w3-light-gray w3-card-4" id="tpnoFr">
+			<div class="w3-col w3-text-gray w3-padding">
+				<h4 class="w3-col m3 w3-right-align pdr10">설문 주제 : </h4>
+				<h4 class="w3-col m8"></h4>
+			</div>
 		</div>
 		
 		<!-- 설문 주제 추가 -->
