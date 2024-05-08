@@ -1,0 +1,3 @@
+# 회원가입 기능에 대한 UseCase Diagram을 작성하고
+# 아래에 UseCase 명세서를 작성하세요.
+

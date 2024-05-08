@@ -13,144 +13,7 @@
 		color: gray;
 	}
 </style>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#home').click(function(){
-			$(location).attr('href', '/main.son');
-		});
-		
-		$('#logout').click(function(){
-			$(location).attr('href', '/member/logout.son');
-		});
-		
-		$('#topicReset').click(function(){
-			$('#topicFr input').val('');
-		});
-		
-		$('.quest').click(function(){
-			$(this).children().eq(1).stop().slideToggle(300);
-		});
-		
-		$('#tpnoFr').css('display', 'none');
-			
-		$('#addTopic').click(function(){
-			// 작성하고 있는 화면이 리로드 되면 안되므로 비동기 통신으로 처리하기로 한다.
-			// 할일
-			// 1. 주제 읽고
-			var topic = $('#topic').val();
-			if(!topic){
-				$('#topic').focus();
-				return;
-			}
-			// 2. 시작일 읽고
-			var startdate = $('#start').val();
-			if(!startdate){
-				$('#start').focus();
-				return;
-			}
-			// 3. 종료일 읽고
-			var enddate = $('#end').val();
-			if(!enddate){
-				$('#end').focus();
-				return;
-			}
-			
-			var outdata = {
-					title: topic,
-					start: startdate,
-					end: enddate
-			};
-			
-			// 4. 서버에 보내서 결과받고
-			$.ajax({
-				url: '/survey/addTopic.son',
-				type: 'POST',
-				dataType: 'json',
-				data: outdata,
-				success: function(obj){
-					if(obj.result == 'OK'){
-						// 설문주제 등록에 성공한 경우
-						$('#frm').append('<input type="hidden" id="tpno">');
-						$('#tpno').val(obj.tpno);
-						
-						$('#topicFr').css('display', 'none');
-						
-						$('#tpnoFr h4').eq(1).text(topic);
-						$('#tpnoFr').css('display', 'block');
-					} else {
-						// 설문주제 등록에 실패한 경우
-						$('#modalFr h2').html('등록 실패!');
-						$('#strMsg').html('등록에 실패했습니다.');
-						$('#modalFr').css('display', 'block');
-					}
-				},
-				error: function(){
-					$('#modalFr h2').html('통신 에러!');
-					$('#strMsg').html('서버와 통신에 실패했습니다!');
-					$('#modalFr').css('display', 'block');
-				}
-			});
-			
-		});
-		
-		$('.closeBtn').click(function(){
-			$('#modalFr').css('display', 'none');
-		});
-		
-		$('#btnInputTitle').click(function(){
-			$('#inputTitle').removeClass('w3-hide');
-			$('#selectTitle').addClass('w3-hide');
-			
-			$(this).removeClass('w3-gray w3-hover-pink').addClass('w3-blue w3-hover-yellow');
-			$('#btnSelectTitle').removeClass('w3-blue w3-hover-yellow').addClass('w3-gray w3-hover-pink');
-		});
-		
-		$('#btnSelectTitle').click(function(){
-			$('#selectTitle').removeClass('w3-hide');
-			$('#inputTitle').addClass('w3-hide');
-			$(this).removeClass('w3-gray w3-hover-pink').addClass('w3-blue w3-hover-yellow');
-			$('#btnInputTitle').removeClass('w3-blue w3-hover-yellow').addClass('w3-gray w3-hover-pink');
-		
-			// 아이디가 selTitle 인 태그의 내용 읽기
-			var str = $('#selTitle').html();
-			if(str){
-				/* str = '내용있음!'; */
-				$('#selTitle').html('');
-			}
-			
-			// 데이터베이스 조회해서 태그 추가하고
-			$.ajax({
-				url: '/survey/questList.son',
-				type: 'POST',
-				dataType: 'json',
-				success: function(obj){
-					// 매개변수 obj는 배열변수다.
-					// 배열에 JSON 형식의 데이터가 채워져 있는 형태이다.
-					// 따라서 배열의 크기만큼 반복해서 처리해야 한다.
-					var len = obj.length;
-					$('#selTitle').append('<option selected># 문항 선택 #</option>');
-					for(var i = 0 ; i < len ; i++ ){
-						$('#selTitle').append('<option value="' + obj[i].qno + '">' + obj[i].body + '</option>')
-					}
-				},
-				error: function(){
-					alert('### 서버 통신 에러 ###');
-				}
-			});
-		});
-		
-		// 아이디가 "squestAddBtn"인 태그 클릭이벤트
-		$('#squestAddBtn').click(function(){
-			var svalue = $('#selTitle').val();
-			var stitle = $('#selTitle > option:selected').text();
-			alert(svalue + ' - ' + stitle);
-			
-			if(stitle != '# 문항 선택 #'){
-				$('#selTitle > option:selected').remove();
-			}
-		});
-	});
-</script>
+<script type="text/javascript" src="/js/makeSurvey.js"></script>
 </head>
 <body>
 	<form method="POST" id="frm"></form>
@@ -194,12 +57,10 @@
 		</div>
 		
 		<!-- 설문 문항 추가 내용 확인 리스트 -->
-		<div class="w3-col w3-light-gray w3-margin-top w3-card-4" 
-												style="display: none;">
+		<div class="w3-col w3-light-gray w3-margin-top w3-card-4"  style="display: none;">
 			<ol id="qList">
 				<h4>
 					<li class="quest">
-						<span id="q${qno}">설문문항1</span>
 						<ol style="display: none; list-style-type: lower-alpha;">
 							<li>보기1</li>
 							<li>보기2</li>
@@ -212,7 +73,7 @@
 		</div>
 		
 		<!-- 설문 문항 입력 -->
-		<div class="w3-col w3-light-gray w3-padding w3-margin-top w3-card-4">
+		<div class="w3-col w3-light-gray w3-padding w3-margin-top w3-card-4" id="questFr">
 			<div class="w3-col">
 				<div class="w3-half w3-center w3-button w3-blue w3-hover-yellow" id="btnInputTitle">새 문항 입력</div>
 				<div class="w3-half w3-center w3-button w3-gray w3-hover-pink" id="btnSelectTitle">기존 문항 선택</div>
@@ -228,6 +89,26 @@
 				<label for="selTitle" class="w3-col m3 w3-right-align lbl">입력 문항 : </label>
 				<select id="selTitle" class="w3-col m6 w3-border w3-center w3-select"></select>
 				<div id="squestAddBtn" class="w3-col w3-button w3-deep-orange w100 mgl5">추가</div>
+			</div>
+		</div>
+		
+		<!-- 설문 보기 입력 -->
+		<div class="w3-col w3-light-gray w3-padding w3-margin-top w3-card-4" id="answerFr">
+			<div class="w3-col">
+				<div class="w3-half w3-center w3-button w3-blue w3-hover-yellow" id="btnInputAnswer">새 보기 입력</div>
+				<div class="w3-half w3-center w3-button w3-gray w3-hover-pink" id="btnSelectAnswer">기존 보기 선택</div>
+			</div>
+			<div class="w3-col w3-padding w3-margin-bottom" id="inputAnswer">
+				<h4 class="w3-blue w3-center">새 보기 입력</h4>
+				<label for="answer" class="w3-col m3 w3-right-align lbl">입력 보기 : </label>
+				<input type="text" id="answer" class="w3-col m6 w3-input w3-border">
+				<div id="tAnswerAddBtn" class="w3-col w3-button w3-deep-orange w100 mgl5">추가</div>
+			</div>
+			<div class="w3-col w3-padding w3-margin-bottom w3-hide" id="selectAnswer">
+				<h4 class="w3-blue w3-center">기존 보기 선택</h4>
+				<label for="selAnswer" class="w3-col m3 w3-right-align lbl">입력 보기 : </label>
+				<select id="selAnswer" class="w3-col m6 w3-border w3-center w3-select"></select>
+				<div id="sAnswerAddBtn" class="w3-col w3-button w3-deep-orange w100 mgl5">추가</div>
 			</div>
 		</div>
 		

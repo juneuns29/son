@@ -285,4 +285,23 @@ public class SurveyService {
 		sVO.setResult(result);
 		// tpno, result가 채워져있는 상태
 	}
+	
+	/**
+	 * 설문 문항 등록 전담 처리 서비스 함수
+	 */
+	public SurveyVO addQuest(SurveyVO sVO) {
+		// 데이터베이스에 데이터 입력하고 결과받고
+		int cnt = sDao.addQuest(sVO);
+		// 성공여부 판별해서 결과 채우고
+		String result = "NO";
+		if(cnt == 1) {
+			// 데이터베이스에 저장 성공한 경우
+			result = "OK";
+		} else {
+			// 데이터베이스 저장에 실패한 경우
+		}
+		
+		sVO.setResult(result);
+		return sVO;
+	}
 }

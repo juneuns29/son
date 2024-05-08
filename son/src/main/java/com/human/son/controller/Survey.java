@@ -175,4 +175,15 @@ public class Survey {
 		sSrvc.addTopic(sVO);
 		return sVO;
 	}
+	
+	/**
+	 * 설문 문항 등록 처리 요청 전담 처리함수
+	 */
+	@RequestMapping("/addQuest.son")
+	@ResponseBody
+	public SurveyVO addQuest(SurveyVO sVO) {
+		// 데이터베이스 저장 작업 
+		sSrvc.addQuest(sVO);
+		return sVO;
+	}
 }

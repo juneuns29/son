@@ -248,9 +248,9 @@
 
 # 설문질문 등록 처리 작업 요청
 요청내용 	:	/survey/addQuest.son
-파라미터	:	tpno, qupno, abody, qanos
+파라미터	:	body
 컨트롤러	:	com.human.son.contoller.Survey
-처리함수	:	addTopic()
+처리함수	:	addQuest()
 응답문서	:	JSON ]
 					성공 : {"result": "OK", "qno": ???}
 					실패 : {"result": "NO"}
@@ -277,6 +277,8 @@
 컨트롤러	:	com.human.son.contoller.Survey
 처리함수	:	getExList()
 응답문서	:	JSON 
+
+
 
 
 -----------------------------------------------------------------------------
