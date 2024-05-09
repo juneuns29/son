@@ -197,4 +197,16 @@ public class Survey {
 		sSrvc.addQuest(sVO);
 		return sVO;
 	}
+	
+	/**
+	 * 설문 문항 등록 처리 요청 전담 처리함수
+	 */
+	@RequestMapping("/insertSurvey.son")
+	@ResponseBody
+	public SurveyVO insertSurvey(SurveyVO sVO) {
+		// 데이터베이스 저장 작업 
+		System.out.println("####################### qanos : " + sVO.getQanos().length);
+		sSrvc.insertSurvey(sVO);
+		return sVO;
+	}
 }

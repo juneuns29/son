@@ -160,19 +160,11 @@ $(document).ready(function(){
 				if(obj.result == 'OK'){
 					// 데이터베이스 등록에 성공한 경우
 					// 입력된 내용 태그 추가
-					$('#qList > h4').append('<li class="quest">' + 
+					$('#qList > h4').append('<li class="w3-col quest">' + 
 												'<span id="q' + obj.qno + '">' + squest + '</span>' +
 												'<ol style="display: none; list-style-type: lower-alpha;">' +
-											/* 
-													'<li></li>' +
-													'<li></li>' +
-													'<li></li>' +
-											*/
 												'</ol>' +
 											'</li>');
-					/*
-						$('#qList > h4 > li:last-child li').get()
-					*/
 					// 감싸는 태그 보여주고
 					$('#qList').parent().css('display', 'block');
 					
@@ -246,7 +238,57 @@ $(document).ready(function(){
 	
 	/* 설문 등록 클릭 이벤트 */
 	$('#qList').on('click', '.addSurvey', function(){
-		
+		// 할일
+		// 1. 전달할 데이터들 꺼내고
+		//		tpno, qno, qanos
+		var stpno = $('#tpno').val();
+		var sqno = $(this).siblings().first().attr('id').substring(1);
+		console.log('sqno : ' + sqno);
+		console.log('tpno : ' + stpno);
+		var sqanos = [];
+		var els = $(this).prev().find('li');
+		for(var i = 0 ; i < els.length ; i++ ){
+			var d = $(els).eq(i).attr('id').substring(1);
+			d = parseInt(d);
+			sqanos.push(d);
+		}
+
+		console.log('qanos[0] : ' + sqanos[0]);
+
+		var btnEl = $(this); // 버튼 태그 기억 변수
+		// 2. 서버에 전달하고 결과 받고
+		$.ajax({
+			url: '/survey/insertSurvey.son?tpno=' + stpno + 
+					'&qno=' + sqno +
+					'&qanos=' + sqanos[0] +
+					'&qanos=' + sqanos[1] +
+					'&qanos=' + sqanos[2] +
+					'&qanos=' + sqanos[3]
+					,
+			type: 'get',
+			dataType: 'json',
+			/*
+			data: {
+				tpno: stpno,
+				qno: sqno,
+				qanos: sqanos
+			},
+			*/
+			success: function(obj){
+				if(obj.result == 'OK'){
+					// 설문 문항 등록에 성공한 경우
+					// 버튼을 삭제한다.
+
+					$(btnEl).remove();
+				} else {
+					// 
+				}
+			},
+			error: function(){
+				servError();
+			}
+		});
+		// 3. 결과에 따라 처리하고
 	});
 	
 	function servError(){
@@ -264,29 +306,3 @@ $(document).ready(function(){
 	}
 	
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

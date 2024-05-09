@@ -304,4 +304,31 @@ public class SurveyService {
 		sVO.setResult(result);
 		return sVO;
 	}
+	
+	/**
+	 * 설문 문항 추가 등록 전담 처리 함수
+	 */
+	@Transactional
+	public void insertSurvey(SurveyVO sVO) {
+		// 할일
+		// 1. 문항 등록하고
+		sVO.setResult("NO");
+		int cnt = 0;
+		cnt = sDao.setSurvey(sVO);
+		// 2. 보기 등록하고
+		int[] qnos = sVO.getQanos();
+		for(int i = 0 ; i < qnos.length ; i++ ) {
+			// 보기번호 꺼내고
+			int bogi = qnos[i];
+			
+			// VO 의 qno에 셋팅하고
+			sVO.setQno(bogi);
+			cnt += sDao.setSurvey(sVO);
+		}
+		
+		if(cnt == qnos.length + 1) {
+			// 모든 등록에 성공한 경우
+			sVO.setResult("OK");
+		}
+	}
 }
