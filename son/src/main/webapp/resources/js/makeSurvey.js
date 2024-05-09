@@ -161,8 +161,19 @@ $(document).ready(function(){
 				if(obj.result == 'OK'){
 					// 데이터베이스 등록에 성공한 경우
 					// 입력된 내용 태그 추가
-					$('#qList > h4').append('<li class="quest"><span id="q' + obj.qno + '">' + squest + '</span></li>');
-					
+					$('#qList > h4').append('<li class="quest">' + 
+												'<span id="q' + obj.qno + '">' + squest + '</span>' +
+												'<ol style="display: none; list-style-type: lower-alpha;">' +
+											/* 
+													'<li></li>' +
+													'<li></li>' +
+													'<li></li>' +
+											*/
+												'</ol>' +
+											'</li>');
+					/*
+						$('#qList > h4 > li:last-child li').get()
+					*/
 					// 감싸는 태그 보여주고
 					$('#qList').parent().css('display', 'block');
 					
@@ -171,6 +182,59 @@ $(document).ready(function(){
 					});
 				} else {
 					setMsg();
+				}
+			},
+			error: function(){
+				servError();
+			}
+		});
+		
+	});
+	
+	/**
+		보기 추가 버튼 클릭이벤트
+	*/
+	$('#tAnswerAddBtn').click(function(){
+		// 할일
+		// 1. 입력 보기 읽고
+		var bogi = $('#answer').val();
+		if(!bogi){
+			$('#answer').focus();
+			return;
+		}
+		
+		var upno = $('#qList li.quest:last > span').attr('id').substring(1);
+		
+		// 2. 데이터베이스에 기록 요청하고
+		$.ajax({
+			url: '/survey/addEx.son',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				body: bogi,
+				qupno: upno
+			},
+			success: function(obj){
+				// 3. 결과에 따라 처리하고
+				if(obj.result == 'OK'){
+					// 보기입력 태그 내용 지우고
+					$('#answer').val('');
+					
+					// 보기 태그 추가하고
+					$('#qList ol:last').append('<li id="a' + obj.qno + '">' + bogi + '</li>');
+					
+					// 추가된 보기 갯수 확인하고
+					var cnt = $('#qList ol:last > li').length;
+					if(cnt == 4){
+						$('#title').val('');
+						$('#answerFr').slideUp(500, function(){
+							$('#questFr').slideDown(500);
+						});
+					}
+				} else {
+					$('#answer').val('');
+					setMsg();
+					$('#answer').focus();
 				}
 			},
 			error: function(){

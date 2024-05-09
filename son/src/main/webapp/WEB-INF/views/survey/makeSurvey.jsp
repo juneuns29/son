@@ -60,7 +60,9 @@
 		<div class="w3-col w3-light-gray w3-margin-top w3-card-4"  style="display: none;">
 			<ol id="qList">
 				<h4>
+<!--  
 					<li class="quest">
+						<span id="q????">????????</span>
 						<ol style="display: none; list-style-type: lower-alpha;">
 							<li>보기1</li>
 							<li>보기2</li>
@@ -68,6 +70,16 @@
 							<li>보기4</li>
 						</ol>
 					</li>
+					<li class="quest">
+						<span id="q????">????????</span>
+						<ol style="display: none; list-style-type: lower-alpha;">
+							<li>보기1</li>
+							<li>보기2</li>
+							<li>보기3</li>
+							<li>보기4</li>
+						</ol>
+					</li>
+-->
 				</h4>
 			</ol>
 		</div>
