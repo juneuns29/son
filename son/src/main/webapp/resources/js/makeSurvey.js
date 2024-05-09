@@ -11,14 +11,13 @@ $(document).ready(function(){
 		$('#topicFr input').val('');
 	});
 	
-	$('.quest').click(function(){
+	$('#qList').on('click', '.quest', function(){
 		$(this).children().eq(1).stop().slideToggle(300);
 	});
 	
 	$('#tpnoFr').css('display', 'none');
 	$('#questFr').css('display', 'none');
 	$('#answerFr').css('display', 'none');
-	
 	
 	$('#addTopic').click(function(){
 		// 작성하고 있는 화면이 리로드 되면 안되므로 비동기 통신으로 처리하기로 한다.
@@ -226,6 +225,7 @@ $(document).ready(function(){
 					// 추가된 보기 갯수 확인하고
 					var cnt = $('#qList ol:last > li').length;
 					if(cnt == 4){
+						$('#qList .quest:last').append('<div class="w3-btn w3-small w3-pink w3-right addSurvey">설문등록</div>');
 						$('#title').val('');
 						$('#answerFr').slideUp(500, function(){
 							$('#questFr').slideDown(500);
@@ -241,6 +241,11 @@ $(document).ready(function(){
 				servError();
 			}
 		});
+		
+	});
+	
+	/* 설문 등록 클릭 이벤트 */
+	$('#qList').on('click', '.addSurvey', function(){
 		
 	});
 	
