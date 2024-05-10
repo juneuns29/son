@@ -56,7 +56,7 @@ $(document).ready(function(){
 			success: function(obj){
 				if(obj.result == 'OK'){
 					// 설문주제 등록에 성공한 경우
-					$('#frm').append('<input type="hidden" id="tpno">');
+					$('#frm').append('<input type="hidden" name="tpno" id="tpno">');
 					$('#tpno').val(obj.tpno);
 					
 					$('#topicFr').css('display', 'none');
@@ -236,7 +236,8 @@ $(document).ready(function(){
 		
 	});
 	
-	/* 설문 등록 클릭 이벤트 */
+	/* 설문 등록 클릭 이벤트 1 */
+	/*
 	$('#qList').on('click', '.addSurvey', function(){
 		// 할일
 		// 1. 전달할 데이터들 꺼내고
@@ -267,13 +268,53 @@ $(document).ready(function(){
 					,
 			type: 'get',
 			dataType: 'json',
-			/*
-			data: {
-				tpno: stpno,
-				qno: sqno,
-				qanos: sqanos
+			success: function(obj){
+				if(obj.result == 'OK'){
+					// 설문 문항 등록에 성공한 경우
+					// 버튼을 삭제한다.
+
+					$(btnEl).remove();
+				} else {
+					// 
+				}
 			},
-			*/
+			error: function(){
+				servError();
+			}
+		});
+		// 3. 결과에 따라 처리하고
+	});
+	*/
+
+	// 설문 등록 클릭 이벤트 2
+	$('#qList').on('click', '.addSurvey', function(){
+		// 할일
+		// 1. 전달할 데이터들 꺼내고
+		//		tpno, qno, qanos
+		var sqno = $(this).siblings().first().attr('id').substring(1);
+		$('#frm').append('<input type="hidden" name="qno" value="'+ sqno + '">');
+		
+		var els = $(this).prev().find('li');
+		for(var i = 0 ; i < els.length ; i++ ){
+			var d = $(els).eq(i).attr('id').substring(1);
+			d = parseInt(d);
+			$('#frm').append('<input type="hidden" name="qanos" value="' + d + '">');
+		}
+
+		$('#frm').attr('encType', 'multipart/form-data');
+
+		var fdata = new FormData($('#frm')[0]);
+
+		var btnEl = $(this); // 버튼 태그 기억 변수
+		// 2. 서버에 전달하고 결과 받고
+		$.ajax({
+			url: '/survey/insertSurvey.son',
+			type: 'post',
+			encType: 'multipart/form-data',
+			processData: false,
+			contentType: false, // 기본값 : application/x-www-form-urlencoded; charset=UTF-8
+			dataType: 'json',
+			data: fdata,
 			success: function(obj){
 				if(obj.result == 'OK'){
 					// 설문 문항 등록에 성공한 경우
