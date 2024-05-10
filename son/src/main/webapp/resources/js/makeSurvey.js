@@ -160,7 +160,7 @@ $(document).ready(function(){
 				if(obj.result == 'OK'){
 					// 데이터베이스 등록에 성공한 경우
 					// 입력된 내용 태그 추가
-					$('#qList > h4').append('<li class="w3-col quest">' + 
+					$('#qList > h4').append('<li class="w3-col w3-margin-top quest pdr10">' + 
 												'<span id="q' + obj.qno + '">' + squest + '</span>' +
 												'<ol style="display: none; list-style-type: lower-alpha;">' +
 												'</ol>' +
@@ -217,7 +217,7 @@ $(document).ready(function(){
 					// 추가된 보기 갯수 확인하고
 					var cnt = $('#qList ol:last > li').length;
 					if(cnt == 4){
-						$('#qList .quest:last').append('<div class="w3-btn w3-small w3-pink w3-right addSurvey">설문등록</div>');
+						$('#qList .quest:last').append('<div class="w3-btn w3-small w3-pink w3-right mgb20 mgr addSurvey">설문등록</div>');
 						$('#title').val('');
 						$('#answerFr').slideUp(500, function(){
 							$('#questFr').slideDown(500);
@@ -321,6 +321,7 @@ $(document).ready(function(){
 					// 버튼을 삭제한다.
 
 					$(btnEl).remove();
+					$('#tpno').siblings().remove();
 				} else {
 					// 
 				}

@@ -205,7 +205,6 @@ public class Survey {
 	@ResponseBody
 	public SurveyVO insertSurvey(SurveyVO sVO) {
 		// 데이터베이스 저장 작업 
-		System.out.println("####################### qanos : " + sVO.getQanos().length);
 		sSrvc.insertSurvey(sVO);
 		return sVO;
 	}
