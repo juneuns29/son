@@ -40,6 +40,15 @@
 		</layout>
 	</appender>
 	
+	<!-- Emp Log Appender -->
+	<appender name="empAppender" class="org.apache.log4j.FileAppender">
+		<param name="File" value="${catalina.base}/webapps/son/resources/log/emp.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %d{yyyy/MM/dd HH:mm:ss} - %m%n" />
+		</layout>
+	</appender>
+	
 	<!-- Application Loggers -->
 	<!-- login out logger -->
 	<logger name="membLog">
@@ -51,6 +60,12 @@
 	<logger name="surveyLog">
 		<level value="info" />
 		<appender-ref ref="surveyAppender" />
+	</logger>
+	
+	<!-- emp logger -->
+	<logger name="empLog">
+		<level value="info" />
+		<appender-ref ref="empAppender" />
 	</logger>
 	
 	<logger name="mytld.mycompany.myapp">
