@@ -16,13 +16,24 @@
 	<bean id="salEditJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean"
 			p:jobClass="com.human.son.scheduler.EmpEditJob"
 			p:durability="true">
-		<property name="jobDataMap">
+		<property name="jobDataAsMap">
 			<map>
-				<entry key="salEdit" value-ref="salEditTask" />
+				<entry key="eEdit" value-ref="salEditTask" />
 			</map>
 		</property>
 	</bean>
 	
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"
+		p:jobDetail-ref="salEditJob"
+		p:startDelay="1000"
+		p:cronExpression="0 40/3 10 13 5 ?">
+	</bean>
 	
-	
+	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+	</bean>
 </beans>
