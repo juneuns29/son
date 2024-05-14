@@ -285,6 +285,15 @@
 처리함수	:	insertSurvey()
 응답문서	:	JSON : { "result": "OK" | "NO"}
 
+-----------------------------------------------------------------------------
+## 갤러리 게시판 관련 요청
+
+# 갤러리 리스트 보기 요청
+요청내용 	:	/gallery/galleryList.son
+파라미터	:	none
+컨트롤러	:	com.human.son.controller.Gallery
+처리함수	:	galleryList()
+응답문서	:	/WEB-INF/views/gallery/gallery.jsp
 
 
 -----------------------------------------------------------------------------
