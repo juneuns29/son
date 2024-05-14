@@ -99,6 +99,10 @@
 			$(location).attr('href', '/survey/surveyList.son');
 		});
 		
+		$('#gallery').click(function(){
+			$(location).attr('href', '/gallery/galleryList.son');
+		});
+		
 	});
 </script>
 </head>
@@ -121,7 +125,7 @@
 		<div class="w3-col mgt10">
 <!-- 로그인에 성공하면 session에 SID라는 속성으로 아이디를 기억시켜 놓을 것이므로 -->
 			<div class="w3-btn w3-small w3-pink w3-left" id="fboard">게시판</div>
-			<div class="w3-btn w3-small w3-amber w3-left" id="gboard">방명록</div>
+			<div class="w3-btn w3-small w3-orange w3-left" id="gboard">방명록</div>
 
 <c:if test="${INGCNT ne 0}">
 			<div class="w3-btn w3-small w3-amber w3-left" id="survey">설문조사</div>
@@ -129,6 +133,7 @@
 <c:if test="${INGCNT eq 0}">
 			<div class="w3-btn w3-small w3-lime w3-left" id="survey">설문조사</div>
 </c:if>			
+			<div class="w3-btn w3-small w3-light-green w3-left" id="gallery">갤러리</div>
 
 <c:if test="${not empty SID and SID eq 'euns'}">
 	<c:if test="${empty SCNT || SCNT eq 0}">

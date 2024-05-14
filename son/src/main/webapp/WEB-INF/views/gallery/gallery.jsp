@@ -16,13 +16,14 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
-
+		$('#food h3').css('display', 'none');
+		$('#food').next().find('h3').css('display', 'none');
 	});
 </script>
 </head>
 <body>
 
-	<div class="w3-content mxw700">
+	<div class="w3-content mxw800">
 		<!-- Sidebar (hidden by default) -->
 		<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
 			<a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
@@ -32,7 +33,7 @@
 		
 		<!-- Top menu -->
 		<div class="w3-top">
-			<div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+			<div class="w3-white w3-xlarge" style="max-width: 800px;">
 				<div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
 				<div class="w3-right w3-padding-16">Mail</div>
 				<div class="w3-center w3-padding-16">My Food</div>
@@ -42,25 +43,46 @@
 		<!-- !PAGE CONTENT! -->
 		<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
 		
-			<!-- First Photo Grid-->
+			<!-- Photo Grid-->
 			<div class="w3-row-padding w3-padding-16 w3-center" id="food">
-				<div class="w3-quarter">
+				
+				<div class="w3-half w3-card-4 pdh10">
 					<img src="https://www.w3schools.com/w3images/sandwich.jpg" alt="Sandwich" style="width:100%">
 					<h3>The Perfect Sandwich, A Real NYC Classic</h3>
-					<p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+					<div class="w3-col w3-margin-top">
+						<b class="w3-col s2 w3-text-blue w3-right-align">작성자 : </b>
+						<span class="w3-col s10 pdl10 w3-left-align">jennie</span>
+					</div>
+					<div class="w3-col">
+						<b class="w3-col s2 w3-text-blue w3-right-align">작성일 : </b>
+						<span class="w3-col s10 pdl10 w3-left-align">2024.05.14</span>
+					</div>
+					<div class="w3-half">
+						<b class="w3-col s4 w3-text-blue w3-right-align">조회수 : </b>
+						<span class="w3-col s8 pdl10 w3-left-align">1000</span>
+					</div>
+					<div class="w3-half">
+						<b class="w3-col s4 w3-text-blue w3-right-align">댓글수 : </b>
+						<span class="w3-col s8 pdl10 w3-left-align">100</span>
+					</div>
+					<div class="w3-col w3-margin-bottom">
+						<b class="w3-col s2 w3-text-blue w3-right-align">설 명 : </b>
+						<span class="w3-col s10 pdl10 w3-left-align">Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</span>
+					</div>
 				</div>
-				<div class="w3-quarter">
+				
+				<div class="w3-half">
 					<img src="https://www.w3schools.com/w3images/steak.jpg" alt="Steak" style="width:100%">
 					<h3>Let Me Tell You About This Steak</h3>
 					<p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
 				</div>
-				<div class="w3-quarter">
+				<div class="w3-half">
 					<img src="https://www.w3schools.com/w3images/cherries.jpg" alt="Cherries" style="width:100%">
 					<h3>Cherries, interrupted</h3>
 					<p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
 					<p>What else?</p>
 				</div>
-				<div class="w3-quarter">
+				<div class="w3-half">
 					<img src="https://www.w3schools.com/w3images/wine.jpg" alt="Pasta and Wine" style="width:100%">
 					<h3>Once Again, Robust Wine and Vegetable Pasta</h3>
 					<p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
@@ -69,22 +91,22 @@
 		  
 		  <!-- Second Photo Grid-->
 		  <div class="w3-row-padding w3-padding-16 w3-center">
-				<div class="w3-quarter">
+				<div class="w3-half">
 				  <img src="https://www.w3schools.com/w3images/popsicle.jpg" alt="Popsicle" style="width:100%">
 				  <h3>All I Need Is a Popsicle</h3>
 				  <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
 				</div>
-				<div class="w3-quarter">
+				<div class="w3-half">
 				  <img src="https://www.w3schools.com/w3images/salmon.jpg" alt="Salmon" style="width:100%">
 				  <h3>Salmon For Your Skin</h3>
 				  <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
 				</div>
-				<div class="w3-quarter">
+				<div class="w3-half">
 				  <img src="https://www.w3schools.com/w3images/sandwich.jpg" alt="Sandwich" style="width:100%">
 				  <h3>The Perfect Sandwich, A Real Classic</h3>
 				  <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
 				</div>
-				<div class="w3-quarter">
+				<div class="w3-half">
 				  <img src="https://www.w3schools.com/w3images/croissant.jpg" alt="Croissant" style="width:100%">
 				  <h3>Le French</h3>
 				  <p>Lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
