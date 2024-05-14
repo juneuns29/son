@@ -1,2 +1,2 @@
 # son
-son proj
+Son Project
