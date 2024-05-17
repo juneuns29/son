@@ -1,4 +1,4 @@
 # son
 Son Project
 
-https://us05web.zoom.us/j/86101001710?pwd=cRuhRkLIsiWb6pbRVQadXf2xm9wiJF.1
+https://us06web.zoom.us/j/86796009670?pwd=4lYziwg0bbo3L5ndjclky3QiiFihny.1
